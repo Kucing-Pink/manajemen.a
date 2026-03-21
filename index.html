@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri Abadi - Manajemen A 2026</title>
+  <meta name="description" content="Ruang memori interaktif untuk keluarga besar Manajemen A Universitas Terbuka.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="theme-transition">
+  <!-- Audio Player (Lo-Fi) -->
+  <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
+  
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <!-- Main Navigation -->
+  <div class="navbar-wrapper glass-panel">
+    <nav class="navbar">
+      <div class="logo">
+      <div class="logo-icon"><i class="ph-fill ph-graduation-cap"></i></div>
+      <h1>Manajemen A</h1>
+    </div>
+    <div class="nav-links">
+      <button id="themeToggleBtn" class="btn-icon" title="Ganti Tema">
+        <i class="ph-fill ph-moon-stars"></i>
+      </button>
+      <button id="musicToggleBtn" class="btn-icon" title="Putar Musik Latar">
+        <i class="ph-fill ph-headphones"></i>
+      </button>
+      <button id="profileClassBtn" class="btn-primary" style="background: transparent; border: 1px solid var(--glass-highlight); color: var(--text-primary); margin-left:1rem;">
+        <i class="ph-fill ph-users-three"></i> <span>Profil Kelas</span>
+      </button>
+      <div class="divider"></div>
+      <button id="loginBtn" class="btn-primary">
+        <span>Akses Ruang</span>
+        <i class="ph ph-sign-in"></i>
+      </button>
+    </div>
+    </nav>
+  </div>
+
+  <!-- Hero Re-design with Typography -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="badge-pill">
+        <span class="pulse-dot"></span> Universitas Terbuka Angkatan 2026
+      </div>
+      <h2 class="serif-title">Jejak Langkah, <br/><span class="text-gradient">Satu Cerita.</span></h2>
+      <p class="hero-desc">Mari mengabadikan canda tawa, lelahnya mengerjakan skripsi bersama, hingga manisnya kelulusan. Ini adalah museum waktu milik keluarga besar Manajemen A.</p>
+    </div>
+  </header>
+
+  <!-- Highlight Section (Momen Terbaik) -->
+  <section class="highlight-section" id="highlightSection">
+    <div class="section-header">
+      <h3><i class="ph-fill ph-star text-gradient"></i> Sorotan Utama</h3>
+      <p>Memori yang paling banyak mendapat cinta bulan ini.</p>
+    </div>
+    <div class="highlight-cards" id="topMomentsContainer">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- Gallery Controls -->
+  <div class="filters-container">
+    <div class="custom-dropdown" id="sortDropdown">
+      <button class="dropdown-toggle" id="sortBtn">
+        <i class="ph ph-sort-ascending"></i> <span class="selected-text">Paling Baru</span> <i class="ph ph-caret-down caret"></i>
+      </button>
+      <ul class="dropdown-menu">
+        <li data-value="newest" class="active">Paling Baru</li>
+        <li data-value="oldest">Paling Lama</li>
+      </ul>
+    </div>
+    
+    <div class="custom-dropdown" id="semesterDropdown">
+      <button class="dropdown-toggle" id="semesterBtn">
+        <i class="ph ph-books"></i> <span class="selected-text">Perjalanan (Semua)</span> <i class="ph ph-caret-down caret"></i>
+      </button>
+      <ul class="dropdown-menu">
+        <li data-value="all" class="active">Perjalanan (Semua)</li>
+        <li data-value="1">Semester 1 (Awal Mula)</li>
+        <li data-value="2">Semester 2 (Adaptasi)</li>
+        <li data-value="3">Semester 3 (Perjuangan)</li>
+        <li data-value="4">Semester 4 (Lelah)</li>
+        <li data-value="5">Semester 5 (Harapan)</li>
+        <li data-value="6">Semester 6 (Kelulusan)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Masonry Gallery -->
+  <main class="gallery-container">
+    <div class="masonry-grid" id="galleryGrid">
+      <!-- Media Items will be injected here via JS -->
+    </div>
+  </main>
+
+  <!-- Floating Action Button (FAB) for Upload -->
+  <button id="fabUploadBtn" class="fab hidden" title="Tulis Kenangan Baru">
+    <i class="ph ph-plus"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="glass-panel" style="text-align: center; padding: 2rem; border-top: 1px solid var(--glass-highlight); margin-top: 4rem;">
+    <p style="color: var(--text-secondary); font-size: 0.95rem;">Dibuat dengan ❤️ by Reyzheshan untuk keluarga Manajemen A</p>
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal-overlay hidden">
+    <div class="modal-content login-box glass-panel-heavy">
+      <button class="close-btn" id="closeLoginBtn"><i class="ph ph-x"></i></button>
+      <div class="login-header">
+        <div class="icon-wrapper"><i class="ph-fill ph-lock-key"></i></div>
+        <h3>Ruang Eksklusif</h3>
+        <p class="subtitle">Masuk menggunakan Nomor HP & PIN yang terdaftar di sistem kelas.</p>
+        <p id="dbStatus" class="micro-text text-gradient">Mengambil sinkronisasi data kelas...</p>
+      </div>
+      <div id="loginStep1">
+        <div class="input-group mb-3">
+          <i class="ph ph-phone input-icon"></i>
+          <input type="text" id="loginInput" placeholder="Masukkan Nomor HP Cth: 81215...">
+        </div>
+        <div class="otp-instruction">Masukkan PIN Akses Anda</div>
+        <div class="otp-inputs">
+          <input type="password" maxlength="1" class="otp-digit">
+          <input type="password" maxlength="1" class="otp-digit">
+          <input type="password" maxlength="1" class="otp-digit">
+          <input type="password" maxlength="1" class="otp-digit">
+        </div>
+        <p id="otpError" class="error-msg hidden"><i class="ph ph-warning-circle"></i> Hmm, kredensial tidak cocok. Coba cek lagi!</p>
+        <button id="verifyOtpBtn" class="btn-primary w-full mt-4">Validasi Akses <i class="ph ph-fingerprint"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload Modal -->
+  <div id="uploadModal" class="modal-overlay hidden">
+    <div class="modal-content login-box glass-panel-heavy" style="max-width: 500px;">
+      <button class="close-btn" id="closeUploadBtn"><i class="ph ph-x"></i></button>
+      <div class="login-header mb-3">
+        <h3 class="serif-title" style="font-size: 1.8rem;">Bingkai Memori</h3>
+        <p class="subtitle">Punya momen tak terlupakan? Simpan di sini selamanya.</p>
+      </div>
+      <div class="input-group mb-3">
+        <label for="imageUploadInput" class="upload-area">
+          <i class="ph-fill ph-image"></i>
+          <span>Ketuk untuk memilih foto ajaibmu</span>
+        </label>
+        <input type="file" id="imageUploadInput" accept="image/*" class="hidden">
+        <div id="imagePreviewContainer" class="hidden image-preview-box">
+          <img id="imagePreview" src="">
+          <button id="removeImageBtn" class="remove-img-btn"><i class="ph ph-trash"></i></button>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <textarea id="uploadCaption" class="glass-input" placeholder="Ceritakan kisah di balik foto ini..." rows="3"></textarea>
+      </div>
+      <div class="input-group mb-3">
+        <select id="uploadSemester" class="glass-input cursor-pointer">
+          <option value="" disabled selected>Kapan momen ini terjadi?</option>
+          <option value="1">Semester 1</option><option value="2">Semester 2</option>
+          <option value="3">Semester 3</option><option value="4">Semester 4</option>
+          <option value="5">Semester 5</option><option value="6">Semester 6</option>
+        </select>
+      </div>
+      <button id="submitUploadBtn" class="btn-primary w-full shadow-glow">Abadikan Memori <i class="ph-fill ph-sparkle"></i></button>
+    </div>
+  </div>
+
+  <!-- Media Modal -->
+  <div id="mediaModal" class="modal-overlay hidden">
+    <button class="close-btn media-close" id="closeMediaBtn"><i class="ph ph-x"></i></button>
+    <div class="media-modal-content glass-panel-heavy">
+      <div class="media-section" id="mediaDisplayArea"></div>
+      <div class="interaction-section">
+        <div class="media-author">
+          <img src="https://i.pravatar.cc/100?img=11" alt="Avatar" class="avatar-img">
+          <div class="author-info">
+            <h4>Anonim Manajemen A</h4>
+            <p id="authorSub">Tanggal Upload</p>
+          </div>
+        </div>
+        <div class="media-caption-area">
+          <p class="media-caption" id="mediaCaption">Caption</p>
+        </div>
+        <div class="interaction-buttons">
+          <button class="action-btn" id="likeBtn">
+            <div class="icon-circle"><i class="ph-fill ph-heart"></i></div>
+            <span id="likeCount" class="count-text">0</span>
+          </button>
+          <button class="action-btn">
+            <div class="icon-circle"><i class="ph-fill ph-chat-circle-dots"></i></div>
+            <span class="count-text">Disembunyikan</span>
+          </button>
+        </div>
+        <div class="comments-list" id="commentsList">
+          <div class="empty-state">Jadilah yang pertama untuk meninggalkan pesan di foto ini!</div>
+        </div>
+        <div class="comment-input-area">
+          <img src="https://i.pravatar.cc/100?img=1" class="small-avatar">
+          <div class="input-wrapper">
+            <input type="text" id="newCommentInput" placeholder="Tinggalkan pesan hangat...">
+            <button id="postCommentBtn" class="btn-send"><i class="ph-fill ph-paper-plane-tilt"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Class Profile Fullscreen Modal -->
+  <div class="modal-overlay hidden" id="profileModal" style="z-index: 2000;">
+    <div class="modal-content" style="max-width: 900px; padding: 0; display: flex; flex-direction: column; max-height: 90vh; background: var(--bg-dark); border: 1px solid var(--glass-border);">
+      <button class="close-btn" id="closeProfileBtn" style="z-index: 10; top: 1.5rem; right: 1.5rem; background: rgba(0,0,0,0.5); color: white;"><i class="ph ph-x"></i></button>
+      
+      <!-- Profile Header Cover -->
+      <div class="profile-cover" style="height: 250px; background: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1000&auto=format&fit=crop') center/cover; position: relative; border-radius: 32px 32px 0 0;">
+        <div class="cover-overlay" style="position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-dark), transparent);"></div>
+      </div>
+      
+      <!-- Profile Body -->
+      <div class="profile-body" style="padding: 0 4rem 4rem; margin-top: -60px; position: relative; overflow-y: auto;">
+        <div class="profile-avatar" style="width: 120px; height: 120px; border-radius: 24px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary)); display: flex; justify-content: center; align-items: center; font-size: 3.5rem; color: white; border: 6px solid var(--bg-dark); margin-bottom: 1.5rem; box-shadow: 0 15px 35px rgba(255,42,95,0.3);">
+          <i class="ph-fill ph-graduation-cap"></i>
+        </div>
+        
+        <h2 style="font-size: 3rem; font-family: 'Playfair Display', serif; color: var(--text-primary); margin-bottom: 0.2rem; font-weight: 800;">Manajemen A</h2>
+        <p style="color: var(--accent-secondary); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.1em; margin-bottom: 2rem;">UNIVERSITAS TERBUKA ANGKATAN 2026</p>
+        
+        <div class="profile-stats" style="display: flex; gap: 3rem; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--glass-border); flex-wrap: wrap;">
+          <div><h3 style="font-size: 2.2rem; color: var(--text-primary); font-weight: 800;">42</h3><span style="color: var(--text-muted); font-size: 0.95rem; font-weight: 600; text-transform: uppercase;">Mahasiswa</span></div>
+          <div><h3 style="font-size: 2.2rem; color: var(--text-primary); font-weight: 800;">6</h3><span style="color: var(--text-muted); font-size: 0.95rem; font-weight: 600; text-transform: uppercase;">Semester</span></div>
+          <div><h3 style="font-size: 2.2rem; color: var(--text-primary); font-weight: 800;">A</h3><span style="color: var(--text-muted); font-size: 0.95rem; font-weight: 600; text-transform: uppercase;">Akreditasi Kelas</span></div>
+        </div>
+        
+        <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.6rem; font-weight: 700;">Tentang Kelas Kami</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 3rem; font-size: 1.1rem;">
+          Kami adalah keluarga besar Manajemen A angkatan 2026. Berawal dari canggungnya pertemuan pertama di masa orientasi, hingga akhirnya menjadi saudara seperjuangan menembus skripsi. Kelas ini bukan sekadar dinding ruang kuliah, melainkan saksi bisu tawa, lelah, dan mimpi-mimpi besar kami tentang masa depan.
+        </p>
+
+        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem; font-size: 1.6rem; font-weight: 700;">Pengurus Kelas</h3>
+        <div class="members-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.5rem;">
+           <div class="member-card" style="background: var(--glass-input-bg); border: 1px solid var(--glass-highlight); padding: 1.5rem; border-radius: 20px; text-align: center; transition: 0.3s; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+             <img src="https://i.pravatar.cc/150?img=47" style="width: 70px; height: 70px; border-radius: 50%; margin-bottom: 1rem; border: 3px solid var(--accent-primary); padding: 2px;">
+             <h4 style="color: var(--text-primary); font-size: 1.1rem; font-weight: 700;">Anindya</h4>
+             <p style="color: var(--accent-primary); font-size: 0.85rem; font-weight: 600;">Ketua Kelas</p>
+           </div>
+           <div class="member-card" style="background: var(--glass-input-bg); border: 1px solid var(--glass-highlight); padding: 1.5rem; border-radius: 20px; text-align: center; transition: 0.3s; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+             <img src="https://i.pravatar.cc/150?img=11" style="width: 70px; height: 70px; border-radius: 50%; margin-bottom: 1rem; border: 3px solid var(--accent-secondary); padding: 2px;">
+             <h4 style="color: var(--text-primary); font-size: 1.1rem; font-weight: 700;">Fajar</h4>
+             <p style="color: var(--accent-secondary); font-size: 0.85rem; font-weight: 600;">Wakil Ketua</p>
+           </div>
+           <div class="member-card" style="background: var(--glass-input-bg); border: 1px solid var(--glass-highlight); padding: 1.5rem; border-radius: 20px; text-align: center; transition: 0.3s; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+             <img src="https://i.pravatar.cc/150?img=33" style="width: 70px; height: 70px; border-radius: 50%; margin-bottom: 1rem; border: 3px solid var(--accent-tertiary); padding: 2px;">
+             <h4 style="color: var(--text-primary); font-size: 1.1rem; font-weight: 700;">Siti</h4>
+             <p style="color: var(--accent-tertiary); font-size: 0.85rem; font-weight: 600;">Bendahara</p>
+           </div>
+           <div class="member-card" style="background: var(--glass-input-bg); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 20px; text-align: center; display: flex; align-items: center; justify-content: center; transition: 0.3s; cursor: pointer;">
+             <div>
+               <i class="ph ph-users" style="font-size: 2.5rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: block;"></i>
+               <h4 style="color: var(--text-primary); font-size: 1rem;">+39 Anggota Lainnya</h4>
+             </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Profile Modal -->
+  <div id="userProfileModal" class="modal-overlay hidden" style="z-index: 2000;">
+    <div class="modal-content login-box glass-panel-heavy" style="max-width: 450px; text-align: center; position: relative;">
+      <button class="close-btn" id="closeUserProfileBtn"><i class="ph ph-x"></i></button>
+      <button id="editProfileBtn" class="btn-icon" style="position: absolute; top: 1.5rem; left: 1.5rem; width: 40px; height: 40px;" title="Edit Profil"><i class="ph-fill ph-pencil-simple"></i></button>
+      
+      <input type="file" id="profilePicInput" accept="image/*" class="hidden">
+      
+      <div style="position: relative; width: 100px; height: 100px; margin: 0 auto 1.5rem;" id="profileAvatarContainer">
+        <img id="userProfileImg" src="https://i.pravatar.cc/150?img=11" style="width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--accent-secondary); object-fit: cover; box-shadow: 0 10px 25px rgba(0, 240, 255, 0.3); transition: 0.3s; display: block;">
+        <div id="profileAvatarOverlay" class="hidden" title="Ganti Foto" style="position: absolute; inset: 0; background: rgba(0,0,0,0.6); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; cursor: pointer; border: 4px solid transparent;">
+          <i class="ph-fill ph-camera" style="font-size: 1.5rem;"></i>
+        </div>
+      </div>
+      
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--text-primary); margin-bottom: 0.2rem; outline: none; border: 1px dashed transparent; transition: 0.3s; padding: 0.2rem; border-radius: 8px;" id="userProfileName">Siswa Terdaftar</h3>
+      
+      <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.8rem; font-weight: 600; letter-spacing: 0.05em;" id="userProfileHp">Nomor HP</p>
+      
+      <p id="userProfileBio" style="color: var(--text-muted); font-size: 0.95rem; font-style: italic; margin-bottom: 2rem; outline: none; border: 1px dashed transparent; transition: 0.3s; padding: 0.4rem; border-radius: 8px;">Haloo! Mari mengukir kenangan bersama Manajemen A.</p>
+      
+      <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2.5rem;">
+        <div style="background: var(--glass-input-bg); padding: 1rem; border-radius: 16px; border: 1px solid var(--glass-highlight); flex: 1;">
+          <h4 style="color: var(--text-primary); font-size: 1.5rem; font-weight: 800;">12</h4>
+          <p style="color: var(--text-muted); font-size: 0.8rem;">Cinta Diberikan</p>
+        </div>
+        <div style="background: var(--glass-input-bg); padding: 1rem; border-radius: 16px; border: 1px solid var(--glass-highlight); flex: 1;">
+          <h4 style="color: var(--text-primary); font-size: 1.5rem; font-weight: 800;" id="userUploadCount">0</h4>
+          <p style="color: var(--text-muted); font-size: 0.8rem;">Memori Diunggah</p>
+        </div>
+      </div>
+      
+      <button id="logoutBtn" class="btn-primary w-full" style="background: rgba(255, 42, 95, 0.1); border: 1px solid var(--accent-primary); color: var(--accent-primary); box-shadow: none;"><i class="ph-bold ph-sign-out"></i> Keluar dari Ruang</button>
+    </div>
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+</html>
