@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website Kelas Manajemen A — Universitas Terbuka. Simpan dan bagikan momen kebersamaan kita.">
+    <title>Manajemen A | Universitas Terbuka</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <span class="logo-text">MJ<span class="logo-accent">-A</span></span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+                <li><a href="#galeri" class="nav-link">Galeri</a></li>
+                <li><a href="#tentang" class="nav-link">Tentang</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <!-- Theme Toggle -->
+                <button class="nav-icon-btn" id="btnThemeToggle" title="Ganti Tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <!-- Music Toggle -->
+                <button class="nav-icon-btn" id="btnMusicToggle" title="Putar Musik">
+                    <i class="fas fa-music"></i>
+                </button>
+
+                <div class="nav-profile" id="navProfile" style="display:none;">
+                    <div class="profile-avatar" id="profileToggle">
+                        <img src="https://api.dicebear.com/7.x/initials/svg?seed=MA" alt="Avatar">
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="dropdown-header">
+                            <img src="https://api.dicebear.com/7.x/initials/svg?seed=MA" alt="Avatar" id="dropdownAvatar">
+                            <div>
+                                <h4 id="dropdownName">Mahasiswa</h4>
+                                <p id="dropdownPhone">08xx</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" id="btnOpenProfile"><i class="fas fa-user-edit"></i> Edit Profil</a>
+                        <a href="#" class="dropdown-item" id="btnMyPosts"><i class="fas fa-images"></i> Postingan Saya</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+                    </div>
+                </div>
+                <button class="btn-login" id="btnOpenLogin">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Masuk</span>
+                </button>
+                <button class="nav-hamburger" id="navHamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="beranda">
+        <div class="hero-bg-effects">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-university"></i>
+                <span>Universitas Terbuka</span>
+            </div>
+            <h1 class="hero-title">
+                Manajemen <span class="gradient-text">A</span>
+            </h1>
+            <p class="hero-subtitle">Ruang kita berbagi momen kuliah, tugas bareng, dan cerita seru. Karena kenangan terbaik adalah yang kita bagi bersama.</p>
+            <div class="hero-actions">
+                <a href="#galeri" class="btn btn-primary">
+                    <i class="fas fa-images"></i>
+                    Lihat Galeri
+                </a>
+                <button class="btn btn-glass" id="btnHeroUpload">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    Bagikan Momen
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="statPosts" data-count="0">0</span>
+                    <span class="stat-label">Foto & Video</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="statMembers" data-count="0">0</span>
+                    <span class="stat-label">Anggota</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="statComments" data-count="0">0</span>
+                    <span class="stat-label">Komentar</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll ke bawah</span>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY SECTION ===== -->
+    <section class="gallery-section" id="galeri">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-camera-retro"></i> Galeri Kenangan</span>
+            <h2 class="section-title">Momen <span class="gradient-text">Berharga</span> Kita</h2>
+            <p class="section-desc">Kumpulan foto dan video kebersamaan kelas Manajemen A yang tak terlupakan</p>
+        </div>
+
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-th"></i> Semua
+            </button>
+            <button class="filter-btn" data-filter="image">
+                <i class="fas fa-image"></i> Foto
+            </button>
+            <button class="filter-btn" data-filter="video">
+                <i class="fas fa-video"></i> Video
+            </button>
+        </div>
+
+        <div class="masonry-grid" id="masonryGrid">
+            <div class="gallery-loading" id="galleryLoading">
+                <div class="spinner"></div>
+                <p>Memuat galeri...</p>
+            </div>
+        </div>
+
+        <div class="gallery-load-more" id="loadMoreWrap" style="display:none;">
+            <button class="btn btn-glass" id="btnLoadMore">
+                <i class="fas fa-plus"></i> Muat Lebih Banyak
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="about-section" id="tentang">
+        <div class="about-container">
+            <div class="about-content">
+                <span class="section-tag"><i class="fas fa-heart"></i> Tentang Kita</span>
+                <h2 class="section-title">Kelas <span class="gradient-text">Manajemen A</span></h2>
+                <p class="about-text">
+                    Kami adalah keluarga besar mahasiswa Manajemen A di Universitas Terbuka.
+                    Website ini dibuat sebagai wadah untuk menyimpan dan berbagi setiap momen indah selama
+                    perjalanan kuliah kita bersama — dari diskusi tugas, presentasi kelompok, hingga
+                    keseruan di luar kampus. Semua tersimpan di sini.
+                </p>
+                <div class="about-features">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-camera"></i></div>
+                        <h3>Simpan Momen</h3>
+                        <p>Upload foto & video kebersamaan</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                        <h3>Berkomentar</h3>
+                        <p>Berikan komentar pada setiap momen</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                        <h3>Privat & Aman</h3>
+                        <p>Hanya anggota kelas yang bisa akses</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="about-photo-stack">
+                    <div class="stacked-photo sp-1"><img src="photo_1.jpg" alt="Kenangan 1"></div>
+                    <div class="stacked-photo sp-2"><img src="photo_2.jpg" alt="Kenangan 2"></div>
+                    <div class="stacked-photo sp-3"><img src="photo_3.jpg" alt="Kenangan 3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MEMBERS SECTION ===== -->
+    <section class="members-section" id="anggota">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-users"></i> Anggota Kelas</span>
+            <h2 class="section-title">Keluarga <span class="gradient-text">Manajemen A</span></h2>
+            <p class="section-desc">Kenali teman-teman sekelas kita</p>
+        </div>
+        <div class="members-marquee">
+            <div class="members-track" id="membersTrack">
+                <!-- Members cards rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <span class="logo-text">MJ<span class="logo-accent">-A</span></span>
+                    </div>
+                    <p>Website kelas Manajemen A — Universitas Terbuka. Dibuat dengan ❤️ by Reyzheshan untuk kenangan tak terlupakan.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Menu</h4>
+                    <a href="#beranda">Beranda</a>
+                    <a href="#galeri">Galeri</a>
+                    <a href="#tentang">Tentang</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontak</h4>
+                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp Group</a>
+                    <a href="#"><i class="fas fa-envelope"></i> Email</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Manajemen A — Universitas Terbuka. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-container login-modal">
+            <button class="modal-close" id="btnCloseLogin"><i class="fas fa-times"></i></button>
+
+            <div class="modal-header-visual">
+                <div class="modal-icon-wrap">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h2>Selamat Datang!</h2>
+                <p>Masuk untuk melihat & berbagi momen kelas</p>
+            </div>
+
+            <!-- Step 1: Phone input -->
+            <div class="login-step" id="loginStep1">
+                <div class="form-group">
+                    <label>Nomor HP</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="loginPhone" placeholder="08xxxxxxxxxx" required>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-full" id="btnLoginNext">
+                    <span class="btn-text">Lanjut</span>
+                    <span class="btn-loader" style="display:none;"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+            </div>
+
+            <!-- Step 2: Code input (existing user) -->
+            <div class="login-step" id="loginStep2" style="display:none;">
+                <div class="step-info">
+                    <p>Masukkan kode 4 digit untuk</p>
+                    <span class="phone-display" id="phoneDisplay"></span>
+                    <button class="btn-link" id="btnChangePhone"><i class="fas fa-edit"></i> Ganti</button>
+                </div>
+                <div class="code-inputs" id="codeInputs">
+                    <input type="text" maxlength="1" class="code-input" data-index="0" inputmode="numeric">
+                    <input type="text" maxlength="1" class="code-input" data-index="1" inputmode="numeric">
+                    <input type="text" maxlength="1" class="code-input" data-index="2" inputmode="numeric">
+                    <input type="text" maxlength="1" class="code-input" data-index="3" inputmode="numeric">
+                </div>
+                <button class="btn btn-primary btn-full" id="btnLoginVerify">
+                    <span class="btn-text">Masuk</span>
+                    <span class="btn-loader" style="display:none;"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+            </div>
+
+            <!-- Step 3: Register (new user) -->
+            <div class="login-step" id="loginStep3" style="display:none;">
+                <div class="step-info">
+                    <i class="fas fa-user-plus" style="font-size:1.5rem;color:var(--accent-primary);"></i>
+                    <p>Nomor belum terdaftar. Daftar sekarang!</p>
+                    <span class="phone-display" id="regPhoneDisplay"></span>
+                </div>
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="regName" placeholder="Nama lengkap kamu" required>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-full" id="btnRegister">
+                    <span class="btn-text">Daftar & Dapatkan Kode</span>
+                    <span class="btn-loader" style="display:none;"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+            </div>
+
+            <!-- Step 4: Show code to user after register -->
+            <div class="login-step" id="loginStep4" style="display:none;">
+                <div class="step-info register-success">
+                    <i class="fas fa-check-circle" style="font-size:3rem;color:var(--accent-green);"></i>
+                    <h3>Registrasi Berhasil!</h3>
+                    <p>Simpan kode 4 digit ini untuk login:</p>
+                    <div class="generated-code" id="generatedCode">1234</div>
+                    <p class="code-warning"><i class="fas fa-exclamation-triangle"></i> Catat kode ini! Kode ini digunakan setiap kali login.</p>
+                </div>
+                <button class="btn btn-primary btn-full" id="btnStartUse">
+                    <i class="fas fa-rocket"></i> Mulai Menggunakan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== POST DETAIL MODAL ===== -->
+    <div class="modal-overlay post-detail-overlay" id="postDetailModal">
+        <div class="post-detail-container">
+            <button class="modal-close post-detail-close" id="btnClosePost"><i class="fas fa-times"></i></button>
+
+            <!-- Media Side -->
+            <div class="post-media-side">
+                <div class="post-media-wrapper">
+                    <img id="postDetailImg" src="" alt="Post">
+                    <video id="postDetailVideo" src="" controls autoplay muted loop playsinline style="display:none;"></video>
+                </div>
+            </div>
+
+            <!-- Comments Side -->
+            <div class="post-comments-side">
+                <div class="post-info-header">
+                    <div class="post-author">
+                        <img src="" alt="Author" class="author-avatar" id="postAuthorAvatar">
+                        <div>
+                            <h4 class="author-name" id="postAuthorName">Nama</h4>
+                            <span class="post-date" id="postDate">Waktu</span>
+                        </div>
+                    </div>
+                    <div class="post-actions-bar">
+                        <button class="action-btn like-btn" id="btnLikePost">
+                            <i class="far fa-heart"></i>
+                            <span id="likeCount">0</span>
+                        </button>
+                        <button class="action-btn" id="btnSharePost">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button class="action-btn delete-btn" id="btnDeletePost" style="display:none;" title="Hapus postingan">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <p class="post-caption" id="postCaption">Caption...</p>
+
+                <div class="comments-divider">
+                    <span><i class="fas fa-comments"></i> Komentar (<span id="commentCount">0</span>)</span>
+                </div>
+
+                <div class="comments-list" id="commentsList">
+                    <!-- Comments JS -->
+                </div>
+
+                <div class="comment-input-area" id="commentInputArea" style="display:none;">
+                    <img src="" alt="You" class="comment-avatar" id="commentUserAvatar">
+                    <div class="comment-input-wrapper">
+                        <input type="text" id="commentInput" placeholder="Tulis komentar...">
+                        <button class="comment-send-btn" id="btnSendComment">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="comment-login-prompt" id="commentLoginPrompt">
+                    <p><a href="#" id="commentLoginLink">Masuk</a> untuk berkomentar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== UPLOAD MODAL ===== -->
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal-container upload-modal">
+            <button class="modal-close" id="btnCloseUpload"><i class="fas fa-times"></i></button>
+            <div class="modal-header-visual">
+                <div class="modal-icon-wrap">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h2>Bagikan Momen</h2>
+                <p>Upload foto atau video kenangan kamu</p>
+            </div>
+            <div class="upload-area" id="uploadDragArea">
+                <div class="upload-placeholder" id="uploadPlaceholder">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop file di sini</p>
+                    <span>atau</span>
+                    <label class="btn btn-glass btn-sm" for="uploadFileInput">Pilih File</label>
+                    <input type="file" id="uploadFileInput" accept="image/*,video/*" hidden>
+                    <p class="upload-hint">JPG, PNG, MP4 — Maks 50MB</p>
+                </div>
+                <div class="upload-preview" id="uploadPreview" style="display:none;">
+                    <img id="previewImg" src="" alt="Preview">
+                    <video id="previewVideo" src="" controls style="display:none;"></video>
+                    <button class="btn btn-glass btn-sm remove-preview" id="btnRemovePreview"><i class="fas fa-trash"></i> Hapus</button>
+                </div>
+            </div>
+            <div class="upload-progress" id="uploadProgress" style="display:none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">0%</span>
+            </div>
+            <div class="form-group">
+                <label>Caption</label>
+                <div class="input-wrapper textarea-wrapper">
+                    <textarea id="uploadCaption" placeholder="Tulis caption untuk momen ini..." rows="3"></textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-full" id="btnPublish">
+                <i class="fas fa-paper-plane"></i> Posting
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== PROFILE MODAL ===== -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal-container profile-modal">
+            <button class="modal-close" id="btnCloseProfile"><i class="fas fa-times"></i></button>
+            <div class="modal-header-visual">
+                <div class="modal-icon-wrap">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <h2>Edit Profil</h2>
+                <p>Perbarui informasi profil kamu</p>
+            </div>
+
+            <div class="profile-photo-edit">
+                <div class="profile-photo-wrapper" id="profilePhotoWrapper">
+                    <img id="profilePhotoPreview" src="https://api.dicebear.com/7.x/initials/svg?seed=MA" alt="Profile">
+                    <div class="photo-overlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <input type="file" id="profilePhotoInput" accept="image/*" hidden>
+            </div>
+
+            <div class="form-group">
+                <label>Nama</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="profileName" placeholder="Nama lengkap">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Bio</label>
+                <div class="input-wrapper textarea-wrapper">
+                    <textarea id="profileBio" placeholder="Ceritakan tentang kamu..." rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="form-divider"><span>Sosial Media</span></div>
+            <div class="form-group">
+                <label>Instagram</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">instagram.com/</span>
+                    <input type="text" id="profileInstagram" placeholder="username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>LinkedIn</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">linkedin.com/in/</span>
+                    <input type="text" id="profileLinkedin" placeholder="username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>TikTok</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">tiktok.com/@</span>
+                    <input type="text" id="profileTiktok" placeholder="username">
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-full" id="btnSaveProfile">
+                <span class="btn-text"><i class="fas fa-save"></i> Simpan</span>
+                <span class="btn-loader" style="display:none;"><i class="fas fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== FLOATING ACTION BUTTON ===== -->
+    <button class="fab" id="fabUpload" title="Upload Momen">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- ===== TOAST NOTIFICATIONS ===== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ===== BACKGROUND MUSIC (lofi/chill) ===== -->
+    <audio id="bgMusic" loop preload="none">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
