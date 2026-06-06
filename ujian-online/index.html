@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExamReady — Login</title>
+  <meta name="description" content="Platform ujian online interaktif. Masukkan kode akses 4 angka untuk memulai latihan soal." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="login-page">
+  <!-- Animated background blobs -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <main class="login-container">
+    <div class="login-card" role="main">
+      <!-- Logo / Branding -->
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">🎓</div>
+        <h1 class="brand-name">ExamReady</h1>
+        <p class="brand-tagline">Platform Latihan Ujian Online</p>
+      </div>
+
+      <!-- Input kode -->
+      <div class="login-form">
+        <label class="form-label" for="code-input">Masukkan Kode Akses</label>
+        <p class="form-hint">Masukkan kode 4 angka yang diberikan oleh instruktur Anda.</p>
+
+        <div class="code-input-wrapper" id="code-display-row" aria-label="Input kode 4 angka">
+          <div class="code-digit" id="digit-0">_</div>
+          <div class="code-digit" id="digit-1">_</div>
+          <div class="code-digit" id="digit-2">_</div>
+          <div class="code-digit" id="digit-3">_</div>
+        </div>
+
+        <!-- Hidden real input for keyboard -->
+        <input
+          type="tel"
+          id="code-input"
+          class="hidden-input"
+          maxlength="4"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          autocomplete="off"
+          aria-label="Kode akses 4 angka"
+        />
+
+        <!-- Error message -->
+        <div class="error-msg" id="login-error" role="alert" aria-live="polite"></div>
+
+        <!-- Keypad -->
+        <div class="keypad" id="keypad" role="group" aria-label="Keypad angka">
+          <button class="key-btn" data-val="1" id="key-1">1</button>
+          <button class="key-btn" data-val="2" id="key-2">2</button>
+          <button class="key-btn" data-val="3" id="key-3">3</button>
+          <button class="key-btn" data-val="4" id="key-4">4</button>
+          <button class="key-btn" data-val="5" id="key-5">5</button>
+          <button class="key-btn" data-val="6" id="key-6">6</button>
+          <button class="key-btn" data-val="7" id="key-7">7</button>
+          <button class="key-btn" data-val="8" id="key-8">8</button>
+          <button class="key-btn" data-val="9" id="key-9">9</button>
+          <button class="key-btn key-clear" data-val="clear" id="key-clear">⌫</button>
+          <button class="key-btn" data-val="0" id="key-0">0</button>
+          <button class="key-btn key-enter" data-val="enter" id="key-enter">✓</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
