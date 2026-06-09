@@ -1,0 +1,32 @@
+[
+  {
+    "id": "econ4102",
+    "accessCode": 1,
+    "name": "Pengantar Ekonomi Mikro",
+    "code": "ECON4102",
+    "icon": "📊",
+    "description": "Konsep dasar ekonomi mikro: permintaan, penawaran, pasar, produksi, dan biaya.",
+    "totalQuestions": 115,
+    "file": "questions/econ4102.json"
+  },
+  {
+    "id": "eacc4101",
+    "accessCode": 2,
+    "name": "Pengantar Akuntansi",
+    "code": "EACC4101",
+    "icon": "📒",
+    "description": "Dasar-dasar akuntansi: jurnal, neraca, laporan laba rugi, aset, dan kewajiban.",
+    "totalQuestions": 134,
+    "file": "questions/eacc4101.json"
+  },
+  {
+    "id": "econ4103",
+    "accessCode": 3,
+    "name": "Matematika Ekonomi",
+    "code": "ECON4103",
+    "icon": "📐",
+    "description": "Matematika terapan untuk ekonomi: fungsi, diferensial, integral, dan optimasi.",
+    "totalQuestions": 90,
+    "file": "questions/econ4103.json"
+  }
+]
