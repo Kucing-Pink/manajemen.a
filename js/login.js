@@ -16,6 +16,7 @@
   const digits = [0, 1, 2, 3].map(i => document.getElementById('digit-' + i));
   const errorEl = document.getElementById('login-error');
   const enterBtn = document.getElementById('key-enter');
+  const codeInput = document.getElementById('code-input');
 
   // Update tampilan digit
   function renderDigits() {
@@ -43,10 +44,11 @@
     }, 1500);
     // Reset code setelah error
     code = '';
+    codeInput.value = '';
     setTimeout(renderDigits, 200);
   }
 
-  // Load & validate codes — format: "Nama Kode" per baris
+  // Load & validate codes — format: "Nama Kode [courseId1 courseId2 ...]"
   async function validateCode(inputCode) {
     try {
       const text = await App.fetchText('data/codes.txt');
@@ -56,12 +58,22 @@
         .filter(l => l.length > 0);
 
       for (const line of lines) {
-        // Split dari kanan: bagian terakhir adalah kode, sisanya nama
-        const parts = line.split(/\s+/);
-        if (parts.length < 2) continue;
-        const lineCode = parts[parts.length - 1];          // kode = kata terakhir
-        const lineName = parts.slice(0, -1).join(' ');     // nama = sisa
-        if (lineCode === inputCode) return lineName;        // cocok → kembalikan nama
+        // Cari posisi kode 4 digit
+        const m = line.match(/^(.+?)\s+(\d{4})\s*(.*)$/);
+        if (!m) continue;
+        
+        const lineName = m[1].trim();
+        const lineCode = m[2];
+        const rest     = m[3].trim();
+
+        if (lineCode !== inputCode) continue;
+
+        // Parse course IDs dari sisa baris (angka-angka)
+        const allowedCourses = rest
+          ? rest.split(/\s+/).map(Number).filter(n => !isNaN(n) && n > 0)
+          : [];
+
+        return { name: lineName, allowedCourses };
       }
       return null; // tidak ditemukan
     } catch (e) {
@@ -73,9 +85,9 @@
 
   async function handleEnter() {
     if (code.length < MAX) return;
-    const name = await validateCode(code);
-    if (name) {
-      App.setSession(name, code);
+    const result = await validateCode(code);
+    if (result) {
+      App.setSession(result.name, code, result.allowedCourses);
       // Animasi sukses
       digits.forEach(el => {
         el.style.borderColor = '#10b981';
@@ -88,41 +100,71 @@
     }
   }
 
+  // Sinkronisasi input real dengan digit visual
+  codeInput.addEventListener('input', () => {
+    let val = codeInput.value.replace(/\D/g, '');
+    if (val.length > MAX) {
+      val = val.slice(0, MAX);
+    }
+    code = val;
+    codeInput.value = val;
+    renderDigits();
+
+    if (code.length === MAX) {
+      // Auto masuk setelah 4 digit
+      setTimeout(handleEnter, 300);
+    }
+  });
+
   // Keypad click
   document.getElementById('keypad').addEventListener('click', (e) => {
     const btn = e.target.closest('.key-btn');
     if (!btn) return;
+    
+    // Cegah button click mengambil fokus dari input
+    e.preventDefault();
+
     const val = btn.dataset.val;
     if (val === 'clear') {
-      if (code.length > 0) code = code.slice(0, -1);
+      let valInput = codeInput.value;
+      if (valInput.length > 0) {
+        codeInput.value = valInput.slice(0, -1);
+        codeInput.dispatchEvent(new Event('input'));
+      }
     } else if (val === 'enter') {
       handleEnter();
-    } else if (/^[0-9]$/.test(val) && code.length < MAX) {
-      code += val;
-      if (code.length === MAX) {
-        // Auto masuk setelah 4 digit
-        setTimeout(handleEnter, 300);
-      }
+    } else if (/^[0-9]$/.test(val) && codeInput.value.length < MAX) {
+      codeInput.value += val;
+      codeInput.dispatchEvent(new Event('input'));
     }
-    renderDigits();
   });
 
-  // Keyboard input
-  document.addEventListener('keydown', (e) => {
-    if (/^[0-9]$/.test(e.key) && code.length < MAX) {
-      code += e.key;
-      if (code.length === MAX) setTimeout(handleEnter, 300);
-    } else if (e.key === 'Backspace') {
-      code = code.slice(0, -1);
-    } else if (e.key === 'Enter') {
-      handleEnter();
+  // Mousedown pada keypad untuk mencegah hilangnya fokus input
+  document.getElementById('keypad').addEventListener('mousedown', (e) => {
+    if (e.target.closest('.key-btn')) {
+      e.preventDefault();
     }
-    renderDigits();
+  });
+  document.getElementById('keypad').addEventListener('touchstart', (e) => {
+    if (e.target.closest('.key-btn')) {
+      e.preventDefault();
+    }
   });
 
-  // Click pada digit row juga fokus input
-  document.getElementById('code-display-row').addEventListener('click', () => {
-    document.getElementById('code-input').focus();
+  // Auto focus input ketika halaman dimuat
+  codeInput.focus();
+
+  // Focus input ketika baris digit diklik
+  document.getElementById('code-display-row').addEventListener('click', (e) => {
+    e.stopPropagation();
+    codeInput.focus();
+  });
+
+  // Focus input jika klik di area mana saja selain tombol musik / keypad
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.key-btn') && !e.target.closest('#music-toggle-btn')) {
+      codeInput.focus();
+    }
   });
 
   renderDigits();

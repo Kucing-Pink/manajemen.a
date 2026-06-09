@@ -34,26 +34,49 @@
   loading.remove();
 
   courses.forEach((course, idx) => {
+    // Tentukan apakah mata kuliah ini diizinkan
+    const isAllowed = session && session.allowedCourses && session.allowedCourses.includes(course.accessCode);
+
     const card = document.createElement('div');
     card.className = 'course-card';
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-label', `Mulai ujian ${course.name}`);
+    card.setAttribute('aria-label', isAllowed ? `Mulai ujian ${course.name}` : `Ujian ${course.name} Terkunci`);
     card.id = 'course-card-' + course.id;
     card.style.animationDelay = (idx * 80) + 'ms';
 
-    card.innerHTML = `
-      <span class="course-card-icon" aria-hidden="true">${course.icon}</span>
-      <span class="course-card-code">${course.code}</span>
-      <h2 class="course-card-name">${course.name}</h2>
-      <p class="course-card-desc">${course.description}</p>
-      <div class="course-card-meta">
-        <span class="course-card-count">📝 ${course.totalQuestions} Soal</span>
-        <span class="course-card-arrow" aria-hidden="true">→</span>
-      </div>
-    `;
+    if (!isAllowed) {
+      card.classList.add('course-card--locked');
+      card.innerHTML = `
+        <div class="course-lock-overlay">
+          <span class="lock-icon" aria-hidden="true">🔒</span>
+        </div>
+        <span class="course-card-icon" aria-hidden="true">${course.icon}</span>
+        <span class="course-card-code">${course.code}</span>
+        <h2 class="course-card-name">${course.name}</h2>
+        <p class="course-card-desc">${course.description}</p>
+        <div class="course-card-meta">
+          <span class="locked-badge">Terkunci</span>
+        </div>
+      `;
+    } else {
+      card.innerHTML = `
+        <span class="course-card-icon" aria-hidden="true">${course.icon}</span>
+        <span class="course-card-code">${course.code}</span>
+        <h2 class="course-card-name">${course.name}</h2>
+        <p class="course-card-desc">${course.description}</p>
+        <div class="course-card-meta">
+          <span class="course-card-count">📝 ${course.totalQuestions} Soal</span>
+          <span class="course-card-arrow" aria-hidden="true">→</span>
+        </div>
+      `;
+    }
 
     const startExam = () => {
+      if (!isAllowed) {
+        alert(`Akses Terkunci: Anda tidak memiliki izin untuk mengakses latihan soal ${course.name}.`);
+        return;
+      }
       App.setCourse(course);
       window.location.href = 'exam.html';
     };

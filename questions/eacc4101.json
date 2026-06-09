@@ -1,0 +1,431 @@
+[
+  {
+    "id": 1,
+    "question": "Saham yang mempunyai hak-hak tertentu seperti hak suara, pembagian laba dan pembagian kekayaan dikenal dengan istilah ....",
+    "options": [
+      "saham biasa",
+      "saham prioritas",
+      "saham persekutuan",
+      "setoran saham"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 2,
+    "question": "Ibu Jessica menabung di bank saat ini sebesar Rp15.000.000,00 dan memperoleh bunga sebesar 11% pertahun. Maka jumlah uang Ibu Jessica pada tahun ke-4 adalah sebesar....",
+    "options": [
+      "Rp9.881.423,00",
+      "Rp13.100.000,00",
+      "Rp20.514.465,00",
+      "Rp22.770.000,00"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 3,
+    "question": "Pada tanggal 1 Januari, sebuah perusahaan mengeluarkan 16% obligasi, 5 tahun, nominal Rp 2.000.000.000,00 bunga dibayar setiap setengah tahun dengan tingkat bunga efektif 20%. Penyajian utang obligasi di neraca adalah ....",
+    "options": [
+      "utang obligasi Rp 1.754.220.000,00",
+      "diskonto utang obligasi Rp 245.780.000,00",
+      "utang obligasi Rp 2.000.000.000,00",
+      "nilai buku obligasi Rp 2.245.780.000,00"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 4,
+    "question": "Survey terhadap pihak yang berkepentingan dalam pengembangan sistem akuntansi dilakukan pada fase ....",
+    "options": [
+      "analisis sistem",
+      "perancangan",
+      "implementasi",
+      "tindak lanjut"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 5,
+    "question": "Diketahui pabrik Hidan memproduksi 2 jenis sepatu yaitu Speed dan Sport. Aktivitas utama untuk menghasilkan kedua jenis sepatu tersebut adalah (1) persiapan, (2) pengolahan, dan (3) inspeksi. Tarif overhead berdasar aktivitas adalah Rp 400 per persiapan, Rp 20 per pengolahan (jam mesin), dan Rp 60 per inspeksi. Pemicu biaya sepatu Speed untuk persiapan mesin adalah 1.000, jam mesin 40.000, dan jumlah inspeksi 1.000. Sedangkan pemicu biaya sepatu Sport untuk persiapan mesin adalah 1.000, jam mesin 30.000 dan jumlah inspeksi 500. Berdasarkan data tersebut biaya overhead per unit produk Speed untuk produksi 30.000 unit adalah ....",
+    "options": [
+      "Rp 1,4",
+      "Rp 4,2",
+      "Rp 41,2",
+      "Rp 42,0"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 6,
+    "question": "Nona Lince, pemilik usaha perseorangan sebuah salon kecantikan, mengambil uang perusahaan untuk keperluan pribadinya Rp 5.400.000,00. Elemen persamaan akuntansi yang terpengaruh oleh transaksi tersebut adalah....",
+    "options": [
+      "pendapatan berkurang Rp 5.400.000,00; biaya bertambah Rp 5.400.000,00",
+      "utang bertambah Rp 5.400.000,00; biaya berkurang Rp 5.400.000,00",
+      "kas berkurang Rp 5.400.000,00; modal Nn. Lince berkurang Rp 5.400.000,00",
+      "piutang berkurang Rp 5.400.000,00; modal Nn. Lince bertambah Rp 5.400.000,00"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 7,
+    "question": "Informasi laba atau rugi suatu perusahaan merupakan sebagian kecil dari informasi akuntansi yang dihasilkan oleh ....",
+    "options": [
+      "sistem akuntansi",
+      "sistem auditing",
+      "neraca",
+      "laporan audit"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 8,
+    "question": "Salah satu keunggulan utama dari sistem komputer akuntansi adalah....",
+    "options": [
+      "tidak membutuhkan pencatatan jurnal di buku harian",
+      "akan mendapatkan keuntungan yang berlipat",
+      "transaksi secara serentak dan segera tercatat di buku jurnal dan pembantu",
+      "dapat diakses oleh siapa saja"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 9,
+    "question": "Seseorang dapat berkecimpung dalam bidang pemasaran, keuangan, produksi, personalia dan lain-lain. Setiap tingkat jabatan dalam perusahaan akan selalu berhubungan dengan masalah akuntansi. Semakin tinggi tingkat kedudukan seseorang, maka semakin besar ....",
+    "options": [
+      "kebutuhan untuk memahami konsep dan istilah akuntansi",
+      "peran permasalahan dalam masyarakat modern",
+      "informasi berbagai aspek yang harus disediakan oleh perusahaan",
+      "perencanaan yang harus dilakukan untuk masa yang akan datang"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 10,
+    "question": "Salah satu faktor penunjang bertumbuhnya profesi akuntansi dari aspek regulasi adalah....",
+    "options": [
+      "kewajiban periksaan laporan keuangan setiap perusahaan oleh akuntan publik",
+      "semakin banyaknya perundang-undangan yang dikenakan pada badan usaha",
+      "akuntansi positif yang berkembang semakin cepat",
+      "fungsi strategis akuntansi sebagai pengendali aliran kas"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 11,
+    "question": "Sikap para manajemen dan karyawan terhadap pentingnya pengendalian yang ada di organisasi tersebut didapati saat menganalisis komponen pengendalian internal ....",
+    "options": [
+      "lingkungan pengendalian (control environment)",
+      "penilaian risiko (risk assesment)",
+      "informasi dan komunikasi (information and communication)",
+      "aktivitas pengendalian (control activities)"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 12,
+    "question": "Jika terdapat upah karyawan mingguan yang belum dibayar sampai dengan 31/12/08, selama 4 hari (perusahaan menerapkan 6 hari kerja) yang upah per hari karyawan secara keseluruhan Rp 1.000.000,00; maka proses penyesuaian dalam neraca lajur adalah ....",
+    "options": [
+      "utang biaya gaji (debit) Rp 1.000.000,00; biaya gaji (kredit) Rp 1.000.000,00",
+      "utang biaya gaji (debit) Rp 6.000.000,00; kas (kredit) Rp 6.000.000,00",
+      "biaya gaji (debit) Rp 2.000.000,00; kas (kredit) Rp 2.000.000,00",
+      "biaya gaji (debit) Rp 4.000.000,00; utang biaya gaji (kredit) Rp 4.000.000,00"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 13,
+    "question": "Jika informasi kertas kerja (worksheets) kolom daftar saldo pada akun Asuransi Dimuka menunjukkan jumlah debit Rp 350.000,00, sedangkan pada kolom penyesuaian menunjukkan jumlah kredit Rp 200.000,00; maka pada kolom daftar saldo setelah penyesuaian akan menunjukkan....",
+    "options": [
+      "kas (kredit) Rp 200.000,00",
+      "asuransi dimuka (debit) Rp 150.000,00",
+      "biaya asuransi (kredit) Rp 350.000,00",
+      "piutang (debit) Rp 550.000,00"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 14,
+    "question": "Pengeluaran uang atau prestasi untuk menjalankan perusahaan atau proses produksi yang mengakibatkan berkurangnya capital modal dikenal dengan istilah ....",
+    "options": [
+      "beban usaha",
+      "beban non usaha",
+      "revenue",
+      "gain"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 15,
+    "question": "Dari informasi di atas diketahui bahwa saham yang beredar adalah saham biasa sejumlah 2.000.000 lembar. Berapa harga per lembar saham biasa saat ini?",
+    "options": [
+      "Rp2.500/lembar",
+      "Rp3.000/lembar",
+      "Rp4.000/lembar",
+      "Rp4.500/lembar"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 16,
+    "question": "Akun kas dalam kertas kerja kolom Daftar Saldo setelah disesuaikan tercantum Rp7.500.000,00 (debit), yang selanjutnya akan masuk ke kolom....",
+    "options": [
+      "laba rugi Rp7.500.000,00 (debit)",
+      "laba rugi Rp7.500.000,00 (kredit)",
+      "neraca Rp7.500.000,00 (debit)",
+      "neraca Rp7.500.000,00 (kredit)"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 17,
+    "question": "Biayapenjualandanbiayaadministrasidalamperusahaanmanufakturdapat dikelompokkan sebagai biaya....",
+    "options": [
+      "produksi",
+      "tenaga kerja langsung",
+      "overhead pabrik",
+      "periode (periode costs)"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 18,
+    "question": "overhead pabrik dan barang dalam proses langsung adalah....",
+    "options": [
+      "mendebet utang PPh",
+      "mendebet upah atau gaji",
+      "mengkredit upah atau gaji",
+      "mengkredit barang dalam proses"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 19,
+    "question": "Dalam neraca lajur, kolom yang memuat akun-akun riil adalah....",
+    "options": [
+      "kolom laba rugi",
+      "kolom penyesuaian",
+      "kolom daftar saldo",
+      "kolom neraca"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 20,
+    "question": "Selama 2008, pendapatan salon kecantikan Ny. Vita Rp 17.000.000,00, Biaya Rp 15.000.000,00. Jurnal penutup atas selisih akun pendapatan dan biaya tersebut adalah....",
+    "options": [
+      "modal Ny. Vita Rp 2.000.000,00 (debit); ikhtisar laba rugi Rp 2.000.000,00 (kredit)",
+      "ikhtisar laba rugi Rp 17.000.000,00 (debit); pendapatan Rp 15.000.000,00 (kredit)",
+      "ikhtisar laba rugi Rp 2.000.000,00 (debit); modal Ny. Vita Rp 2.000.000,00  (kredit)",
+      "biaya Rp 15.000.000,00 (debit); modal Ny. Vita Rp 17.000.000,00 (kredit)"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 21,
+    "question": "Bapak Santoso berniat menanamkan modalnya pada PT Kenari Jaya dengan menyerahkan uang tunai sebesar Rp 1.000.000.000,00 dan gedung senilai Rp500.000.000,00. PT Kenari Jaya mencatat penyerahan modal tersebut dengan ....",
+    "options": [
+      "mengkredit modal Rp 1.500.000.000,00",
+      "mengkredit gedung Rp 500.000.000,00",
+      "mendebet modal Rp 1.500.000.000,00",
+      "mengkredit kas Rp 1.000.000.000,00"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 22,
+    "question": "Harga pokok produksi dikenal dalam perhitungan harga pokok penjualan pada perusahaan ....",
+    "options": [
+      "dagang",
+      "manufaktur",
+      "jasa",
+      "campuran"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 23,
+    "question": "Digunakannya harta pribadi tiap sekutu untuk melunasi utang persekutuan bila persekutuan mengalami kebangkrutan adalah merupakan salah satu karakteristik persekutuan yaitu ....",
+    "options": [
+      "tanggung jawab tidak terbatas",
+      "jangka waktu yang tidak terbatas",
+      "pemilikan harta yang terpisah",
+      "partisipasi dalam pembagian laba"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 24,
+    "question": "Pada tanggal 15 Desember 2018 PT GEULIS menanamkan uangnya sebesar Rp50.000.000,00 dalam deposito berjangka, dengan tingkat bunga 16%. Bunga akan diterima setiap bulan maka jurnal atas transaksi tersebut adalah dengan mendebet....",
+    "options": [
+      "premi bunga Rp 50.000.000,00",
+      "surat-surat Berharga – Deposito Berjangka Rp 50.000.000,00",
+      "kas Rp 50.000.000,00",
+      "beban bunga Rp 50.000.000,00"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 25,
+    "question": "Berdasarkan data diatas, maka dapat dihitung Laba Usaha PD “KOKOH” sebesar....",
+    "options": [
+      "Rp 18.500.000,00",
+      "Rp 20.500.000,00",
+      "Rp 21.000.000,00",
+      "Rp 22.500.000,00"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 26,
+    "question": "Pada saat penjualan barang menggunakan kartu kredit, perusahaan akan mencatat transaksi perpindahan barang dengan ....",
+    "options": [
+      "mendebet HPP",
+      "mendebet persediaan barang",
+      "mengkredit HPP",
+      "mengkredit persediaan barang"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 27,
+    "question": "Rp 85.000.000,00. Bonus yang diperoleh Hazim dan Luthfan adalah....",
+    "options": [
+      "Hazim Rp 5.312.500,00 dan Luthfan Rp 15.937.500,00",
+      "Hazim Rp 1.237.500,00 dan Luthfan Rp 3.125.000,00",
+      "Hazim Rp 937.500,00 dan Luthfan Rp 2.812.500,00",
+      "Hazim Rp 800.000,00 dan Luthfan Rp 1.223.000,00"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 28,
+    "question": "Utang dividen dicatat perusahaan pada saat....",
+    "options": [
+      "Pengumuman dividen",
+      "Pencatatan dividen",
+      "Pembayaran dividen",
+      "Perencanaan dividen"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 29,
+    "question": "Pada struktur organisasi yang bertugas sebagai pengawas dalam pengelolaan diserahkan kepada....",
+    "options": [
+      "Rapat Umum Pemegang Saham",
+      "Dewan Komisaris",
+      "Direksi",
+      "Manajer Perseroan"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 30,
+    "question": "PT. WESTAR memiliki utang kepada bank yang harus diangsur setiap tahun dengan angsuran Rp 1.000.000,00 selama 5 tahun. Apabila diketahui tingkat bunga 20% per tahun maka bunga pinjaman yang harus dibayarkan PT. WESTAR pada tahun ke-3 adalah sebesar....",
+    "options": [
+      "Rp 517.746,00",
+      "Rp 478.405,00",
+      "Rp 421.926,00",
+      "Rp 166.610,00"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 31,
+    "question": "Pada tanggal 1 Januari 2010 PT. SQUARE membeli investasi jangka pendek yang berupa 12% obligasi PT. KALBE FARMA, nominal Rp50.000.000,00 dengan kurs 102%. Bunga obligasi dibayar setiap tanggal 1 Januari dan 1 Juli, Bea materai dan provisi Rp35.000,00. maka jumlah yang harus dibayar atas pembelian obligasi adalah sebesar....",
+    "options": [
+      "Rp50.000.000,00",
+      "Rp51.035.000,00",
+      "Rp57.035.000,00",
+      "Rp63.035.000,00"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 32,
+    "question": "Pencatatan emisi saham prioritas dengan nominal Rp15.000,00, sebanyak 1.000 lembar adalah ....",
+    "options": [
+      "mendebet emisi saham prioritas Rp 15.000.000,00",
+      "mendebet modal saham prioritas Rp 15.000.000,00",
+      "mengkredit emisi saham prioritas Rp 15.000.000,00",
+      "mengkredit modal saham prioritas Rp 15.000.000,00"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 33,
+    "question": "Jurnal pemakaian bahan baku dan bahan penolong saat proses produksi dalam sistem akuntansi biaya proses dilakukan dengan cara ....",
+    "options": [
+      "mendebet barang dalam proses – biaya bahan baku – produksi",
+      "mendebet persediaan bahan baku – produksi",
+      "mengkredit barang dalam proses – biaya overhead – produksi",
+      "mengkredit berbagai rekening yang di kredit"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 34,
+    "question": "Usaha jasa konsultasi Edelweis selama bulan Mei, mencatat bahan habis pakai yang digunakan atau terpakai seharga Rp500.000,00. Maka jurnalnya adalah sebagai berikut....",
+    "options": [
+      "Akun beban bahan habis pakai di debet sebesar Rp500.000,00 dan akun bahan  habis pakai di kredit sebesar Rp500.000,00",
+      "Akun bahan habis pakai di debet sebesar Rp500.000,00 dan akun beban bahan habis pakai di kredit sebesar Rp500.000,00",
+      "Akun bahan habis pakai di debet sebesar Rp500.000,00 dan akun kas di kredit sebesar Rp500.000,00",
+      "Akun kas di debet sebesar Rp500.000,00 dan akun bahan habis pakai di kredit sebesar Rp500.000,00"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 35,
+    "question": "Pada awal 2008 saldo persediaan bahan habis pakai Rp 7.500.000,00 (debit). Setelah dilakukan stock opname, saldo persediaan bahan habis pakai pada 31 Desember 2008 masih sebesar Rp 2.300.000,00 (debit). Jurnal penyesuaian atas transaksi tersebut adalah....",
+    "options": [
+      "persediaan bahan habis pakai (debit) Rp2.300.000,00; biaya pemakaian bahan habis pakai (kredit) Rp2.300.000,00",
+      "biaya pemakaian bahan habis pakai (debit) Rp 5.200.000,00; Persediaan habis  pakai (kredit) Rp 5.200.000,00",
+      "biaya depresiasi bahan habis pakai (debit) Rp 2.300.000,00; persediaan bahan habis pakai (kredit) Rp 2.300.000,00",
+      "persediaan bahan habis pakai (debit) Rp 5.200.000,00; biaya pemakaian bahan habis pakai (kredit) Rp 5.200.000,00"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 36,
+    "question": "just in time adalah....",
+    "options": [
+      "sistem pengendalian kualitas total (total quality control) harus diberlakukan pada  seluruh kegiatan produksi",
+      "merupakan perusahaan besar dan memiliki banyak divisi",
+      "mempunyai sistem akuntansi yang kuat dan handal",
+      "memiliki internal audit untuk memeriksa beberapa perusahaan anak atau cabang"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 37,
+    "question": "Pada jenis usaha garmen kain/bahan, kancing, benang dan merupakan persediaan....",
+    "options": [
+      "bahan baku",
+      "barang dalam proses",
+      "barang jadi",
+      "barang siap pakai"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 38,
+    "question": "Perusahaan akan mencatat jurnal penyerahan barang atau harga pokok penjualan setelah terjadinya penjualan baik secara tunai maupun kredit dengan....",
+    "options": [
+      "mendebit persediaan barang jadi",
+      "mendebit penjualan",
+      "mengkredit piutang",
+      "mengkredit persediaan barang jadi"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 39,
+    "question": "Jika suatu perusahaan melakukan perkiraan rencana manajemen dalam melakukan operasinya atau kegiatannya, merupakan maksud lain dari....",
+    "options": [
+      "analisis sistem",
+      "analisis disain",
+      "implementasi sistem",
+      "analisis program"
+    ],
+    "answer": 0
+  }
+]

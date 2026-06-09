@@ -5,9 +5,9 @@
 const App = (() => {
   const SESSION_KEY = 'examready_session';
 
-  /** Simpan sesi setelah login — menyimpan nama & kode */
-  function setSession(name, code) {
-    sessionStorage.setItem(SESSION_KEY, JSON.stringify({ name, code, ts: Date.now() }));
+  /** Simpan sesi setelah login — menyimpan nama, kode & izin akses */
+  function setSession(name, code, allowedCourses) {
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify({ name, code, allowedCourses, ts: Date.now() }));
   }
 
   /** Ambil sesi aktif */
