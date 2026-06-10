@@ -22,12 +22,13 @@
       
       // Deteksi jika ada progres latihan lokal
       const localProgress = {};
-      const courseIds = ["econ4102", "eacc4101", "econ4103", "mkwn4110"];
+      const courseIds = ["econ4102", "eacc4101", "econ4103", "mkwn4110", "mkdi4202"];
       const courseCodeMap = {
         "econ4102": "ECON4102",
         "eacc4101": "EACC4101",
         "econ4103": "ECON4103",
-        "mkwn4110": "MKWN4110"
+        "mkwn4110": "MKWN4110",
+        "mkdi4202": "MKDI4202"
       };
       
       courseIds.forEach(id => {
@@ -40,7 +41,8 @@
               "ECON4102": 115,
               "EACC4101": 134,
               "ECON4103": 90,
-              "MKWN4110": 129
+              "MKWN4110": 129,
+              "MKDI4202": 100
             };
             localProgress[code] = { answered: prog.answers.length, total: courseTotalQuestions[code] || 100 };
           }
@@ -218,7 +220,8 @@
                       "ECON4102": 115,
                       "EACC4101": 134,
                       "ECON4103": 90,
-                      "MKWN4110": 129
+                      "MKWN4110": 129,
+                      "MKDI4202": 100
                     };
                     
                     let bestCourse = '';

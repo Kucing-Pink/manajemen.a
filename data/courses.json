@@ -38,5 +38,15 @@
     "description": "Pendidikan Pancasila: sejarah perumusan, nilai-nilai, ideologi, dan implementasi.",
     "totalQuestions": 129,
     "file": "questions/mkwn4110.json"
+  },
+  {
+    "id": "mkdi4202",
+    "accessCode": 5,
+    "name": "Belajar di Era Digital",
+    "code": "MKDI4202",
+    "icon": "🌐",
+    "description": "Konsep kewarganegaraan digital, literasi informasi, pemanfaatan media, dan hak cipta di era digital.",
+    "totalQuestions": 100,
+    "file": "questions/mkdi4202.json"
   }
 ]
