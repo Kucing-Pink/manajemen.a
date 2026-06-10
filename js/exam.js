@@ -23,20 +23,21 @@
         btnBack.textContent = 'Menyimpan...';
       }
       
-      // Push progress to real-time KVdb database
+      // Push progress to real-time Pantry database
       if (session && session.code && session.name) {
         const dbKey = `scores_${session.code}_${session.name.toLowerCase().replace(/\s+/g, '_')}`;
         
-        fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`)
-          .then(res => res.json())
+        fetch(`https://getpantry.cloud/apiv1/pantry/fb008621-eb2d-44fe-b380-ca85744448f6/basket/${dbKey}`)
+          .then(res => res.ok ? res.json() : null)
           .catch(() => null)
           .then(dbData => {
             dbData = dbData || { name: session.name, scores: {}, progress: {} };
             if (!dbData.progress) dbData.progress = {};
             dbData.progress[course.code] = { answered: answers.length, total: TOTAL };
             
-            return fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`, {
+            return fetch(`https://getpantry.cloud/apiv1/pantry/fb008621-eb2d-44fe-b380-ca85744448f6/basket/${dbKey}`, {
               method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(dbData)
             });
           })
@@ -44,7 +45,7 @@
             window.location.href = 'courses.html';
           })
           .catch(e => {
-            console.error('Error syncing exit progress:', e);
+            console.error('Error syncing exit progress to Pantry:', e);
             window.location.href = 'courses.html';
           });
       } else {

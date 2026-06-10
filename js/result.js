@@ -27,9 +27,9 @@
     userScores[courseCode || courseName] = pct;
     localStorage.setItem(scoresKey, JSON.stringify(userScores));
 
-    // Fetch existing user data from KVdb, merge, and save
-    fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`)
-      .then(res => res.json())
+    // Fetch existing user data from Pantry, merge, and save
+    fetch(`https://getpantry.cloud/apiv1/pantry/fb008621-eb2d-44fe-b380-ca85744448f6/basket/${dbKey}`)
+      .then(res => res.ok ? res.json() : null)
       .catch(() => null)
       .then(dbData => {
         dbData = dbData || { name: session.name, scores: {}, progress: {} };
@@ -42,12 +42,13 @@
         const code = courseCode || courseName;
         dbData.progress[code] = { answered: total, total: total };
 
-        return fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`, {
+        return fetch(`https://getpantry.cloud/apiv1/pantry/fb008621-eb2d-44fe-b380-ca85744448f6/basket/${dbKey}`, {
           method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(dbData)
         });
       })
-      .catch(e => console.error('Error saving score to database:', e));
+      .catch(e => console.error('Error saving score to Pantry database:', e));
   }
 
   // --- Score card ---

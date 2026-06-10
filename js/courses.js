@@ -12,7 +12,7 @@
     userEl.textContent = session.name || ('Kode: ' + session.code);
   }
 
-  // Sync current user's local scores & progress to KVdb on load
+  // Sync current user's local scores & progress to Pantry on load
   if (session && session.code && session.name) {
     const scoresKey = `examready_scores_${session.code}`;
     const dbKey = `scores_${session.code}_${session.name.toLowerCase().replace(/\s+/g, '_')}`;
@@ -48,8 +48,8 @@
       });
       
       // Ambil data DB, gabungkan dengan data lokal, lalu upload
-      fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`)
-        .then(res => res.json())
+      fetch(`https://getpantry.cloud/apiv1/pantry/fb008621-eb2d-44fe-b380-ca85744448f6/basket/${dbKey}`)
+        .then(res => res.ok ? res.json() : null)
         .catch(() => null)
         .then(dbData => {
           dbData = dbData || { name: session.name, scores: {}, progress: {} };
@@ -59,12 +59,13 @@
           Object.assign(dbData.scores, localScores);
           Object.assign(dbData.progress, localProgress);
           
-          return fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`, {
+          return fetch(`https://getpantry.cloud/apiv1/pantry/fb008621-eb2d-44fe-b380-ca85744448f6/basket/${dbKey}`, {
             method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dbData)
           });
         })
-        .catch(e => console.error('Error syncing scores to KVdb on load:', e));
+        .catch(e => console.error('Error syncing scores to Pantry on load:', e));
         
     } catch (e) {}
   }
@@ -192,70 +193,76 @@
         };
       }
 
-      // 2. Fetch all real-time scores from KVdb
+      // 2. Fetch all real-time scores from Pantry
       try {
-        const response = await fetch('https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/?prefix=scores_&values=true&format=json');
+        const response = await fetch('https://getpantry.cloud/apiv1/pantry/fb008621-eb2d-44fe-b380-ca85744448f6');
         if (response.ok) {
-          const dbData = await response.json(); // array of [key, value]
-          dbData.forEach(([key, valStr]) => {
-            try {
-              const parsed = JSON.parse(valStr);
-              const userKey = key.replace('scores_', '');
-              if (leaderboardMap[userKey]) {
-                const item = leaderboardMap[userKey];
-                
-                // Hitung mata kuliah selesai
-                const completedKeys = Object.keys(parsed.scores || {});
-                item.completed = completedKeys.length;
-                
-                // Cari progres soal terbanyak
-                const courseTotalQuestions = {
-                  "ECON4102": 115,
-                  "EACC4101": 134,
-                  "ECON4103": 90,
-                  "MKWN4110": 129
-                };
-                
-                let bestCourse = '';
-                let maxAnswered = 0;
-                let bestTotal = 0;
-                
-                // Cek dari progress aktif
-                if (parsed.progress) {
-                  for (const cCode in parsed.progress) {
-                    const prog = parsed.progress[cCode];
-                    if (prog && typeof prog.answered === 'number') {
-                      if (prog.answered > maxAnswered) {
-                        maxAnswered = prog.answered;
-                        bestCourse = cCode;
-                        bestTotal = prog.total || courseTotalQuestions[cCode] || 100;
+          const data = await response.json();
+          const basketPromises = (data.baskets || [])
+            .filter(b => b.name.startsWith('scores_'))
+            .map(async (b) => {
+              try {
+                const res = await fetch(`https://getpantry.cloud/apiv1/pantry/fb008621-eb2d-44fe-b380-ca85744448f6/basket/${b.name}`);
+                if (res.ok) {
+                  const parsed = await res.json();
+                  const userKey = b.name.replace('scores_', '');
+                  if (leaderboardMap[userKey]) {
+                    const item = leaderboardMap[userKey];
+                    
+                    // Hitung mata kuliah selesai
+                    const completedKeys = Object.keys(parsed.scores || {});
+                    item.completed = completedKeys.length;
+                    
+                    // Cari progres soal terbanyak
+                    const courseTotalQuestions = {
+                      "ECON4102": 115,
+                      "EACC4101": 134,
+                      "ECON4103": 90,
+                      "MKWN4110": 129
+                    };
+                    
+                    let bestCourse = '';
+                    let maxAnswered = 0;
+                    let bestTotal = 0;
+                    
+                    // Cek dari progress aktif
+                    if (parsed.progress) {
+                      for (const cCode in parsed.progress) {
+                        const prog = parsed.progress[cCode];
+                        if (prog && typeof prog.answered === 'number') {
+                          if (prog.answered > maxAnswered) {
+                            maxAnswered = prog.answered;
+                            bestCourse = cCode;
+                            bestTotal = prog.total || courseTotalQuestions[cCode] || 100;
+                          }
+                        }
                       }
                     }
-                  }
-                }
-                
-                // Cek dari mata kuliah selesai (karena selesai berarti answered = total)
-                if (parsed.scores) {
-                  for (const cCode in parsed.scores) {
-                    const total = courseTotalQuestions[cCode] || 100;
-                    if (total > maxAnswered) {
-                      maxAnswered = total;
-                      bestCourse = cCode;
-                      bestTotal = total;
+                    
+                    // Cek dari mata kuliah selesai (karena selesai berarti answered = total)
+                    if (parsed.scores) {
+                      for (const cCode in parsed.scores) {
+                        const total = courseTotalQuestions[cCode] || 100;
+                        if (total > maxAnswered) {
+                          maxAnswered = total;
+                          bestCourse = cCode;
+                          bestTotal = total;
+                        }
+                      }
                     }
+                    
+                    item.bestProgress = {
+                      courseCode: bestCourse,
+                      answered: maxAnswered,
+                      total: bestTotal
+                    };
                   }
                 }
-                
-                item.bestProgress = {
-                  courseCode: bestCourse,
-                  answered: maxAnswered,
-                  total: bestTotal
-                };
+              } catch (e) {
+                console.error('Error fetching basket:', b.name, e);
               }
-            } catch (e) {
-              console.error('Error parsing row:', e);
-            }
-          });
+            });
+          await Promise.all(basketPromises);
         }
       } catch (e) {
         console.error('Error fetching database scores:', e);
