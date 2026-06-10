@@ -14,7 +14,8 @@
 
   // Back button
   document.getElementById('btn-back').addEventListener('click', () => {
-    if (confirm('Keluar dari ujian? Progres tidak akan disimpan.')) {
+    if (confirm('Keluar dari ujian? Progres latihan Anda akan disimpan agar bisa dilanjutkan nanti.')) {
+      saveProgress();
       window.location.href = 'courses.html';
     }
   });
@@ -33,8 +34,9 @@
   let currentIdx = 0;
   let selectedOption = null;   // index opsi yang dipilih user
   let answered = false;        // apakah sudah memilih jawaban
-  // answers: [{questionId, selected, correct, correctAnswer}]
   const answers = [];
+  let countCorrect = 0;
+  let countWrong   = 0;
 
   // DOM refs (progress)
   const progressFill = document.getElementById('progress-bar-fill');
@@ -46,8 +48,44 @@
   const chipCorrectEl  = document.getElementById('score-correct');
   const chipWrongEl    = document.getElementById('score-wrong');
 
-  let countCorrect = 0;
-  let countWrong   = 0;
+  // --- SAVE & RESUME PROGRESS LOGIC ---
+  const session = App.getSession();
+  const progressKey = session ? `examready_progress_${session.code}_${course.id}` : '';
+  
+  function saveProgress() {
+    if (!progressKey) return;
+    const progressData = {
+      currentIdx,
+      answers,
+      countCorrect,
+      countWrong
+    };
+    localStorage.setItem(progressKey, JSON.stringify(progressData));
+  }
+
+  function clearProgress() {
+    if (progressKey) localStorage.removeItem(progressKey);
+  }
+
+  // Load saved progress if exists
+  if (progressKey) {
+    try {
+      const saved = JSON.parse(localStorage.getItem(progressKey));
+      if (saved && saved.answers && saved.answers.length > 0) {
+        const resume = confirm(`Kami menemukan progres latihan sebelumnya (sampai Soal ${saved.currentIdx + 1} dari ${TOTAL}). Ingin melanjutkan?`);
+        if (resume) {
+          currentIdx = saved.currentIdx;
+          answers.push(...saved.answers);
+          countCorrect = saved.countCorrect || 0;
+          countWrong = saved.countWrong || 0;
+        } else {
+          clearProgress();
+        }
+      }
+    } catch (e) {
+      console.error('Error loading progress:', e);
+    }
+  }
 
   function updateScoreChips() {
     countCorrectEl.textContent = countCorrect;
@@ -206,16 +244,19 @@
     // Update score chips di header
     if (isCorrect) countCorrect++; else countWrong++;
     updateScoreChips();
+
+    // Auto save progress
+    saveProgress();
   }
 
-  function handleNext() {
-    if (!answered) return;
-
+  function proceedNext() {
     if (currentIdx < TOTAL - 1) {
       currentIdx++;
       renderQuestion('right');
+      saveProgress();
     } else {
-      // Selesai — simpan & ke halaman hasil
+      // Selesai — hapus progres, simpan jawaban & ke halaman hasil
+      clearProgress();
       App.setAnswers({
         courseName: course.name,
         courseCode: course.code,
@@ -224,6 +265,61 @@
       });
       window.location.href = 'result.html';
     }
+  }
+
+  function showPhaseModal(phase) {
+    const startIndex = (phase - 1) * 50;
+    const endIndex = phase * 50;
+    const phaseAnswers = answers.slice(startIndex, endIndex);
+    const correctInPhase = phaseAnswers.filter(a => a.isCorrect).length;
+    const wrongInPhase = phaseAnswers.length - correctInPhase;
+    const pctInPhase = Math.round((correctInPhase / phaseAnswers.length) * 100);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'phase-modal-overlay';
+    overlay.id = 'phase-modal';
+    overlay.innerHTML = `
+      <div class="phase-modal-card">
+        <div class="phase-emoji">🎉</div>
+        <h2>Selesai Ujian Fase ${phase}!</h2>
+        <p class="phase-subtitle">Anda telah menyelesaikan ${endIndex} soal pertama.</p>
+        <div class="phase-stats">
+          <div class="phase-stat-item">
+            <span class="phase-stat-val correct">${correctInPhase}</span>
+            <span class="phase-stat-lbl">Benar</span>
+          </div>
+          <div class="phase-stat-item">
+            <span class="phase-stat-val wrong">${wrongInPhase}</span>
+            <span class="phase-stat-lbl">Salah</span>
+          </div>
+          <div class="phase-stat-item">
+            <span class="phase-stat-val percentage">${pctInPhase}%</span>
+            <span class="phase-stat-lbl">Akurasi</span>
+          </div>
+        </div>
+        <button class="btn-next phase-dismiss-btn" id="btn-phase-continue">Lanjutkan Ujian</button>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    document.getElementById('btn-phase-continue').addEventListener('click', () => {
+      overlay.remove();
+      proceedNext();
+    });
+  }
+
+  function handleNext() {
+    if (!answered) return;
+
+    const completedCount = currentIdx + 1;
+    if (completedCount % 50 === 0 && completedCount < TOTAL) {
+      const phase = completedCount / 50;
+      showPhaseModal(phase);
+      return;
+    }
+
+    proceedNext();
   }
 
   // Keyboard shortcut: 1-4 untuk pilih, Enter untuk lanjut

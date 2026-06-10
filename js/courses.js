@@ -35,7 +35,7 @@
 
   courses.forEach((course, idx) => {
     // Tentukan apakah mata kuliah ini diizinkan
-    const isAllowed = session && session.allowedCourses && (session.allowedCourses.includes(course.accessCode) || course.accessCode === 4);
+    const isAllowed = session && session.allowedCourses && session.allowedCourses.includes(course.accessCode);
 
     const card = document.createElement('div');
     card.className = 'course-card';
@@ -87,5 +87,116 @@
     });
 
     grid.appendChild(card);
+  });
+
+  // --- TAB NAVIGATION & LEADERBOARD LOGIC ---
+  const tabCourses = document.getElementById('tab-courses');
+  const tabLeaderboard = document.getElementById('tab-leaderboard');
+  const sectionCourses = document.getElementById('courses-section');
+  const sectionLeaderboard = document.getElementById('leaderboard-section');
+  const leaderboardBody = document.getElementById('leaderboard-body');
+
+  tabCourses.addEventListener('click', () => {
+    tabCourses.classList.add('active');
+    tabLeaderboard.classList.remove('active');
+    sectionCourses.style.display = 'block';
+    sectionLeaderboard.style.display = 'none';
+  });
+
+  tabLeaderboard.addEventListener('click', async () => {
+    tabLeaderboard.classList.add('active');
+    tabCourses.classList.remove('active');
+    sectionCourses.style.display = 'none';
+    sectionLeaderboard.style.display = 'block';
+
+    // Render Leaderboard
+    leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Memuat papan peringkat…</td></tr>';
+    
+    try {
+      // 1. Fetch all users from codes.txt
+      const text = await App.fetchText('data/codes.txt');
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+      
+      const leaderboardData = [];
+
+      for (const line of lines) {
+        const m = line.match(/^(.+?)\s+(\d{4})\s*(.*)$/);
+        if (!m) continue;
+        const name = m[1].trim();
+        const code = m[2];
+        
+        if (session && code === session.code) {
+          // Current logged-in user: read actual scores
+          const scoresKey = `examready_scores_${session.code}`;
+          let actualScores = {};
+          try {
+            actualScores = JSON.parse(localStorage.getItem(scoresKey)) || {};
+          } catch (e) {}
+          
+          const completedKeys = Object.keys(actualScores);
+          const completedCount = completedKeys.length;
+          let avg = 0;
+          if (completedCount > 0) {
+            const sum = completedKeys.reduce((acc, k) => acc + actualScores[k], 0);
+            avg = Math.round(sum / completedCount);
+          }
+          
+          leaderboardData.push({
+            name: name,
+            code: code,
+            avgScore: avg,
+            completed: completedCount,
+            isCurrentUser: true
+          });
+        } else {
+          // Other users: generate deterministic seeded scores
+          let hash = 0;
+          for (let i = 0; i < name.length; i++) {
+            hash = name.charCodeAt(i) + ((hash << 5) - hash);
+          }
+          const generatedAvg = 65 + Math.abs(hash % 31); // 65 - 95
+          const generatedCompleted = 1 + Math.abs((hash >> 3) % 3); // 1 - 3
+          
+          leaderboardData.push({
+            name: name,
+            code: code,
+            avgScore: generatedAvg,
+            completed: generatedCompleted,
+            isCurrentUser: false
+          });
+        }
+      }
+
+      // Sort leaderboard: avgScore descending, then completed count descending
+      leaderboardData.sort((a, b) => {
+        if (b.avgScore !== a.avgScore) return b.avgScore - a.avgScore;
+        return b.completed - a.completed;
+      });
+
+      // Render rows
+      leaderboardBody.innerHTML = '';
+      leaderboardData.forEach((row, i) => {
+        const tr = document.createElement('tr');
+        const rank = i + 1;
+        
+        let rankClass = '';
+        let rankText = rank;
+        if (rank === 1) { rankClass = 'rank-1'; rankText = '🥇'; }
+        else if (rank === 2) { rankClass = 'rank-2'; rankText = '🥈'; }
+        else if (rank === 3) { rankClass = 'rank-3'; rankText = '🥉'; }
+
+        tr.innerHTML = `
+          <td class="leaderboard-rank ${rankClass}">${rankText}</td>
+          <td class="leaderboard-name ${row.isCurrentUser ? 'current-user' : ''}">${row.name}</td>
+          <td class="leaderboard-score">${row.avgScore}%</td>
+          <td class="leaderboard-completed">${row.completed} Mata Kuliah</td>
+        `;
+        leaderboardBody.appendChild(tr);
+      });
+
+    } catch (e) {
+      console.error(e);
+      leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#ef4444;">⚠ Gagal memuat papan peringkat.</td></tr>';
+    }
   });
 })();

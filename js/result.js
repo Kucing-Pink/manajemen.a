@@ -14,6 +14,18 @@
   // Soal tidak dijawab (jika user keluar lebih awal, tidak mungkin terjadi pada flow normal)
   const pct = Math.round((correct / total) * 100);
 
+  // Save score to leaderboard
+  const session = App.getSession();
+  if (session && session.code) {
+    const scoresKey = `examready_scores_${session.code}`;
+    let userScores = {};
+    try {
+      userScores = JSON.parse(localStorage.getItem(scoresKey)) || {};
+    } catch (e) {}
+    userScores[courseCode || courseName] = pct;
+    localStorage.setItem(scoresKey, JSON.stringify(userScores));
+  }
+
   // --- Score card ---
   document.getElementById('score-course-name').textContent = courseName + (courseCode ? ` (${courseCode})` : '');
   document.getElementById('stat-correct').textContent = correct;

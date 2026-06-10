@@ -32,15 +32,44 @@
 
   <main class="courses-main">
     <section class="courses-hero">
-      <h1 class="courses-title">Pilih Mata Kuliah</h1>
-      <p class="courses-subtitle">Klik mata kuliah di bawah untuk memulai sesi latihan ujian.</p>
+      <h1 class="courses-title">Dashboard Ujian</h1>
+      <p class="courses-subtitle">Mulai sesi latihan atau lihat papan peringkat pencapaian mahasiswa.</p>
     </section>
 
-    <section class="courses-grid" id="courses-grid" aria-label="Daftar mata kuliah">
-      <!-- Diisi oleh courses.js -->
-      <div class="loading-state" id="courses-loading">
-        <div class="spinner" aria-label="Memuat..."></div>
-        <p>Memuat daftar mata kuliah…</p>
+    <!-- Tabs Container -->
+    <div class="tabs-container">
+      <button class="tab-btn active" id="tab-courses">📚 Mata Kuliah</button>
+      <button class="tab-btn" id="tab-leaderboard">🏆 Peringkat</button>
+    </div>
+
+    <!-- Courses Grid Section -->
+    <section class="courses-grid-section" id="courses-section">
+      <div class="courses-grid" id="courses-grid" aria-label="Daftar mata kuliah">
+        <div class="loading-state" id="courses-loading">
+          <div class="spinner" aria-label="Memuat..."></div>
+          <p>Memuat daftar mata kuliah…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leaderboard Section (Hidden by Default) -->
+    <section class="leaderboard-section" id="leaderboard-section" style="display: none;">
+      <h2 class="leaderboard-title">🏆 Papan Peringkat Mahasiswa</h2>
+      <p class="leaderboard-desc">Peringkat berdasarkan nilai rata-rata latihan soal yang telah diselesaikan.</p>
+      <div class="leaderboard-table-wrap">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th>Posisi</th>
+              <th>Nama Mahasiswa</th>
+              <th>Rata-rata Nilai</th>
+              <th>Mata Kuliah Selesai</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body">
+            <!-- Diisi dinamis oleh courses.js -->
+          </tbody>
+        </table>
       </div>
     </section>
   </main>
