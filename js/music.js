@@ -1,7 +1,7 @@
 /**
  * music.js — Floating ambient music player
  * Menggunakan Web Audio API untuk menghasilkan suara ambient lofi
- * tanpa file eksternal (bekerja offline & GitHub Pages)
+ * dengan nuansa Morning Vibes / Semangat Kerja / Study (Bright Chimes & Uplifting Pads)
  */
 
 (function () {
@@ -12,16 +12,17 @@
   let isPlaying = false;
   let scheduledNodes = [];
 
-  // ── Warna nada lofi (pentatonic + minor) ────────────────────────────────
+  // ── Nada Pentatonik C Major (Bright, Morning Vibes) ─────────────────────
   const NOTES = [
-    261.63, 293.66, 329.63, 349.23, 392.00,  // C D E F G
-    440.00, 493.88, 523.25, 587.33, 659.25    // A B C D E (oktaf atas)
+    261.63, 293.66, 329.63, 392.00, 440.00,  // C4, D4, E4, G4, A4
+    523.25, 587.33, 659.25, 783.99, 880.00   // C5, D5, E5, G5, A5 (oktaf atas)
   ];
+  // Progresi akor yang membangkitkan semangat (C -> G -> Am -> F)
   const CHORD_SETS = [
-    [261.63, 329.63, 392.00],  // C maj
-    [293.66, 349.23, 440.00],  // D min
-    [349.23, 440.00, 523.25],  // F maj
-    [329.63, 392.00, 493.88],  // E min
+    [261.63, 329.63, 392.00],  // C maj (C4, E4, G4)
+    [293.66, 392.00, 493.88],  // G maj (D4, G4, B4)
+    [220.00, 329.63, 440.00],  // A min (A3, E4, A4)
+    [261.63, 349.23, 440.00],  // F maj (C4, F4, A4)
   ];
 
   function initAudio() {
@@ -32,7 +33,7 @@
     masterGain.connect(audioCtx.destination);
   }
 
-  // ── Pink noise generator ─────────────────────────────────────────────────
+  // ── Pink noise generator (untuk kehangatan latar belakang, dibuat sangat pelan) ──
   function createPinkNoise() {
     const bufferSize = 4096;
     let b = [0,0,0,0,0,0,0];
@@ -52,23 +53,24 @@
       }
     };
     const noiseGain = audioCtx.createGain();
-    noiseGain.gain.value = 0.04;
+    // Sangat tipis (0.012) untuk mensimulasikan angin sepoi pagi hari yang hangat
+    noiseGain.gain.value = 0.012;
     node.connect(noiseGain);
     noiseGain.connect(masterGain);
     return { node, noiseGain };
   }
 
-  // ── Chord pad ────────────────────────────────────────────────────────────
+  // ── Akor Latar Belakang (Soft Warm Pad) ───────────────────────────────────
   function playChord(freqs, time, duration) {
     freqs.forEach(freq => {
       const osc  = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
 
       osc.type = 'sine';
-      osc.frequency.value = freq / 2;  // oktaf bawah untuk kedalaman
+      osc.frequency.value = freq / 2;  // Oktaf bawah untuk kehangatan bass
       gain.gain.setValueAtTime(0, time);
-      gain.gain.linearRampToValueAtTime(0.06, time + 0.8);
-      gain.gain.linearRampToValueAtTime(0.04, time + duration - 0.5);
+      gain.gain.linearRampToValueAtTime(0.08, time + 0.8);
+      gain.gain.linearRampToValueAtTime(0.05, time + duration - 0.5);
       gain.gain.linearRampToValueAtTime(0,    time + duration);
 
       osc.connect(gain);
@@ -79,31 +81,49 @@
     });
   }
 
-  // ── Melodi nada santai ───────────────────────────────────────────────────
+  // ── Melodi Cerah / Morning Chimes (Double-oscillator Bell sound) ─────────
   function playMelodyNote(freq, time, duration) {
-    const osc   = audioCtx.createOscillator();
-    const gain  = audioCtx.createGain();
+    const osc1  = audioCtx.createOscillator();
+    const osc2  = audioCtx.createOscillator();
+    const gain1 = audioCtx.createGain();
+    const gain2 = audioCtx.createGain();
     const filt  = audioCtx.createBiquadFilter();
 
     filt.type            = 'lowpass';
-    filt.frequency.value = 1200;
+    filt.frequency.value = 2200; // Frekuensi cutoff lebih tinggi untuk kecerahan suara pagi
 
-    osc.type = 'triangle';
-    osc.frequency.value = freq;
-    gain.gain.setValueAtTime(0, time);
-    gain.gain.linearRampToValueAtTime(0.09, time + 0.05);
-    gain.gain.linearRampToValueAtTime(0.04, time + duration * 0.6);
-    gain.gain.linearRampToValueAtTime(0,    time + duration);
+    osc1.type = 'triangle';
+    osc1.frequency.value = freq;
 
-    osc.connect(filt);
-    filt.connect(gain);
-    gain.connect(masterGain);
-    osc.start(time);
-    osc.stop(time + duration);
-    scheduledNodes.push(osc, filt, gain);
+    osc2.type = 'sine';
+    osc2.frequency.value = freq * 2; // Oktaf atas untuk chime bel kristal
+
+    // Amplop plucky pagi hari
+    gain1.gain.setValueAtTime(0, time);
+    gain1.gain.linearRampToValueAtTime(0.06, time + 0.02);
+    gain1.gain.exponentialRampToValueAtTime(0.001, time + duration);
+
+    gain2.gain.setValueAtTime(0, time);
+    gain2.gain.linearRampToValueAtTime(0.03, time + 0.02);
+    gain2.gain.exponentialRampToValueAtTime(0.001, time + duration);
+
+    osc1.connect(filt);
+    osc2.connect(filt);
+    filt.connect(gain1);
+    filt.connect(gain2);
+
+    gain1.connect(masterGain);
+    gain2.connect(masterGain);
+
+    osc1.start(time);
+    osc1.stop(time + duration);
+    osc2.start(time);
+    osc2.stop(time + duration);
+
+    scheduledNodes.push(osc1, osc2, filt, gain1, gain2);
   }
 
-  // ── Scheduler utama ──────────────────────────────────────────────────────
+  // ── Scheduler Utama ──────────────────────────────────────────────────────
   let chordIdx    = 0;
   let schedTimer  = null;
   let noiseNodes  = null;
@@ -113,22 +133,26 @@
 
     const now     = audioCtx.currentTime;
     const chords  = CHORD_SETS;
-    const dur     = 4.0;
+    const dur     = 3.2; // Sedikit lebih cepat (Tempo semangat belajar)
 
-    // Chord pad setiap 4 detik, rotasi
-    playChord(chords[chordIdx % chords.length], now, dur + 0.5);
+    // Akor pad bergantian setiap 3.2 detik
+    playChord(chords[chordIdx % chords.length], now, dur + 0.4);
     chordIdx++;
 
-    // Melodi acak di atas chord
-    const beats = [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5];
+    // Melodi cerah semi-terstruktur (arpeggio pagi)
+    const step = dur / 8; // 0.4 detik per ketukan
+    const beats = [0, 1, 2, 3, 4, 5, 6, 7].map(b => b * step);
+
     beats.forEach(beat => {
-      if (Math.random() > 0.45) {
+      // Peluang bermain 55% untuk ketukan ganjil, 30% untuk genap
+      const probability = (beat / step) % 2 === 0 ? 0.55 : 0.3;
+      if (Math.random() < probability) {
         const note = NOTES[Math.floor(Math.random() * NOTES.length)];
-        playMelodyNote(note, now + beat, 0.4 + Math.random() * 0.4);
+        playMelodyNote(note, now + beat, 0.3 + Math.random() * 0.3);
       }
     });
 
-    schedTimer = setTimeout(scheduleLoop, dur * 1000 - 200);
+    schedTimer = setTimeout(scheduleLoop, dur * 1000 - 100);
   }
 
   function startMusic() {
@@ -157,12 +181,12 @@
     }
   }
 
-  // ── Buat widget UI ───────────────────────────────────────────────────────
+  // ── Buat Widget UI ───────────────────────────────────────────────────────
   function createWidget() {
     const btn = document.createElement('button');
     btn.id             = 'music-toggle-btn';
-    btn.setAttribute('aria-label', 'Putar musik santai');
-    btn.setAttribute('title',      'Musik Santai (klik untuk putar)');
+    btn.setAttribute('aria-label', 'Putar musik semangat belajar');
+    btn.setAttribute('title',      'Semangat Belajar (klik untuk putar)');
     btn.innerHTML      = '<span class="music-icon">&#127925;</span><span class="music-label">Musik</span>';
     btn.className      = 'music-btn';
 
@@ -174,7 +198,7 @@
       if (isPlaying) {
         stopMusic();
         btn.classList.remove('music-btn--playing');
-        btn.setAttribute('aria-label', 'Putar musik santai');
+        btn.setAttribute('aria-label', 'Putar musik semangat belajar');
         btn.querySelector('.music-label').textContent = 'Musik';
       } else {
         startMusic();

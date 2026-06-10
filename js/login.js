@@ -16,7 +16,6 @@
   const digits = [0, 1, 2, 3].map(i => document.getElementById('digit-' + i));
   const errorEl = document.getElementById('login-error');
   const enterBtn = document.getElementById('key-enter');
-  const codeInput = document.getElementById('code-input');
 
   // Update tampilan digit
   function renderDigits() {
@@ -44,7 +43,6 @@
     }, 1500);
     // Reset code setelah error
     code = '';
-    codeInput.value = '';
     setTimeout(renderDigits, 200);
   }
 
@@ -100,71 +98,50 @@
     }
   }
 
-  // Sinkronisasi input real dengan digit visual
-  codeInput.addEventListener('input', () => {
-    let val = codeInput.value.replace(/\D/g, '');
-    if (val.length > MAX) {
-      val = val.slice(0, MAX);
-    }
-    code = val;
-    codeInput.value = val;
-    renderDigits();
-
-    if (code.length === MAX) {
-      // Auto masuk setelah 4 digit
-      setTimeout(handleEnter, 300);
-    }
-  });
-
-  // Keypad click
+  // Keypad click (HTML Buttons di Halaman)
   document.getElementById('keypad').addEventListener('click', (e) => {
     const btn = e.target.closest('.key-btn');
     if (!btn) return;
     
-    // Cegah button click mengambil fokus dari input
+    // Mencegah behavior bawaan
     e.preventDefault();
 
     const val = btn.dataset.val;
     if (val === 'clear') {
-      let valInput = codeInput.value;
-      if (valInput.length > 0) {
-        codeInput.value = valInput.slice(0, -1);
-        codeInput.dispatchEvent(new Event('input'));
+      if (code.length > 0) {
+        code = code.slice(0, -1);
       }
     } else if (val === 'enter') {
       handleEnter();
-    } else if (/^[0-9]$/.test(val) && codeInput.value.length < MAX) {
-      codeInput.value += val;
-      codeInput.dispatchEvent(new Event('input'));
+    } else if (/^[0-9]$/.test(val) && code.length < MAX) {
+      code += val;
+      if (code.length === MAX) {
+        // Auto masuk setelah 4 digit
+        setTimeout(handleEnter, 300);
+      }
     }
+    renderDigits();
   });
 
-  // Mousedown pada keypad untuk mencegah hilangnya fokus input
-  document.getElementById('keypad').addEventListener('mousedown', (e) => {
-    if (e.target.closest('.key-btn')) {
-      e.preventDefault();
-    }
-  });
-  document.getElementById('keypad').addEventListener('touchstart', (e) => {
-    if (e.target.closest('.key-btn')) {
-      e.preventDefault();
-    }
-  });
+  // Keyboard fisik input (untuk pengguna Desktop tanpa memunculkan soft-keyboard mobile)
+  document.addEventListener('keydown', (e) => {
+    // Abaikan jika fokus sedang berada pada input lain (jika ada)
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
-  // Auto focus input ketika halaman dimuat
-  codeInput.focus();
-
-  // Focus input ketika baris digit diklik
-  document.getElementById('code-display-row').addEventListener('click', (e) => {
-    e.stopPropagation();
-    codeInput.focus();
-  });
-
-  // Focus input jika klik di area mana saja selain tombol musik / keypad
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.key-btn') && !e.target.closest('#music-toggle-btn')) {
-      codeInput.focus();
+    const val = e.key;
+    if (/^[0-9]$/.test(val) && code.length < MAX) {
+      code += val;
+      if (code.length === MAX) {
+        setTimeout(handleEnter, 300);
+      }
+    } else if (val === 'Backspace') {
+      if (code.length > 0) {
+        code = code.slice(0, -1);
+      }
+    } else if (val === 'Enter') {
+      handleEnter();
     }
+    renderDigits();
   });
 
   renderDigits();
