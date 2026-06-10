@@ -12,6 +12,23 @@
     userEl.textContent = session.name || ('Kode: ' + session.code);
   }
 
+  // Sync current user's local scores to KVdb on load
+  if (session && session.code) {
+    const scoresKey = `examready_scores_${session.code}`;
+    try {
+      const localScores = JSON.parse(localStorage.getItem(scoresKey));
+      if (localScores && Object.keys(localScores).length > 0) {
+        fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/scores_${session.code}`, {
+          method: 'POST',
+          body: JSON.stringify({
+            name: session.name,
+            scores: localScores
+          })
+        }).catch(e => console.error('Error syncing scores to KVdb:', e));
+      }
+    } catch (e) {}
+  }
+
   // Logout
   document.getElementById('btn-logout').addEventListener('click', () => {
     App.clearSession();
@@ -113,11 +130,11 @@
     leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Memuat papan peringkat…</td></tr>';
     
     try {
-      // 1. Fetch all users from codes.txt
+      // 1. Fetch all users from codes.txt to establish names and codes
       const text = await App.fetchText('data/codes.txt');
       const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
       
-      const leaderboardData = [];
+      const leaderboardMap = {};
 
       for (const line of lines) {
         const m = line.match(/^(.+?)\s+(\d{4})\s*(.*)$/);
@@ -125,48 +142,47 @@
         const name = m[1].trim();
         const code = m[2];
         
-        if (session && code === session.code) {
-          // Current logged-in user: read actual scores
-          const scoresKey = `examready_scores_${session.code}`;
-          let actualScores = {};
-          try {
-            actualScores = JSON.parse(localStorage.getItem(scoresKey)) || {};
-          } catch (e) {}
-          
-          const completedKeys = Object.keys(actualScores);
-          const completedCount = completedKeys.length;
-          let avg = 0;
-          if (completedCount > 0) {
-            const sum = completedKeys.reduce((acc, k) => acc + actualScores[k], 0);
-            avg = Math.round(sum / completedCount);
-          }
-          
-          leaderboardData.push({
-            name: name,
-            code: code,
-            avgScore: avg,
-            completed: completedCount,
-            isCurrentUser: true
-          });
-        } else {
-          // Other users: generate deterministic seeded scores
-          let hash = 0;
-          for (let i = 0; i < name.length; i++) {
-            hash = name.charCodeAt(i) + ((hash << 5) - hash);
-          }
-          const generatedAvg = 65 + Math.abs(hash % 31); // 65 - 95
-          const generatedCompleted = 1 + Math.abs((hash >> 3) % 3); // 1 - 3
-          
-          leaderboardData.push({
-            name: name,
-            code: code,
-            avgScore: generatedAvg,
-            completed: generatedCompleted,
-            isCurrentUser: false
-          });
-        }
+        leaderboardMap[code] = {
+          name: name,
+          code: code,
+          avgScore: 0,
+          completed: 0,
+          isCurrentUser: (session && code === session.code)
+        };
       }
 
+      // 2. Fetch all real-time scores from KVdb
+      try {
+        const response = await fetch('https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/?prefix=scores_&values=true&format=json');
+        if (response.ok) {
+          const dbData = await response.json(); // array of [key, value]
+          dbData.forEach(([key, valStr]) => {
+            try {
+              const parsed = JSON.parse(valStr);
+              const code = key.replace('scores_', '');
+              if (leaderboardMap[code]) {
+                const completedKeys = Object.keys(parsed.scores || {});
+                const completedCount = completedKeys.length;
+                let avg = 0;
+                if (completedCount > 0) {
+                  const sum = completedKeys.reduce((acc, k) => acc + parsed.scores[k], 0);
+                  avg = Math.round(sum / completedCount);
+                }
+                leaderboardMap[code].avgScore = avg;
+                leaderboardMap[code].completed = completedCount;
+              }
+            } catch (e) {
+              console.error('Error parsing row:', e);
+            }
+          });
+        }
+      } catch (e) {
+        console.error('Error fetching database scores:', e);
+      }
+
+      // Convert map to sorted array
+      const leaderboardData = Object.values(leaderboardMap);
+      
       // Sort leaderboard: avgScore descending, then completed count descending
       leaderboardData.sort((a, b) => {
         if (b.avgScore !== a.avgScore) return b.avgScore - a.avgScore;
@@ -189,7 +205,7 @@
           <td class="leaderboard-rank ${rankClass}">${rankText}</td>
           <td class="leaderboard-name ${row.isCurrentUser ? 'current-user' : ''}">${row.name}</td>
           <td class="leaderboard-score">${row.avgScore}%</td>
-          <td class="leaderboard-completed">${row.completed} Mata Kuliah</td>
+          <td class="leaderboard-completed">${row.completed} Mata Kuliah Selesai</td>
         `;
         leaderboardBody.appendChild(tr);
       });

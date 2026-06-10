@@ -24,6 +24,15 @@
     } catch (e) {}
     userScores[courseCode || courseName] = pct;
     localStorage.setItem(scoresKey, JSON.stringify(userScores));
+
+    // Push to real-time KVdb database
+    fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/scores_${session.code}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: session.name,
+        scores: userScores
+      })
+    }).catch(e => console.error('Error saving score to database:', e));
   }
 
   // --- Score card ---
