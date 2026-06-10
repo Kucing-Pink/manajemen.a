@@ -98,15 +98,8 @@
     }
   }
 
-  // Keypad click (HTML Buttons di Halaman)
-  document.getElementById('keypad').addEventListener('click', (e) => {
-    const btn = e.target.closest('.key-btn');
-    if (!btn) return;
-    
-    // Mencegah behavior bawaan
-    e.preventDefault();
-
-    const val = btn.dataset.val;
+  // Keypad input processor
+  function handleKeypadInput(val) {
     if (val === 'clear') {
       if (code.length > 0) {
         code = code.slice(0, -1);
@@ -121,9 +114,25 @@
       }
     }
     renderDigits();
-  });
+  }
 
-  // Keyboard fisik input (untuk pengguna Desktop tanpa memunculkan soft-keyboard mobile)
+  // Keypad event listener (mendukung Click & Touch secara instan tanpa delay)
+  function handleKeypadEvent(e) {
+    const btn = e.target.closest('.key-btn');
+    if (!btn) return;
+    
+    // Mencegah klik ganda dan behavior default pada touchscreen
+    e.preventDefault();
+
+    const val = btn.dataset.val;
+    handleKeypadInput(val);
+  }
+
+  const keypadEl = document.getElementById('keypad');
+  keypadEl.addEventListener('click', handleKeypadEvent);
+  keypadEl.addEventListener('touchstart', handleKeypadEvent, { passive: false });
+
+  // Keyboard fisik input (untuk pengguna Desktop)
   document.addEventListener('keydown', (e) => {
     // Abaikan jika fokus sedang berada pada input lain (jika ada)
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
