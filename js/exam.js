@@ -116,7 +116,6 @@
     ` : '';
 
     card.innerHTML = `
-      <div class="question-number">Soal ${currentIdx + 1}</div>
       ${imageHTML}
       ${!isImageQuestion ? `<p class="question-text">${q.question}</p>` : ''}
       <ul class="options-list${isImageQuestion ? ' options-list--compact' : ''}"
