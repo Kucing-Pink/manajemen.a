@@ -16,7 +16,40 @@
   document.getElementById('btn-back').addEventListener('click', () => {
     if (confirm('Keluar dari ujian? Progres latihan Anda akan disimpan agar bisa dilanjutkan nanti.')) {
       saveProgress();
-      window.location.href = 'courses.html';
+      
+      const btnBack = document.getElementById('btn-back');
+      if (btnBack) {
+        btnBack.disabled = true;
+        btnBack.textContent = 'Menyimpan...';
+      }
+      
+      // Push progress to real-time KVdb database
+      if (session && session.code && session.name) {
+        const dbKey = `scores_${session.code}_${session.name.toLowerCase().replace(/\s+/g, '_')}`;
+        
+        fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`)
+          .then(res => res.json())
+          .catch(() => null)
+          .then(dbData => {
+            dbData = dbData || { name: session.name, scores: {}, progress: {} };
+            if (!dbData.progress) dbData.progress = {};
+            dbData.progress[course.code] = { answered: answers.length, total: TOTAL };
+            
+            return fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`, {
+              method: 'POST',
+              body: JSON.stringify(dbData)
+            });
+          })
+          .then(() => {
+            window.location.href = 'courses.html';
+          })
+          .catch(e => {
+            console.error('Error syncing exit progress:', e);
+            window.location.href = 'courses.html';
+          });
+      } else {
+        window.location.href = 'courses.html';
+      }
     }
   });
 
@@ -72,14 +105,20 @@
     try {
       const saved = JSON.parse(localStorage.getItem(progressKey));
       if (saved && saved.answers && saved.answers.length > 0) {
-        const resume = confirm(`Kami menemukan progres latihan sebelumnya (sampai Soal ${saved.currentIdx + 1} dari ${TOTAL}). Ingin melanjutkan?`);
-        if (resume) {
-          currentIdx = saved.currentIdx;
-          answers.push(...saved.answers);
-          countCorrect = saved.countCorrect || 0;
-          countWrong = saved.countWrong || 0;
-        } else {
+        if (saved.answers.length >= TOTAL) {
           clearProgress();
+        } else {
+          const resume = confirm(`Kami menemukan progres latihan sebelumnya (melanjutkan dari Soal ${saved.answers.length + 1} dari ${TOTAL}). Ingin melanjutkan?`);
+          if (resume) {
+            answers.push(...saved.answers);
+            currentIdx = answers.length;
+            countCorrect = answers.filter(a => a.isCorrect).length;
+            countWrong = answers.length - countCorrect;
+            // Pastikan chips nilai ter-update
+            setTimeout(updateScoreChips, 100);
+          } else {
+            clearProgress();
+          }
         }
       }
     } catch (e) {

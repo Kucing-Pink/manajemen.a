@@ -12,20 +12,60 @@
     userEl.textContent = session.name || ('Kode: ' + session.code);
   }
 
-  // Sync current user's local scores to KVdb on load
-  if (session && session.code) {
+  // Sync current user's local scores & progress to KVdb on load
+  if (session && session.code && session.name) {
     const scoresKey = `examready_scores_${session.code}`;
+    const dbKey = `scores_${session.code}_${session.name.toLowerCase().replace(/\s+/g, '_')}`;
+    
     try {
-      const localScores = JSON.parse(localStorage.getItem(scoresKey));
-      if (localScores && Object.keys(localScores).length > 0) {
-        fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/scores_${session.code}`, {
-          method: 'POST',
-          body: JSON.stringify({
-            name: session.name,
-            scores: localScores
-          })
-        }).catch(e => console.error('Error syncing scores to KVdb:', e));
-      }
+      const localScores = JSON.parse(localStorage.getItem(scoresKey)) || {};
+      
+      // Deteksi jika ada progres latihan lokal
+      const localProgress = {};
+      const courseIds = ["econ4102", "eacc4101", "econ4103", "mkwn4110"];
+      const courseCodeMap = {
+        "econ4102": "ECON4102",
+        "eacc4101": "EACC4101",
+        "econ4103": "ECON4103",
+        "mkwn4110": "MKWN4110"
+      };
+      
+      courseIds.forEach(id => {
+        const progKey = `examready_progress_${session.code}_${id}`;
+        try {
+          const prog = JSON.parse(localStorage.getItem(progKey));
+          if (prog && prog.answers && prog.answers.length > 0) {
+            const code = courseCodeMap[id];
+            const courseTotalQuestions = {
+              "ECON4102": 115,
+              "EACC4101": 134,
+              "ECON4103": 90,
+              "MKWN4110": 129
+            };
+            localProgress[code] = { answered: prog.answers.length, total: courseTotalQuestions[code] || 100 };
+          }
+        } catch(e) {}
+      });
+      
+      // Ambil data DB, gabungkan dengan data lokal, lalu upload
+      fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`)
+        .then(res => res.json())
+        .catch(() => null)
+        .then(dbData => {
+          dbData = dbData || { name: session.name, scores: {}, progress: {} };
+          if (!dbData.scores) dbData.scores = {};
+          if (!dbData.progress) dbData.progress = {};
+          
+          Object.assign(dbData.scores, localScores);
+          Object.assign(dbData.progress, localProgress);
+          
+          return fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`, {
+            method: 'POST',
+            body: JSON.stringify(dbData)
+          });
+        })
+        .catch(e => console.error('Error syncing scores to KVdb on load:', e));
+        
     } catch (e) {}
   }
 
@@ -141,13 +181,14 @@
         if (!m) continue;
         const name = m[1].trim();
         const code = m[2];
+        const userKey = `${code}_${name.toLowerCase().replace(/\s+/g, '_')}`;
         
-        leaderboardMap[code] = {
+        leaderboardMap[userKey] = {
           name: name,
           code: code,
-          avgScore: 0,
           completed: 0,
-          isCurrentUser: (session && code === session.code)
+          bestProgress: { courseCode: '', answered: 0, total: 0 },
+          isCurrentUser: (session && code === session.code && name.toLowerCase() === session.name.toLowerCase())
         };
       }
 
@@ -159,17 +200,57 @@
           dbData.forEach(([key, valStr]) => {
             try {
               const parsed = JSON.parse(valStr);
-              const code = key.replace('scores_', '');
-              if (leaderboardMap[code]) {
+              const userKey = key.replace('scores_', '');
+              if (leaderboardMap[userKey]) {
+                const item = leaderboardMap[userKey];
+                
+                // Hitung mata kuliah selesai
                 const completedKeys = Object.keys(parsed.scores || {});
-                const completedCount = completedKeys.length;
-                let avg = 0;
-                if (completedCount > 0) {
-                  const sum = completedKeys.reduce((acc, k) => acc + parsed.scores[k], 0);
-                  avg = Math.round(sum / completedCount);
+                item.completed = completedKeys.length;
+                
+                // Cari progres soal terbanyak
+                const courseTotalQuestions = {
+                  "ECON4102": 115,
+                  "EACC4101": 134,
+                  "ECON4103": 90,
+                  "MKWN4110": 129
+                };
+                
+                let bestCourse = '';
+                let maxAnswered = 0;
+                let bestTotal = 0;
+                
+                // Cek dari progress aktif
+                if (parsed.progress) {
+                  for (const cCode in parsed.progress) {
+                    const prog = parsed.progress[cCode];
+                    if (prog && typeof prog.answered === 'number') {
+                      if (prog.answered > maxAnswered) {
+                        maxAnswered = prog.answered;
+                        bestCourse = cCode;
+                        bestTotal = prog.total || courseTotalQuestions[cCode] || 100;
+                      }
+                    }
+                  }
                 }
-                leaderboardMap[code].avgScore = avg;
-                leaderboardMap[code].completed = completedCount;
+                
+                // Cek dari mata kuliah selesai (karena selesai berarti answered = total)
+                if (parsed.scores) {
+                  for (const cCode in parsed.scores) {
+                    const total = courseTotalQuestions[cCode] || 100;
+                    if (total > maxAnswered) {
+                      maxAnswered = total;
+                      bestCourse = cCode;
+                      bestTotal = total;
+                    }
+                  }
+                }
+                
+                item.bestProgress = {
+                  courseCode: bestCourse,
+                  answered: maxAnswered,
+                  total: bestTotal
+                };
               }
             } catch (e) {
               console.error('Error parsing row:', e);
@@ -183,10 +264,15 @@
       // Convert map to sorted array
       const leaderboardData = Object.values(leaderboardMap);
       
-      // Sort leaderboard: avgScore descending, then completed count descending
+      // Sort leaderboard: bestProgress.answered descending, then completed count descending, then name ascending
       leaderboardData.sort((a, b) => {
-        if (b.avgScore !== a.avgScore) return b.avgScore - a.avgScore;
-        return b.completed - a.completed;
+        if (b.bestProgress.answered !== a.bestProgress.answered) {
+          return b.bestProgress.answered - a.bestProgress.answered;
+        }
+        if (b.completed !== a.completed) {
+          return b.completed - a.completed;
+        }
+        return a.name.localeCompare(b.name);
       });
 
       // Render rows
@@ -201,10 +287,15 @@
         else if (rank === 2) { rankClass = 'rank-2'; rankText = '🥈'; }
         else if (rank === 3) { rankClass = 'rank-3'; rankText = '🥉'; }
 
+        let progressText = '0 Soal';
+        if (row.bestProgress.answered > 0) {
+          progressText = `${row.bestProgress.courseCode} (${row.bestProgress.answered}/${row.bestProgress.total} Soal)`;
+        }
+
         tr.innerHTML = `
           <td class="leaderboard-rank ${rankClass}">${rankText}</td>
           <td class="leaderboard-name ${row.isCurrentUser ? 'current-user' : ''}">${row.name}</td>
-          <td class="leaderboard-score">${row.avgScore}%</td>
+          <td class="leaderboard-score">${progressText}</td>
           <td class="leaderboard-completed">${row.completed} Mata Kuliah Selesai</td>
         `;
         leaderboardBody.appendChild(tr);

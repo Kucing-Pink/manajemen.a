@@ -16,8 +16,10 @@
 
   // Save score to leaderboard
   const session = App.getSession();
-  if (session && session.code) {
+  if (session && session.code && session.name) {
     const scoresKey = `examready_scores_${session.code}`;
+    const dbKey = `scores_${session.code}_${session.name.toLowerCase().replace(/\s+/g, '_')}`;
+    
     let userScores = {};
     try {
       userScores = JSON.parse(localStorage.getItem(scoresKey)) || {};
@@ -25,14 +27,27 @@
     userScores[courseCode || courseName] = pct;
     localStorage.setItem(scoresKey, JSON.stringify(userScores));
 
-    // Push to real-time KVdb database
-    fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/scores_${session.code}`, {
-      method: 'POST',
-      body: JSON.stringify({
-        name: session.name,
-        scores: userScores
+    // Fetch existing user data from KVdb, merge, and save
+    fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`)
+      .then(res => res.json())
+      .catch(() => null)
+      .then(dbData => {
+        dbData = dbData || { name: session.name, scores: {}, progress: {} };
+        if (!dbData.scores) dbData.scores = {};
+        if (!dbData.progress) dbData.progress = {};
+        
+        // Merge scores
+        Object.assign(dbData.scores, userScores);
+        // Mark this course progress as 100% completed since they finished it
+        const code = courseCode || courseName;
+        dbData.progress[code] = { answered: total, total: total };
+
+        return fetch(`https://kvdb.io/KGTXeyzkMeXqAuC7NhgjMx/${dbKey}`, {
+          method: 'POST',
+          body: JSON.stringify(dbData)
+        });
       })
-    }).catch(e => console.error('Error saving score to database:', e));
+      .catch(e => console.error('Error saving score to database:', e));
   }
 
   // --- Score card ---
