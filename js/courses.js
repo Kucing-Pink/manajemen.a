@@ -35,7 +35,7 @@
 
   courses.forEach((course, idx) => {
     // Tentukan apakah mata kuliah ini diizinkan
-    const isAllowed = session && session.allowedCourses && session.allowedCourses.includes(course.accessCode);
+    const isAllowed = session && session.allowedCourses && (session.allowedCourses.includes(course.accessCode) || course.accessCode === 4);
 
     const card = document.createElement('div');
     card.className = 'course-card';

@@ -28,5 +28,15 @@
     "description": "Matematika terapan untuk ekonomi: fungsi, diferensial, integral, dan optimasi.",
     "totalQuestions": 90,
     "file": "questions/econ4103.json"
+  },
+  {
+    "id": "mkwn4110",
+    "accessCode": 4,
+    "name": "Pancasila",
+    "code": "MKWN4110",
+    "icon": "🦅",
+    "description": "Pendidikan Pancasila: sejarah perumusan, nilai-nilai, ideologi, dan implementasi.",
+    "totalQuestions": 129,
+    "file": "questions/mkwn4110.json"
   }
 ]
