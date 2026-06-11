@@ -302,7 +302,9 @@
           progressText = `${row.bestProgress.courseCode} (${row.bestProgress.answered}/${row.bestProgress.total} Soal)`;
         }
 
-        const maskedName = row.name.length > 2 ? row.name.substring(0, 2) + '*' : row.name + '*';
+        const maskedName = row.name.length > 2 
+          ? row.name.substring(0, 2) + '*'.repeat(row.name.length - 2) 
+          : row.name;
 
         tr.innerHTML = `
           <td class="leaderboard-rank ${rankClass}">${rankText}</td>
