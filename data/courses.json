@@ -48,5 +48,15 @@
     "description": "Konsep kewarganegaraan digital, literasi informasi, pemanfaatan media, dan hak cipta di era digital.",
     "totalQuestions": 100,
     "file": "questions/mkdi4202.json"
+  },
+  {
+    "id": "econ4314",
+    "accessCode": 6,
+    "name": "Perekonomian Indonesia",
+    "code": "ECON4314",
+    "icon": "🇮🇩",
+    "description": "Sistem ekonomi Pancasila, sejarah perkembangan ekonomi Indonesia, masalah struktural pertanian, industri, utang luar negeri, dan kebijakan pembangunan regional.",
+    "totalQuestions": 119,
+    "file": "questions/econ4314.json"
   }
 ]
