@@ -302,9 +302,11 @@
           progressText = `${row.bestProgress.courseCode} (${row.bestProgress.answered}/${row.bestProgress.total} Soal)`;
         }
 
+        const maskedName = row.name.length > 2 ? row.name.substring(0, 2) + '*' : row.name + '*';
+
         tr.innerHTML = `
           <td class="leaderboard-rank ${rankClass}">${rankText}</td>
-          <td class="leaderboard-name ${row.isCurrentUser ? 'current-user' : ''}">${row.name}</td>
+          <td class="leaderboard-name ${row.isCurrentUser ? 'current-user' : ''}">${maskedName}</td>
           <td class="leaderboard-score">${progressText}</td>
           <td class="leaderboard-completed">${row.completed} Mata Kuliah Selesai</td>
         `;
