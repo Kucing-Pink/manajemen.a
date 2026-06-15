@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "question": "Hukum hasil yang semakin menurun (law of diminishing return) menyatakan bahwa....",
+    "question": "Hukum hasil yang semakin menurun (law of diminishing return) menyatakan bahwa…",
     "options": [
       "setiap tambahan unit input akan meningkatkan output dengan jumlah yang sama",
       "setiap tambahan unit input akan menghasilkan peningkatan output yang semakin  menurun",
@@ -12,7 +12,7 @@
   },
   {
     "id": 2,
-    "question": "Elastisitas permintaan harga mengukur....",
+    "question": "Elastisitas permintaan harga mengukur…",
     "options": [
       "bagaimana jumlah permintaan berubah ketika harga barang tersebut berubah",
       "bagaimana jumlah permintaan berubah ketika harga barang lain berubah",
@@ -23,7 +23,7 @@
   },
   {
     "id": 3,
-    "question": "Contoh biaya tetap dalam produksi jangka pendek adalah biaya….",
+    "question": "Contoh biaya tetap dalam produksi jangka pendek adalah biaya…",
     "options": [
       "biaya bahan baku",
       "biaya tenaga kerja",
@@ -34,7 +34,7 @@
   },
   {
     "id": 4,
-    "question": "Yang merupakan cara untuk meminimumkan biaya dalam jangka panjang adalah….",
+    "question": "Yang merupakan cara untuk meminimumkan biaya dalam jangka panjang adalah…",
     "options": [
       "meningkatkan produksi tanpa mempertimbangkan efisiensi",
       "mengadopsi teknologi yang paling mutakhir tanpa mempertimbangkan biayanya",
@@ -45,7 +45,7 @@
   },
   {
     "id": 5,
-    "question": "Contoh produk di pasar persaingan monopolistik adalah....",
+    "question": "Contoh produk di pasar persaingan monopolistik adalah…",
     "options": [
       "listrik",
       "pasta gigi",
@@ -56,7 +56,7 @@
   },
   {
     "id": 6,
-    "question": "Sebuah perusahaan dikatakan telah mencapai efisiensi teknis ketika….",
+    "question": "Sebuah perusahaan dikatakan telah mencapai efisiensi teknis ketika…",
     "options": [
       "perusahaan menghasilkan output maksimum dengan input tertentu",
       "perusahaan mengurangi biaya produksi",
@@ -67,7 +67,7 @@
   },
   {
     "id": 7,
-    "question": "Yang diwakili oleh kurva produksi rata-rata adalah….",
+    "question": "Yang diwakili oleh kurva produksi rata-rata adalah…",
     "options": [
       "hubungan antara output total dan jumlah unit input",
       "rata-rata produksi per unit input",
@@ -78,7 +78,7 @@
   },
   {
     "id": 8,
-    "question": "Dalam monopoli, hubungan antara TR, AR, dan MR adalah....",
+    "question": "Dalam monopoli, hubungan antara TR, AR, dan MR adalah…",
     "options": [
       "TR = AR + MR",
       "TR = AR × MR",
@@ -89,7 +89,7 @@
   },
   {
     "id": 9,
-    "question": "Efek pendapatan memengaruhi keputusan konsumen dengan….",
+    "question": "Efek pendapatan memengaruhi keputusan konsumen dengan…",
     "options": [
       "menggambarkan perubahan jumlah barang yang dibeli karena perubahan pendapatan",
       "menggambarkan perubahan jumlah barang yang dibeli karena perubahan harga barang itu sendiri",
@@ -100,7 +100,7 @@
   },
   {
     "id": 10,
-    "question": "Pemerintah biasanya mencampuri pengelolaan energi dengan….",
+    "question": "Pemerintah biasanya mencampuri pengelolaan energi dengan…",
     "options": [
       "membeli seluruh energi untuk distribusi ulang",
       "menetapkan standar emisi dan regulasi lainnya untuk produksi energi",
@@ -111,7 +111,7 @@
   },
   {
     "id": 11,
-    "question": "Dalam konteks perusahaan energi, makna dari nilai netback adalah….",
+    "question": "Dalam konteks perusahaan energi, makna dari nilai netback adalah…",
     "options": [
       "laba bersih yang diperoleh setelah dipotong semua biaya operasional",
       "harga jual dikurangi dengan biaya produksi dan distribusi",
@@ -122,7 +122,7 @@
   },
   {
     "id": 12,
-    "question": "Posisi konsumen pada kurva indiferens saat mencapai tingkat kepuasan maksimum adalah….",
+    "question": "Posisi konsumen pada kurva indiferens saat mencapai tingkat kepuasan maksimum adalah…",
     "options": [
       "pada titik di mana budget line menyentuh kurva indiferens",
       "pada titik di mana kurva indiferensi berada jauh dari budget line",
@@ -133,7 +133,7 @@
   },
   {
     "id": 13,
-    "question": "Variable factor of production adalah….",
+    "question": "Variable factor of production adalah…",
     "options": [
       "faktor produksi yang selalu konstan dalam jangka panjang",
       "faktor produksi yang selalu variabel dalam jumlahnya",
@@ -144,7 +144,7 @@
   },
   {
     "id": 14,
-    "question": "Bentuk kurva permintaan untuk jenis barang Giffen adalah ….",
+    "question": "Bentuk kurva permintaan untuk jenis barang Giffen adalah …",
     "options": [
       "menanjak ke atas dari kiri ke kanan",
       "menurun dari kiri ke kanan",
@@ -155,7 +155,7 @@
   },
   {
     "id": 15,
-    "question": "Asumsi utama dari pasar persaingan sempurna adalah….",
+    "question": "Asumsi utama dari pasar persaingan sempurna adalah…",
     "options": [
       "setiap pembeli memiliki informasi sempurna tentang produk",
       "tidak ada biaya transaksi",
@@ -166,7 +166,7 @@
   },
   {
     "id": 16,
-    "question": "Energi yang dianggap sebagai energi primer karena ditemukan di alam dan belum melalui proses konversi atau transformasi adalah….",
+    "question": "Energi yang dianggap sebagai energi primer karena ditemukan di alam dan belum melalui proses konversi atau transformasi adalah…",
     "options": [
       "baterai",
       "listrik",
@@ -177,7 +177,7 @@
   },
   {
     "id": 17,
-    "question": "Yang dimaksud dengan ketidaksempurnaan kelembagaan adalah….",
+    "question": "Yang dimaksud dengan ketidaksempurnaan kelembagaan adalah…",
     "options": [
       "adanya kebijakan pemerintah yang sempurna",
       "situasi di mana lembaga keuangan memiliki modal yang berlebih",
@@ -188,7 +188,7 @@
   },
   {
     "id": 18,
-    "question": "Yang bukan elemen dalam menentukan penawaran tenaga kerja adalah….",
+    "question": "Yang bukan elemen dalam menentukan penawaran tenaga kerja adalah…",
     "options": [
       "tingkat upah yang berlaku",
       "kualifikasi pendidikan",
@@ -199,7 +199,7 @@
   },
   {
     "id": 19,
-    "question": "Kritik utama terhadap sistem harga adalah....",
+    "question": "Kritik utama terhadap sistem harga adalah…",
     "options": [
       "cenderung memfavoritkan konsumen",
       "dapat mengarah pada pemborosan sumber daya",
@@ -210,7 +210,7 @@
   },
   {
     "id": 20,
-    "question": "Faktor yang paling berkontribusi pada perubahan produktivitas adalah….",
+    "question": "Faktor yang paling berkontribusi pada perubahan produktivitas adalah…",
     "options": [
       "kenaikan gaji karyawan",
       "inovasi teknologi dan pelatihan karyawan",
@@ -221,7 +221,7 @@
   },
   {
     "id": 21,
-    "question": "Yang diindikasikan oleh koefisien Gini ketika mendekati angka 1 adalah….",
+    "question": "Yang diindikasikan oleh koefisien Gini ketika mendekati angka 1 adalah…",
     "options": [
       "ketidaksetaraan pendapatan rendah di masyarakat",
       "ketidaksetaraan pendapatan tinggi di masyarakat",
@@ -232,7 +232,7 @@
   },
   {
     "id": 22,
-    "question": "Biaya eksternalitas adalah....",
+    "question": "Biaya eksternalitas adalah…",
     "options": [
       "keuntungan tambahan dari suatu kegiatan ekonomi",
       "biaya yang ditanggung oleh perusahaan",
@@ -243,7 +243,7 @@
   },
   {
     "id": 23,
-    "question": "Contoh barang dalam pasar oligopoli adalah....",
+    "question": "Contoh barang dalam pasar oligopoli adalah…",
     "options": [
       "gandum",
       "minyak",
@@ -254,7 +254,7 @@
   },
   {
     "id": 24,
-    "question": "Yang dimaksud dengan kondisi pulang pokok adalah….",
+    "question": "Yang dimaksud dengan kondisi pulang pokok adalah…",
     "options": [
       "pendapatan total sama dengan biaya total",
       "pendapatan total lebih besar dari biaya total",
@@ -265,7 +265,7 @@
   },
   {
     "id": 25,
-    "question": "adalah….",
+    "question": "Yang terjadi jika Marginal Revenue Product (MRP) lebih besar dari biaya tenaga kerja adalah…",
     "options": [
       "perusahaan akan mengurangi jumlah tenaga kerja",
       "perusahaan akan menaikkan gaji tenaga kerja",
@@ -276,7 +276,7 @@
   },
   {
     "id": 26,
-    "question": "Sebuah perusahaan dianggap memperoleh keuntungan maksimum ketika….",
+    "question": "Sebuah perusahaan dianggap memperoleh keuntungan maksimum ketika…",
     "options": [
       "pendapatan total melebihi biaya total sebanyak mungkin",
       "produksi pada tingkat output dimana MC = MR",
@@ -287,7 +287,7 @@
   },
   {
     "id": 27,
-    "question": "Dengan menggunakan kurva MR dan MC kondisi ekuilibrium adalah....",
+    "question": "Dengan menggunakan kurva MR dan MC kondisi ekuilibrium adalah…",
     "options": [
       "MC > MR",
       "MC = MR",
@@ -298,7 +298,7 @@
   },
   {
     "id": 28,
-    "question": "Contoh produk yang dijual dalam pasar persaingan monopolistik adalah....",
+    "question": "Contoh produk yang dijual dalam pasar persaingan monopolistik adalah…",
     "options": [
       "gandum",
       "minyak mentah",
@@ -309,7 +309,7 @@
   },
   {
     "id": 29,
-    "question": "Dalam kondisi ekuilibrium perusahaan jangka pendek, perusahaan mencapai titik di mana....",
+    "question": "Dalam kondisi ekuilibrium perusahaan jangka pendek, perusahaan mencapai titik di mana…",
     "options": [
       "MC = MR",
       "MC > MR",
@@ -320,7 +320,7 @@
   },
   {
     "id": 30,
-    "question": "Perilaku kurva permintaan pasar tergantung pada….",
+    "question": "Perilaku kurva permintaan pasar tergantung pada…",
     "options": [
       "bagaimana konsumen merespon perubahan harga",
       "biaya produksi",
@@ -331,7 +331,7 @@
   },
   {
     "id": 31,
-    "question": "Yang dimaksud dengan keseimbangan umum input-output adalah….",
+    "question": "Yang dimaksud dengan keseimbangan umum input-output adalah…",
     "options": [
       "penyeimbangan antara total input dan output dalam suatu perekonomian",
       "hubungan di mana setiap input memiliki output yang sesuai",
@@ -342,7 +342,7 @@
   },
   {
     "id": 32,
-    "question": "Dalam pasar persaingan sempurna jangka panjang, ekuilibrium dicapai ketika....",
+    "question": "Dalam pasar persaingan sempurna jangka panjang, ekuilibrium dicapai ketika…",
     "options": [
       "MC = MR",
       "MC > MR",
@@ -353,7 +353,7 @@
   },
   {
     "id": 33,
-    "question": "Tujuan utama dari regulasi antitrust adalah….",
+    "question": "Tujuan utama dari regulasi antitrust adalah…",
     "options": [
       "mengizinkan perusahaan untuk membentuk monopoli",
       "meningkatkan harga untuk meningkatkan keuntungan perusahaan",
@@ -364,7 +364,7 @@
   },
   {
     "id": 34,
-    "question": "Permintaan dalam ekonomi adalah….",
+    "question": "Permintaan dalam ekonomi adalah…",
     "options": [
       "jumlah barang atau jasa yang dijual di pasar",
       "harga suatu barang di pasar",
@@ -375,7 +375,7 @@
   },
   {
     "id": 35,
-    "question": "(kelebihan permintaan) adalah….",
+    "question": "Pada kurva permintaan dan penawaran, kondisi yang menggambarkan excess demand (kelebihan permintaan) adalah…",
     "options": [
       "jumlah barang yang diminta sama dengan jumlah barang yang ditawarkan",
       "jumlah barang yang diminta lebih banyak daripada jumlah barang yang ditawarkan",
@@ -386,7 +386,7 @@
   },
   {
     "id": 36,
-    "question": "Jika harga barang menurun, yang terjadi pada kurva penawaran adalah….",
+    "question": "Jika harga barang menurun, yang terjadi pada kurva penawaran adalah…",
     "options": [
       "bergerak ke kiri",
       "bergerak ke kanan",
@@ -397,7 +397,7 @@
   },
   {
     "id": 37,
-    "question": "adalah….",
+    "question": "Dari pilihan berikut yang bukan merupakan faktor yang memengaruhi penawaran adalah…",
     "options": [
       "biaya produksi",
       "teknologi produksi",
@@ -408,7 +408,7 @@
   },
   {
     "id": 38,
-    "question": "Salah satu alasan mendasar mengapa masalah ekonomi muncul adalah karena….",
+    "question": "Salah satu alasan mendasar mengapa masalah ekonomi muncul adalah karena…",
     "options": [
       "keinginan manusia yang tidak terbatas",
       "ketersediaan sumber daya yang berlimpah",
@@ -419,7 +419,7 @@
   },
   {
     "id": 39,
-    "question": "Yang dimaksud dengan teori ekonomi adalah….",
+    "question": "Yang dimaksud dengan teori ekonomi adalah…",
     "options": [
       "studi tentang bagaimana negara menghasilkan uang",
       "sekumpulan asumsi dan prinsip yang menjelaskan perilaku ekonomi",
@@ -430,7 +430,7 @@
   },
   {
     "id": 40,
-    "question": "Jika pada diagram alur perekonomian diberikan arah dari rumah tangga menuju perusahaan, hal ini menunjukkan aliran….",
+    "question": "Jika pada diagram alur perekonomian diberikan arah dari rumah tangga menuju perusahaan, hal ini menunjukkan aliran…",
     "options": [
       "faktor produksi",
       "pajak",
@@ -441,7 +441,7 @@
   },
   {
     "id": 41,
-    "question": "Kurva indiferens adalah….",
+    "question": "Kurva indiferens adalah…",
     "options": [
       "garis yang menggambarkan batas pengeluaran konsumen",
       "garis yang menggambarkan kombinasi dua barang yang memberikan kepuasan  yang sama",
@@ -452,7 +452,7 @@
   },
   {
     "id": 42,
-    "question": "Apabila perubahan harga barang menghasilkan perubahan persentase yang lebih besar dalam jumlah yang ditawarkan, elastisitas penawaran dikatakan....",
+    "question": "Apabila perubahan harga barang menghasilkan perubahan persentase yang lebih besar dalam jumlah yang ditawarkan, elastisitas penawaran dikatakan…",
     "options": [
       "elastis sempurna",
       "elastis",
@@ -463,7 +463,7 @@
   },
   {
     "id": 43,
-    "question": "Dari pilihan berikut ini yang merupakan komponen dari kurva biaya total adalah….",
+    "question": "Dari pilihan berikut ini yang merupakan komponen dari kurva biaya total adalah…",
     "options": [
       "biaya tetap, biaya variabel, dan biaya rata-rata",
       "biaya tetap, biaya marginal, dan biaya rata-rata",
@@ -474,7 +474,7 @@
   },
   {
     "id": 44,
-    "question": "Bentuk kurva biaya total rata-rata (LRAC) dalam jangka panjang adalah….",
+    "question": "Bentuk kurva biaya total rata-rata (LRAC) dalam jangka panjang adalah…",
     "options": [
       "selalu menanjak",
       "berbentuk u",
@@ -485,7 +485,7 @@
   },
   {
     "id": 45,
-    "question": "Salah satu penentu besarnya monopoli selain harga adalah....",
+    "question": "Salah satu penentu besarnya monopoli selain harga adalah…",
     "options": [
       "lokasi",
       "brand atau merek",
@@ -496,7 +496,7 @@
   },
   {
     "id": 46,
-    "question": "Yang dimaksud dengan 'necessary condition' adalah….",
+    "question": "Yang dimaksud dengan 'necessary condition' adalah…",
     "options": [
       "kondisi yang cukup untuk memastikan hasil tertentu",
       "kondisi yang harus ada agar hasil tertentu mungkin terjadi tetapi mungkin tidak  cukup sendirian",
@@ -507,7 +507,7 @@
   },
   {
     "id": 47,
-    "question": "Hubungan antara kurva produksi total dan produksi marginal adalah….",
+    "question": "Hubungan antara kurva produksi total dan produksi marginal adalah…",
     "options": [
       "ketika produksi total mencapai maksimum, produksi marginal adalah nol",
       "ketika produksi marginal meningkat, produksi total selalu menurun",
@@ -518,7 +518,7 @@
   },
   {
     "id": 48,
-    "question": "Faktor penyebab munculnya pasar monopoli meliputi....",
+    "question": "Faktor penyebab munculnya pasar monopoli meliputi…",
     "options": [
       "kekayaan intelektual seperti paten",
       "persaingan harga",
@@ -529,7 +529,7 @@
   },
   {
     "id": 49,
-    "question": "Yang merupakan ciri-ciri kurva indiferens adalah….",
+    "question": "Yang merupakan ciri-ciri kurva indiferens adalah…",
     "options": [
       "kurva indiferens berbentuk lurus dan sejajar dengan sumbu",
       "kurva indiferens selalu berpotongan satu sama lain",
@@ -540,7 +540,7 @@
   },
   {
     "id": 50,
-    "question": "Yang dimaksud dengan biaya ekonomis adalah….",
+    "question": "Yang dimaksud dengan biaya ekonomis adalah…",
     "options": [
       "biaya yang hanya terkait dengan uang",
       "total dari biaya eksplisit dan biaya implisit yang terkait dengan pengambilan  keputusan",
@@ -551,7 +551,7 @@
   },
   {
     "id": 51,
-    "question": "Dalam pasar persaingan murni, keuntungan ekonomis dicapai ketika….",
+    "question": "Dalam pasar persaingan murni, keuntungan ekonomis dicapai ketika…",
     "options": [
       "harga produk lebih tinggi dari biaya total produksi",
       "ada monopoli tunggal dalam pasar",
@@ -562,7 +562,7 @@
   },
   {
     "id": 52,
-    "question": "Yang ditunjukkan oleh kurva Engel positif dalam teori konsumsi adalah….",
+    "question": "Yang ditunjukkan oleh kurva Engel positif dalam teori konsumsi adalah…",
     "options": [
       "barang tersebut adalah barang inferior",
       "barang tersebut adalah barang normal",
@@ -573,7 +573,7 @@
   },
   {
     "id": 53,
-    "question": "Fixed factor of production adalah….",
+    "question": "Fixed factor of production adalah…",
     "options": [
       "faktor produksi yang dapat disesuaikan dalam jangka pendek",
       "faktor produksi yang tidak dapat disesuaikan dalam jangka pendek",
@@ -584,7 +584,7 @@
   },
   {
     "id": 54,
-    "question": "Variabel utama yang terlibat dalam kurva Engel adalah….",
+    "question": "Variabel utama yang terlibat dalam kurva Engel adalah…",
     "options": [
       "harga barang terhadap jumlah yang ditawarkan",
       "harga barang terhadap jumlah yang diminta",
@@ -595,7 +595,7 @@
   },
   {
     "id": 55,
-    "question": "adalah….",
+    "question": "Syarat yang menandakan tercapainya ekuilibrium di pasar persaingan sempurna adalah…",
     "options": [
       "jumlah barang yang ditawarkan melebihi jumlah barang yang diminta",
       "permintaan melebihi penawaran",
@@ -606,7 +606,7 @@
   },
   {
     "id": 56,
-    "question": "Dari pilihan berikut ini yang merupakan contoh dari sumber energi terbarukan adalah….",
+    "question": "Dari pilihan berikut ini yang merupakan contoh dari sumber energi terbarukan adalah…",
     "options": [
       "minyak bumi",
       "batu bara",
@@ -617,7 +617,7 @@
   },
   {
     "id": 57,
-    "question": "Alasan yang biasa menjadi penyebab kegagalan sektor publik dalam menyediakan barang dan jasa adalah….",
+    "question": "Alasan yang biasa menjadi penyebab kegagalan sektor publik dalam menyediakan barang dan jasa adalah…",
     "options": [
       "kurangnya persaingan",
       "harga yang terlalu rendah",
@@ -628,7 +628,7 @@
   },
   {
     "id": 58,
-    "question": "Yang termasuk dalam kategori barang kapital adalah….",
+    "question": "Yang termasuk dalam kategori barang kapital adalah…",
     "options": [
       "uang, saham, hutang",
       "mesin, gedung, peralatan",
@@ -639,7 +639,7 @@
   },
   {
     "id": 59,
-    "question": "Yang dimaksud dengan kegagalan pasar (market failure) adalah….",
+    "question": "Yang dimaksud dengan kegagalan pasar (market failure) adalah…",
     "options": [
       "kondisi di mana harga barang meningkat tajam",
       "kondisi ketika pemerintah mengintervensi pasar",
@@ -650,7 +650,7 @@
   },
   {
     "id": 60,
-    "question": "dengan….",
+    "question": "Perusahaan sebaiknya mengkombinasikan inputnya untuk memaksimalkan keuntungan dengan…",
     "options": [
       "memilih input dengan harga termurah tanpa mempertimbangkan kualitas",
       "memperbanyak input yang memiliki produktivitas rendah",
@@ -661,7 +661,7 @@
   },
   {
     "id": 61,
-    "question": "Yang dimaksud dengan manfaat eksternalitas adalah….",
+    "question": "Yang dimaksud dengan manfaat eksternalitas adalah…",
     "options": [
       "keuntungan yang diperoleh perusahaan dari adanya permintaan yang tinggi",
       "keuntungan yang diperoleh masyarakat dari tindakan produksi atau konsumsi yang  dilakukan oleh pihak lain",
@@ -672,7 +672,7 @@
   },
   {
     "id": 62,
-    "question": "Teori Kinked Demand Curve menyiratkan....",
+    "question": "Teori Kinked Demand Curve menyiratkan…",
     "options": [
       "perusahaan oligopoli akan menaikkan harga tetapi enggan menurunkannya",
       "perusahaan oligopoli akan menurunkan harga tetapi enggan menaikkan",
@@ -683,7 +683,7 @@
   },
   {
     "id": 63,
-    "question": "Pada kondisi excess profit, perusahaan akan....",
+    "question": "Pada kondisi excess profit, perusahaan akan…",
     "options": [
       "mengurangi produksi",
       "menetapkan harga lebih tinggi",
@@ -694,7 +694,7 @@
   },
   {
     "id": 64,
-    "question": "Kondisi harga input di pasar monopsoni adalah….",
+    "question": "Kondisi harga input di pasar monopsoni adalah…",
     "options": [
       "harga ditentukan oleh pasar dan diterima oleh perusahaan",
       "harga selalu lebih rendah dari harga pasar",
@@ -705,7 +705,7 @@
   },
   {
     "id": 65,
-    "question": "Cara menghitung MRP adalah….",
+    "question": "Cara menghitung MRP adalah…",
     "options": [
       "mengurangkan biaya total dari pendapatan total",
       "mengalikan produk marginal dengan pendapatan marginal",
@@ -716,7 +716,7 @@
   },
   {
     "id": 66,
-    "question": "Dalam pasar persaingan sempurna jangka sangat pendek, perusahaan cenderung....",
+    "question": "Dalam pasar persaingan sempurna jangka sangat pendek, perusahaan cenderung…",
     "options": [
       "memperluas kapasitas produksi",
       "menetapkan harga sesuai dengan penawaran dan permintaan",
@@ -727,7 +727,7 @@
   },
   {
     "id": 67,
-    "question": "adalah….",
+    "question": "Yang membedakan pasar persaingan monopolistik dari pasar persaingan sempurna adalah…",
     "options": [
       "banyak penjual dalam persaingan monopolistik",
       "produk yang dijual dalam persaingan monopolistik bersifat homogen",
@@ -738,7 +738,7 @@
   },
   {
     "id": 68,
-    "question": "Dalam analisis jangka pendek, produsen biasanya fokus pada....",
+    "question": "Dalam analisis jangka pendek, produsen biasanya fokus pada…",
     "options": [
       "ekspansi kapasitas produksi",
       "mengurangi biaya produksi",
@@ -749,7 +749,7 @@
   },
   {
     "id": 69,
-    "question": "Konsep keseimbangan parsial adalah....",
+    "question": "Konsep keseimbangan parsial adalah…",
     "options": [
       "analisis keseluruhan ekonomi",
       "analisis pada satu sektor atau pasar tertentu",
@@ -760,7 +760,7 @@
   },
   {
     "id": 70,
-    "question": "Yang dimaksud dengan Optimum Pareto adalah….",
+    "question": "Yang dimaksud dengan Optimum Pareto adalah…",
     "options": [
       "kondisi di mana tidak mungkin membuat seseorang lebih baik tanpa membuat orang  lain lebih buruk",
       "kondisi di mana semua individu memiliki jumlah kekayaan yang sama",
@@ -771,7 +771,7 @@
   },
   {
     "id": 71,
-    "question": "Efisiensi di pasar persaingan sempurna meliputi....",
+    "question": "Efisiensi di pasar persaingan sempurna meliputi…",
     "options": [
       "efisiensi produktif saja",
       "efisiensi alokatif saja",
@@ -782,7 +782,7 @@
   },
   {
     "id": 72,
-    "question": "Efisiensi ekonomi adalah….",
+    "question": "Efisiensi ekonomi adalah…",
     "options": [
       "kemampuan untuk memperoleh laba maksimum dengan biaya minimal",
       "kemampuan untuk memproduksi barang dengan teknologi terbaru",
@@ -793,7 +793,7 @@
   },
   {
     "id": 73,
-    "question": "adalah….",
+    "question": "Dari pilihan berikut yang bukan merupakan faktor yang memengaruhi penawaran adalah…",
     "options": [
       "biaya produksi",
       "teknologi produksi",
@@ -804,7 +804,7 @@
   },
   {
     "id": 74,
-    "question": "Efek pemberian subsidi pada produsen terhadap kurva penawaran adalah….",
+    "question": "Efek pemberian subsidi pada produsen terhadap kurva penawaran adalah…",
     "options": [
       "pergeseran ke kanan",
       "pergeseran ke kiri",
@@ -815,7 +815,7 @@
   },
   {
     "id": 75,
-    "question": "Pada diagram permintaan, yang diwakili oleh sumbu vertikal adalah….",
+    "question": "Pada diagram permintaan, yang diwakili oleh sumbu vertikal adalah…",
     "options": [
       "harga barang",
       "kuantitas barang",
@@ -826,7 +826,7 @@
   },
   {
     "id": 76,
-    "question": "Yang dimaksud dengan permintaan dalam ekonomi adalah….",
+    "question": "Yang dimaksud dengan permintaan dalam ekonomi adalah…",
     "options": [
       "jumlah barang atau jasa yang dijual di pasar",
       "jumlah barang atau jasa yang diinginkan konsumen pada berbagai tingkat harga",
@@ -837,7 +837,7 @@
   },
   {
     "id": 77,
-    "question": "Analisis mengenai tingkat pengangguran nasional dan cara menurunkannya termasuk dalam kajian….",
+    "question": "Analisis mengenai tingkat pengangguran nasional dan cara menurunkannya termasuk dalam kajian…",
     "options": [
       "mikroekonomi",
       "makroekonomi",
@@ -848,7 +848,7 @@
   },
   {
     "id": 78,
-    "question": "Dalam kajian ilmiah, yang dimaksud dengan fakta adalah….",
+    "question": "Dalam kajian ilmiah, yang dimaksud dengan fakta adalah…",
     "options": [
       "opini subjektif yang didasarkan pada perasaan pribadi",
       "informasi yang belum diverifikasi kebenarannya",
@@ -859,7 +859,7 @@
   },
   {
     "id": 79,
-    "question": "berikut yang bukan termasuk dalam kategori faktor produksi adalah….",
+    "question": "Menurut klasifikasi Sumitro Djojohadikusumo mengenai faktor produksi, dari pilihan berikut yang bukan termasuk dalam kategori faktor produksi adalah…",
     "options": [
       "sumber daya alam",
       "tenaga kerja",
@@ -870,7 +870,7 @@
   },
   {
     "id": 80,
-    "question": "adalah….",
+    "question": "Yang dimaksud dengan tingkat substitusi marjinal (marginal rate of substitution) adalah…",
     "options": [
       "kenaikan jumlah salah satu barang yang harus dikurangi untuk mempertahankan tingkat kepuasan yang sama saat konsumsi barang lain berkurang",
       "proporsi barang yang dapat ditukar dengan barang lain dengan harga yang sama",
@@ -881,7 +881,7 @@
   },
   {
     "id": 81,
-    "question": "Faktor yang memengaruhi elastisitas penawaran adalah….",
+    "question": "Faktor yang memengaruhi elastisitas penawaran adalah…",
     "options": [
       "waktu produksi barang",
       "pendapatan konsumen",
@@ -892,7 +892,7 @@
   },
   {
     "id": 82,
-    "question": "Rumus yang tepat untuk menghitung biaya total adalah….",
+    "question": "Rumus yang tepat untuk menghitung biaya total adalah…",
     "options": [
       "biaya total = biaya variabel + biaya tetap",
       "biaya total = biaya marginal x jumlah barang",
@@ -903,7 +903,7 @@
   },
   {
     "id": 83,
-    "question": "Bentuk yang tidak mewakili kurva LRAC (Long-Run Average Cost) adalah….",
+    "question": "Bentuk yang tidak mewakili kurva LRAC (Long-Run Average Cost) adalah…",
     "options": [
       "u-bentuk",
       "L-bentuk",
@@ -914,7 +914,7 @@
   },
   {
     "id": 84,
-    "question": "Dalam keseimbangan pasar monopoli jangka pendek, keuntungan maksimum diperoleh di titik di mana....",
+    "question": "Dalam keseimbangan pasar monopoli jangka pendek, keuntungan maksimum diperoleh di titik di mana…",
     "options": [
       "MC = MR",
       "AR > MR",
@@ -925,7 +925,7 @@
   },
   {
     "id": 85,
-    "question": "Dalam konteks produksi, yang dimaksud dengan daerah produksi adalah….",
+    "question": "Dalam konteks produksi, yang dimaksud dengan daerah produksi adalah…",
     "options": [
       "wilayah geografis tempat produksi berlangsung",
       "tahapan dalam siklus produksi mulai dari persiapan hingga distribusi",
@@ -936,7 +936,7 @@
   },
   {
     "id": 86,
-    "question": "Yang diwakili oleh kurva produksi marginal adalah….",
+    "question": "Yang diwakili oleh kurva produksi marginal adalah…",
     "options": [
       "hubungan antara output total dan jumlah unit input",
       "rata-rata produksi per unit input",
@@ -947,7 +947,7 @@
   },
   {
     "id": 87,
-    "question": "Contoh perusahaan monopoli adalah....",
+    "question": "Contoh perusahaan monopoli adalah…",
     "options": [
       "McDonald's",
       "Apple",
@@ -958,7 +958,7 @@
   },
   {
     "id": 88,
-    "question": "Pilihan berikut ini yang merupakan asumsi dasar pendekatan fungsi kegunaan dalam analisis konsumen adalah….",
+    "question": "Pilihan berikut ini yang merupakan asumsi dasar pendekatan fungsi kegunaan dalam analisis konsumen adalah…",
     "options": [
       "konsumen selalu memaksimalkan pendapatannya",
       "semua barang memiliki fungsi kegunaan yang sama",
@@ -969,7 +969,7 @@
   },
   {
     "id": 89,
-    "question": "Faktor-faktor berikut yang sering menjadi pertimbangan pemerintah dalam menentukan harga energi adalah….",
+    "question": "Faktor-faktor berikut yang sering menjadi pertimbangan pemerintah dalam menentukan harga energi adalah…",
     "options": [
       "popularitas energi di kalangan masyarakat",
       "biaya produksi, dampak lingkungan, dan kebutuhan masyarakat",
@@ -980,7 +980,7 @@
   },
   {
     "id": 90,
-    "question": "Biaya tambahan (Incremental Cost) dalam ekonomi energi adalah….",
+    "question": "Biaya tambahan (Incremental Cost) dalam ekonomi energi adalah…",
     "options": [
       "biaya tambahan yang dikeluarkan untuk menghasilkan satu unit tambahan produk",
       "selisih biaya produksi antara dua periode",
@@ -991,7 +991,7 @@
   },
   {
     "id": 91,
-    "question": "Kondisi surplus konsumen tercapai pada….",
+    "question": "Kondisi surplus konsumen tercapai pada…",
     "options": [
       "saat harga barang lebih rendah daripada nilai maksimal yang bersedia dibayar  konsumen",
       "saat harga barang setara dengan nilai maksimal yang bersedia dibayar konsumen",
@@ -1002,7 +1002,7 @@
   },
   {
     "id": 92,
-    "question": "Bentuk fungsi produksi kuadratik yang sesuai adalah ….",
+    "question": "Bentuk fungsi produksi kuadratik yang sesuai adalah …",
     "options": [
       "Q=a+bK+cL+dK2+eL2",
       "Q=aK+bL",
@@ -1013,7 +1013,7 @@
   },
   {
     "id": 93,
-    "question": "adalah….",
+    "question": "Yang bukan merupakan faktor harga yang memengaruhi permintaan suatu barang adalah…",
     "options": [
       "pendapatan konsumen",
       "harga barang substitusi",
@@ -1024,7 +1024,7 @@
   },
   {
     "id": 94,
-    "question": "Perusahaan mencapai tingkat output optimalnya saat….",
+    "question": "Perusahaan mencapai tingkat output optimalnya saat…",
     "options": [
       "biaya rata-rata paling rendah",
       "biaya marginal sama dengan pendapatan marginal",
@@ -1035,7 +1035,7 @@
   },
   {
     "id": 95,
-    "question": "Sumber energi yang sekali dimanfaatkan tidak dapat diperbaharui kembali dalam waktu singkat adalah….",
+    "question": "Sumber energi yang sekali dimanfaatkan tidak dapat diperbaharui kembali dalam waktu singkat adalah…",
     "options": [
       "energi angin",
       "energi geothermal",
@@ -1046,7 +1046,7 @@
   },
   {
     "id": 96,
-    "question": "Yang dimaksud dengan istilah \"free riders\" dalam konteks barang publik adalah….",
+    "question": "Yang dimaksud dengan istilah \"free riders\" dalam konteks barang publik adalah…",
     "options": [
       "konsumen yang membayar lebih untuk sebuah barang",
       "individu yang memanfaatkan barang tanpa harus membayarnya",
@@ -1057,7 +1057,7 @@
   },
   {
     "id": 97,
-    "question": "Yang dimaksud dengan rente adalah….",
+    "question": "Yang dimaksud dengan rente adalah…",
     "options": [
       "pembayaran tetap dari pinjaman",
       "harga sewa tanah atau properti",
@@ -1068,7 +1068,7 @@
   },
   {
     "id": 98,
-    "question": "Keuntungan dari sistem harga pasar adalah….",
+    "question": "Keuntungan dari sistem harga pasar adalah…",
     "options": [
       "menghasilkan distribusi pendapatan yang setara",
       "mengalokasikan sumber daya secara efisien",
@@ -1079,7 +1079,7 @@
   },
   {
     "id": 99,
-    "question": "Yang dimaksud dengan dividen adalah….",
+    "question": "Yang dimaksud dengan dividen adalah…",
     "options": [
       "bagian dari laba perusahaan yang diberikan kepada pemegang saham",
       "bunga yang diberikan kepada pemegang obligasi",
@@ -1090,7 +1090,7 @@
   },
   {
     "id": 100,
-    "question": "Yang menggambarkan perusahaan dengan eksternalitas positif adalah….",
+    "question": "Yang menggambarkan perusahaan dengan eksternalitas positif adalah…",
     "options": [
       "perusahaan tekstil yang mencemari udara dengan polusi",
       "perusahaan rokok yang menyebabkan peningkatan biaya kesehatan masyarakat",
@@ -1101,7 +1101,7 @@
   },
   {
     "id": 101,
-    "question": "Salah satu ciri-ciri pasar oligopoli adalah....",
+    "question": "Salah satu ciri-ciri pasar oligopoli adalah…",
     "options": [
       "banyak perusahaan kecil",
       "pasar dikuasai oleh beberapa perusahaan besar",
@@ -1112,7 +1112,7 @@
   },
   {
     "id": 102,
-    "question": "Eksploitasi input pada perusahaan monopsoni adalah perusahaan….",
+    "question": "Eksploitasi input pada perusahaan monopsoni adalah perusahaan…",
     "options": [
       "membeli input dengan harga yang sangat tinggi",
       "membeli input dengan harga yang lebih rendah dari nilai sebenarnya",
@@ -1123,7 +1123,7 @@
   },
   {
     "id": 103,
-    "question": "Kondisi harga output di pasar persaingan sempurna adalah….",
+    "question": "Kondisi harga output di pasar persaingan sempurna adalah…",
     "options": [
       "harga ditentukan oleh produsen tunggal",
       "harga bersifat fleksibel dan ditentukan oleh permintaan dan penawaran",
@@ -1134,7 +1134,7 @@
   },
   {
     "id": 104,
-    "question": "Pada kondisi ekuilibrium dengan kurva TR dan TC, kedua kurva tersebut….",
+    "question": "Pada kondisi ekuilibrium dengan kurva TR dan TC, kedua kurva tersebut…",
     "options": [
       "bersinggungan satu sama lain",
       "tidak pernah bersinggungan",
@@ -1145,7 +1145,7 @@
   },
   {
     "id": 105,
-    "question": "Yang terjadi pada persaingan monopolistik dalam jangka panjang adalah….",
+    "question": "Yang terjadi pada persaingan monopolistik dalam jangka panjang adalah…",
     "options": [
       "harga akan tetap stabil",
       "perusahaan akan mendapatkan keuntungan ekstra",
@@ -1156,7 +1156,7 @@
   },
   {
     "id": 106,
-    "question": "Marginal Revenue (MR) merupakan....",
+    "question": "Marginal Revenue (MR) merupakan…",
     "options": [
       "keuntungan tambahan yang diperoleh dari penjualan satu unit tambahan",
       "biaya tambahan untuk produksi satu unit tambahan",
@@ -1167,7 +1167,7 @@
   },
   {
     "id": 107,
-    "question": "Yang terjadi dalam penyesuaian pasar jangka pendek adalah….",
+    "question": "Yang terjadi dalam penyesuaian pasar jangka pendek adalah…",
     "options": [
       "semua faktor produksi berubah",
       "semua faktor produksi tetap tidak berubah",
@@ -1178,7 +1178,7 @@
   },
   {
     "id": 108,
-    "question": "Efisiensi alokasi sumber daya dapat digambarkan pada kurva....",
+    "question": "Efisiensi alokasi sumber daya dapat digambarkan pada kurva…",
     "options": [
       "permintaan",
       "penawaran",
@@ -1189,7 +1189,7 @@
   },
   {
     "id": 109,
-    "question": "Salah satu kelebihan pasar persaingan sempurna adalah....",
+    "question": "Salah satu kelebihan pasar persaingan sempurna adalah…",
     "options": [
       "keuntungan besar bagi perusahaan",
       "kualitas produk yang beragam",
@@ -1200,7 +1200,7 @@
   },
   {
     "id": 110,
-    "question": "Yang dimaksud dengan penawaran dalam ekonomi adalah….",
+    "question": "Yang dimaksud dengan penawaran dalam ekonomi adalah…",
     "options": [
       "jumlah barang atau jasa yang produsen bersedia dan mampu jual pada berbagai tingkat harga",
       "jumlah barang atau jasa yang konsumen ingin beli",
@@ -1211,7 +1211,7 @@
   },
   {
     "id": 111,
-    "question": "Yang menyebabkan pergeseran pada kurva penawaran adalah….",
+    "question": "Yang menyebabkan pergeseran pada kurva penawaran adalah…",
     "options": [
       "perubahan harga barang tersebut",
       "perubahan selera konsumen",
@@ -1222,7 +1222,7 @@
   },
   {
     "id": 112,
-    "question": "Jika harga suatu barang meningkat dan semua faktor lainnya tetap konstan, efeknya terhadap jumlah barang yang diminta adalah….",
+    "question": "Jika harga suatu barang meningkat dan semua faktor lainnya tetap konstan, efeknya terhadap jumlah barang yang diminta adalah…",
     "options": [
       "jumlah barang yang diminta akan meningkat",
       "jumlah barang yang diminta akan tetap",
@@ -1233,7 +1233,7 @@
   },
   {
     "id": 113,
-    "question": "Analisis keseimbangan umum dalam ekonomi berupaya untuk memahami….",
+    "question": "Analisis keseimbangan umum dalam ekonomi berupaya untuk memahami…",
     "options": [
       "fungsi pasar tertentu dalam mencapai keseimbangan",
       "interaksi dan keterikatan antara berbagai pasar dan bagaimana mencapai  keseimbangan bersama",
@@ -1244,7 +1244,7 @@
   },
   {
     "id": 114,
-    "question": "Arti dari istilah \"ceteris paribus\" dalam kajian ekonomi adalah….",
+    "question": "Arti dari istilah \"ceteris paribus\" dalam kajian ekonomi adalah…",
     "options": [
       "menghitung keuntungan total",
       "menilai biaya peluang",
@@ -1255,7 +1255,7 @@
   },
   {
     "id": 115,
-    "question": "Yang dimaksud dengan aktivitas ekonomi adalah….",
+    "question": "Yang dimaksud dengan aktivitas ekonomi adalah…",
     "options": [
       "aktivitas yang melibatkan pertukaran barang dan jasa",
       "aktivitas yang melibatkan produksi, distribusi dan konsumsi",
