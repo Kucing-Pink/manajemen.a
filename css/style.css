@@ -961,10 +961,6 @@ body {
   font-weight: normal; /* tanpa cetak bold */
   transition: background var(--transition), color var(--transition);
 }
-.option-btn.hint-highlight .option-letter {
-  background: #eab308;
-  color: var(--white);
-}
 
 /* ======================================================
    RESULT PAGE
