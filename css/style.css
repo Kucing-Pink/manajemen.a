@@ -918,7 +918,7 @@ body {
   box-shadow: 0 4px 16px rgba(16,185,129,.3);
 }
 
-/* ── Hint (ℹ) button ───────────────────────────── */
+/* ── Hint (💡) button ───────────────────────────── */
 .btn-hint {
   display: inline-flex;
   align-items: center;
@@ -928,40 +928,41 @@ body {
   border-radius: var(--radius-md);
   border: 2px solid var(--neutral-200);
   background: var(--neutral-50);
-  color: var(--neutral-600);
-  font-size: 1rem;
-  font-weight: 700;
-  font-family: 'Inter', sans-serif;
+  color: var(--neutral-400); /* abu-abu ketika tidak aktif */
   cursor: pointer;
   transition: all var(--transition);
-  line-height: 1;
   box-shadow: var(--shadow-sm);
 }
+.btn-hint svg {
+  transition: fill var(--transition), stroke var(--transition);
+}
 .btn-hint:hover {
-  background: #fef9c3;
-  border-color: #f59e0b;
-  color: #92400e;
-  transform: scale(1.08);
+  background: var(--neutral-100);
+  color: var(--neutral-600);
+  transform: scale(1.05);
 }
 .btn-hint.active {
-  background: #fef08a;
+  background: #fef9c3;
   border-color: #f59e0b;
-  color: #78350f;
-  box-shadow: 0 0 0 3px rgba(245,158,11,.2);
+  color: #eab308; /* kuning ketika aktif */
+  box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
+}
+.btn-hint.active svg {
+  fill: #fef08a; /* lampu menyala kuning */
 }
 
 /* ── Highlight correct answer text (hint mode) ── */
 .option-btn.hint-highlight .option-text {
-  background: #fef08a;
-  color: #78350f;
+  background: #fef08a; /* highlight latar kuning */
+  color: var(--neutral-800); /* teks biasa, bukan cokelat tua */
   border-radius: 4px;
-  padding: 1px 5px;
-  margin: -1px -5px;
-  font-weight: 600;
+  padding: 2px 6px;
+  margin: -2px -6px;
+  font-weight: normal; /* tanpa cetak bold */
   transition: background var(--transition), color var(--transition);
 }
 .option-btn.hint-highlight .option-letter {
-  background: #f59e0b;
+  background: #eab308;
   color: var(--white);
 }
 
