@@ -71,6 +71,7 @@
   const answers = [];
   let countCorrect = 0;
   let countWrong   = 0;
+  let showHint = false;  // toggle highlight jawaban benar
 
   // DOM refs (progress)
   const progressFill = document.getElementById('progress-bar-fill');
@@ -150,9 +151,22 @@
     counterEl.textContent = `${currentIdx + 1} / ${TOTAL}`;
   }
 
+  // Toggle highlight jawaban benar di semua opsi
+  function applyHint(optBtns, correctIdx) {
+    optBtns.forEach((btn, i) => {
+      if (i === correctIdx) {
+        if (showHint) btn.classList.add('hint-highlight');
+        else btn.classList.remove('hint-highlight');
+      }
+    });
+    const hintBtn = document.getElementById('btn-hint');
+    if (hintBtn) hintBtn.classList.toggle('active', showHint);
+  }
+
   function renderQuestion(direction = 'right') {
     answered = false;
     selectedOption = null;
+    showHint = false;  // reset hint setiap soal baru
     const q = questions[currentIdx];
     const isLast = currentIdx === TOTAL - 1;
 
@@ -202,6 +216,7 @@
       </ul>
       <div id="feedback-area"></div>
       <div class="question-nav">
+        <button class="btn-hint" id="btn-hint" title="Tampilkan / sembunyikan jawaban benar" aria-label="Tampilkan jawaban benar">&#x1F6C8;</button>
         <button class="btn-next ${isLast ? 'finish' : ''}" id="btn-next" disabled>
           ${isLast ? '&#9989; Selesai' : 'Lanjut &#8594;'}
         </button>
@@ -219,6 +234,13 @@
         const idx = parseInt(btn.dataset.idx);
         handleAnswer(idx, q, optBtns, isLast);
       });
+    });
+
+    // Hint button — tampilkan/sembunyikan jawaban benar
+    card.querySelector('#btn-hint').addEventListener('click', () => {
+      showHint = !showHint;
+      const currentOptBtns = card.querySelectorAll('.option-btn');
+      applyHint(currentOptBtns, q.answer);
     });
 
     // Next button
