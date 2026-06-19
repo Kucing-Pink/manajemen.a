@@ -182,7 +182,7 @@
     // Opsi: jika tipe gambar dan opsi hanya 1 huruf → tampilkan huruf besar saja
     const optionsHTML = q.options.map((opt, i) => {
       const letter  = String.fromCharCode(65 + i);
-      const isShort = opt.trim().length <= 2;  // opsi "A","B","C","D"
+      const isShort = ['A', 'B', 'C', 'D'].includes(opt.trim().toUpperCase());
       return `
         <li>
           <button class="option-btn${isShort ? ' option-btn--letter' : ''}"

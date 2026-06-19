@@ -98,12 +98,12 @@
   {
     "id": 9,
     "type": "text",
-    "question": "Amir meminjam uang pada Ali sebesar Rp.1.000.000,00, dengan tingkat bunga 20% per tahun, yang dibayar per bulan. Berapa jumlah uang setelah 2 tahun?",
+    "question": "Amir meminjam uang pada Ali sebesar Rp.1 &middot; 000.000,00, dengan tingkat bunga 20% per tahun, yang dibayar per bulan. Berapa jumlah uang setelah 2 tahun?",
     "options": [
-      "Rp. 1.337.405,00",
-      "Rp. 1.377.455,00",
-      "Rp. 1.457.555,00",
-      "Rp. 1.477.455,00"
+      "Rp. 1 &middot; 337.405,00",
+      "Rp. 1 &middot; 377.455,00",
+      "Rp. 1 &middot; 457.555,00",
+      "Rp. 1 &middot; 477.455,00"
     ],
     "answer": 3
   },
@@ -122,7 +122,7 @@
   {
     "id": 11,
     "type": "text",
-    "question": "Diketahui titik penggal (0,3) dan (7,0), carilah persamaannya dengan menggunakan rumus",
+    "question": "Diketahui titik penggal (0,3) dan (7,0), carilah persamaannya dengan menggunakan rumus:<sup>x</sup>/<sub>a</sub>+<sup>y</sup>/<sub>b</sub>=1",
     "options": [
       "2x+6 y-21 = 0",
       "3x +7 y-21 = 0",
@@ -193,42 +193,39 @@
   },
   {
     "id": 17,
-    "type": "image",
-    "question": "Berapakah elastisitas permintaannya jika diketahui persamaan fungsi permintaannya (Q) =  100 – 2 P² dan tingkat harga P = 50",
+    "type": "text",
+    "question": "Berapakah elastisitas permintaannya jika diketahui persamaan fungsi permintaannya (Q) =  100 – 2 P² dan tingkat harga P = 50 <img src=\"questions/images/econ4103/image1.png\" class=\"math-inline-img\" alt=\"rumus\">",
     "options": [
       "2,00",
       "2,04",
       "2,03",
       "2,05"
     ],
-    "answer": 1,
-    "image": "questions/images/econ4103/image1.png"
+    "answer": 1
   },
   {
     "id": 18,
-    "type": "image",
-    "question": "Diketahui persamaan umum parabola: Y = ax² + bx + c atau X = ay² + by + c<br>Rumus koordinat titik puncak parabola:<br>Jika persamaan parabola: y = x2 - 8x + 4, carilah koordinat titik puncaknya",
+    "type": "text",
+    "question": "Diketahui persamaan umum parabola: Y = ax² + bx + c atau X = ay² + by + c<br>Rumus koordinat titik puncak parabola: <img src=\"questions/images/econ4103/image2.png\" class=\"math-inline-img\" alt=\"rumus\"><br>Jika persamaan parabola: y = x2 - 8x + 4, carilah koordinat titik puncaknya",
     "options": [
       "(12, 4)",
       "(12,-4)",
       "(4, -12)",
       "(-4,-12)"
     ],
-    "answer": 2,
-    "image": "questions/images/econ4103/image2.png"
+    "answer": 2
   },
   {
     "id": 19,
-    "type": "image",
-    "question": "Titik yang simetris terhadap sumbu Y adalah…",
+    "type": "text",
+    "question": "<img src=\"questions/images/econ4103/image3.png\" class=\"math-inline-img\" alt=\"rumus\"> Titik yang simetris terhadap sumbu Y adalah…",
     "options": [
       "(-4,2) dan (-2,-2)",
       "(4,-4) dan (-2,2)",
       "(4, 2) dan (-4,-2)",
       "(4,2) dan ((4,-2)"
     ],
-    "answer": 2,
-    "image": "questions/images/econ4103/image3.png"
+    "answer": 2
   },
   {
     "id": 20,
@@ -256,33 +253,32 @@
   },
   {
     "id": 22,
-    "type": "image",
-    "question": "Pabrik makanan mempunyai biaya total (TC) = 6Q - 2Q² + 2Q³; tentukan jumlah output pada saat biaya rata-rata minimum",
+    "type": "text",
+    "question": "Pabrik makanan mempunyai biaya total (TC) = 6Q - 2Q² + 2Q³; tentukan jumlah output pada saat biaya rata-rata minimum <img src=\"questions/images/econ4103/image4.png\" class=\"math-inline-img\" alt=\"rumus\">",
     "options": [
       "3",
       "1",
-      "23",
-      "13"
+      "<sup>2</sup>/<sub>3</sub>",
+      "<sup>1</sup>/<sub>3</sub>"
     ],
-    "answer": 3,
-    "image": "questions/images/econ4103/image4.png"
+    "answer": 3
   },
   {
     "id": 23,
     "type": "text",
     "question": "Berdasarkan persamaan R = a Q² - b Q dan Qmax = a/2b, pabrik boneka mempunyai penerimaan sebesar R = 6000 Q - 50Q². Hitunglah penerimaan maksimumnya tersebut",
     "options": [
-      "220.000",
-      "190.000",
-      "180.000",
-      "170.000"
+      "220 &middot; 000",
+      "190 &middot; 000",
+      "180 &middot; 000",
+      "170 &middot; 000"
     ],
     "answer": 2
   },
   {
     "id": 24,
     "type": "text",
-    "question": "Hitunglah: 4256.16",
+    "question": "Hitunglah:<sup>4</sup>&radic;256 &middot; 16",
     "options": [
       "2",
       "4",
@@ -294,7 +290,7 @@
   {
     "id": 25,
     "type": "text",
-    "question": "Hitunglah: log10010",
+    "question": "Hitunglah: log<sup>100</sup>/<sub>10</sub>",
     "options": [
       "4",
       "5",
@@ -306,7 +302,7 @@
   {
     "id": 26,
     "type": "text",
-    "question": "Hitunglah: (3.4)³",
+    "question": "Hitunglah: (3 &middot; 4)³",
     "options": [
       "1278",
       "1728",
@@ -426,7 +422,7 @@
   {
     "id": 36,
     "type": "text",
-    "question": "Pada harga jual Rp 4.000, 00, peluit yang terjual sebanyak 12 biji, jika harga Rp 2.000,00, peluit yang terjual sebanyak 17 biji, tunjukkan bentuk fungsi permintaannya.",
+    "question": "Pada harga jual Rp 4 &middot; 000, 00, peluit yang terjual sebanyak 12 biji, jika harga Rp 2 &middot; 000,00, peluit yang terjual sebanyak 17 biji, tunjukkan bentuk fungsi permintaannya.",
     "options": [
       "Q = 2,2 - 0,0025P",
       "Q = 2,2 - 0,025P",
@@ -462,12 +458,12 @@
   {
     "id": 39,
     "type": "text",
-    "question": "Jumlah asuransi yang diterima Dirna dua tahun lagi sebesar Rp 5.000.000,00. Berapakah nilai sekarangnya jika tingkat bunga yang berlaku 14% per tahun?",
+    "question": "Jumlah asuransi yang diterima Dirna dua tahun lagi sebesar Rp 5 &middot; 000.000,00. Berapakah nilai sekarangnya jika tingkat bunga yang berlaku 14% per tahun?",
     "options": [
-      "Rp.3.506.000,00",
-      "Rp.3.600.500,00",
-      "Rp.3.750.250,00",
-      "Rp.3.906.250,00"
+      "Rp.3 &middot; 506.000,00",
+      "Rp.3 &middot; 600.500,00",
+      "Rp.3 &middot; 750.250,00",
+      "Rp.3 &middot; 906.250,00"
     ],
     "answer": 3
   },
@@ -557,54 +553,50 @@
   },
   {
     "id": 47,
-    "type": "image",
-    "question": "Berapakan elastisitas permintaannya jika diketahui persamaan fungsi permintaannya (Q) = 40 - 4P dan tingkat harga P = 30",
+    "type": "text",
+    "question": "Berapakan elastisitas permintaannya jika diketahui persamaan fungsi permintaannya (Q) = 40 - 4P dan tingkat harga P = 30 <img src=\"questions/images/econ4103/image5.png\" class=\"math-inline-img\" alt=\"rumus\">",
     "options": [
       "1,5",
       "1,7",
       "1,8",
       "2"
     ],
-    "answer": 0,
-    "image": "questions/images/econ4103/image5.png"
+    "answer": 0
   },
   {
     "id": 48,
-    "type": "image",
-    "question": "Diketahui persamaan umum parabola: Y = ax² + bx + c atau X = ay<sup>2</sup> + by + c<br>Rumus koordinat titik puncak parabola:<br>Jika persamaan parabola: y = -x² + 8 x - 4, carilah koordinat titik puncaknya",
+    "type": "text",
+    "question": "Diketahui persamaan umum parabola: Y = ax² + bx + c atau X = ay<sup>2</sup> + by + c<br>Rumus koordinat titik puncak parabola: <img src=\"questions/images/econ4103/image6.png\" class=\"math-inline-img\" alt=\"rumus\"><br>Jika persamaan parabola: y = -x² + 8 x - 4, carilah koordinat titik puncaknya",
     "options": [
       "(4,12)",
       "(4,8)",
       "(12,4)",
       "(12,3)"
     ],
-    "answer": 0,
-    "image": "questions/images/econ4103/image6.png"
+    "answer": 0
   },
   {
     "id": 49,
-    "type": "image",
-    "question": "Kurva yang simetris terhadap sumbu origin adalah….",
+    "type": "text",
+    "question": "<img src=\"questions/images/econ4103/image7.png\" class=\"math-inline-img\" alt=\"rumus\"> Kurva yang simetris terhadap sumbu origin adalah….",
     "options": [
       "(3,3) dan (3,-3)",
       "(3,3) dan (-3,3)",
       "(3,3) dan (-3,-3)",
       "(-3,3) dan (-3,3)"
     ],
-    "answer": 2,
-    "image": "questions/images/econ4103/image7.png"
+    "answer": 2
   },
   {
     "id": 50,
-    "type": "image",
-    "question": "Berapakah rata-rata jumlah produksi yang dihasilkan, jika fungsi produksinya (0) = 41x - 2x2 - 60, dan harga input sama dengan harga output",
+    "type": "text",
+    "question": "Berapakah rata-rata jumlah produksi yang dihasilkan, jika fungsi produksinya (0) = 41x - 2x2 - 60, dan harga input sama dengan harga output <img src=\"questions/images/econ4103/image8.png\" class=\"math-inline-img\" alt=\"rumus\">",
     "options": [
       "8",
       "10",
       "12",
       "15"
     ],
-    "answer": 1,
-    "image": "questions/images/econ4103/image8.png"
+    "answer": 1
   }
 ]

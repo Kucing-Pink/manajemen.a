@@ -962,6 +962,15 @@ body {
   transition: background var(--transition), color var(--transition);
 }
 
+/* ── Inline math images (formulas) ──────────────── */
+.math-inline-img {
+  display: inline-block;
+  vertical-align: middle;
+  max-height: 2rem;
+  margin: 0 3px;
+  background: transparent;
+}
+
 /* ======================================================
    RESULT PAGE
    ====================================================== */
