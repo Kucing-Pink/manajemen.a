@@ -2,19 +2,19 @@
   {
     "id": 1,
     "type": "text",
-    "question": "Diketahui data: 4, 8, 12, 16, 20, 24, 28, 32. Hitung dengan deret hitung S8",
+    "question": "Diketahui data: 4, 8, 12, 16, 20, 24, 28, 32. Hitung dengan deret hitung S5",
     "options": [
       "24",
       "20",
       "18",
       "16"
     ],
-    "answer": 0
+    "answer": 1
   },
   {
     "id": 2,
     "type": "text",
-    "question": "Banjar antara dua suku berurutan mempunyai selisih yang besarnya sama disebut sebagai banjar....",
+    "question": "Banjar antara dua suku berurutan mempunyai selisih yang besarnya sama disebut sebagai banjar….",
     "options": [
       "nilai banding",
       "harmoni",
@@ -26,21 +26,21 @@
   {
     "id": 3,
     "type": "text",
-    "question": "Diketahui fungsi permintaan Qd = 15 - P dan fungsi penawaran Qs = -10 + 5P, pajak yang dikenakan sebesar Rp 3,00 per unit. Hitung keseimbangan harga dan jumlah barang setelah dikenakan pajak ....",
+    "question": "Diketahui fungsi permintaan Qd = 15 - P dan fungsi penawaran Qs= 10 - 5P, pajak yang dikenakan sebesar Rp 3,00 per unit. Hitung keseimbangan harga dan jumlah barang setelah dikenakan pajak ….",
     "options": [
-      "P=2, Q=10",
-      "P=2.5,Q=12.5",
-      "P=2.5,Q=10",
-      "P=2.5,Q=11"
+      "P=2, Q = 10",
+      "P= 2,5, Q = 12,5",
+      "P = 2,5, Q = 10",
+      "P = 2,5, Q = 11"
     ],
-    "answer": 1
+    "answer": 2
   },
   {
     "id": 4,
     "type": "text",
     "question": "Persamaan konsumsi masyarakat yaitu; C = 20 + 0,7 Y, pendapatan nasional = 300, berapa besar tabungan dan konsumsinya?",
     "options": [
-      "S=70 dan C = 230",
+      "S= 70 dan C = 230",
       "S=50 dan C = 250",
       "S=50 dan C = 260",
       "S=30 dan C = 250"
@@ -50,7 +50,7 @@
   {
     "id": 5,
     "type": "text",
-    "question": "Persamaan penerimaan total suatu pabrik yang bersifat monopoli adalah TR = 80Q - 3Q², biaya total (TC) =40 + 14Q dengan menggunakan konsep turunan TR dan TC, keuntungan maksimumnya (perhitungan menggunakan dua angka dibelakang koma) adalah ....",
+    "question": "Persamaan penerimaan total suatu pabrik yang bersifat monopoli adalah TR = 80Q 3Q2, biaya total (TC) =40 + 14Q dengan menggunakan konsep turunan TR dan TC, keuntungan maksimumnya (perhitungan menggunakan dua angka dibelakang koma) adalah …",
     "options": [
       "370",
       "347",
@@ -62,19 +62,19 @@
   {
     "id": 6,
     "type": "text",
-    "question": "Pada harga jual Rp 800, 00, peluit yang terjual sebanyak 10 biji, jika harga Rp 600 ,00, peluit yang terjual sebanyak 15 biji, tunjukkan bentuk fungsi permintaannya (hasil akhir dibulatkan menjadi 3 angka dibelakang koma).",
+    "question": "Pada harga jual Rp 800, 00, peluit yang terjual sebanyak 10 biji, jika harga Rp 600,00, peluit yang terjual sebanyak 15 biji, tunjukkan bentuk fungsi permintaannya (hasil akhir dibulatkan menjadi 3 angka dibelakang koma).",
     "options": [
-      "Q=30 -0,025P",
-      "Q=30-0,0025 P",
-      "Q=30-2,5P",
-      "Q=30-0,25P"
+      "Q = 30 -0,025P",
+      "Q = 30 0,0025 P",
+      "Q = 30-2,5 P",
+      "Q= 30 -0,25 Р"
     ],
     "answer": 0
   },
   {
     "id": 7,
     "type": "text",
-    "question": "Pada fungsi penawaran jika harga suatu barang naik maka yang akan mengalami kenaikan juga adalah...",
+    "question": "Pada fungsi penawaran jika harga suatu barang naik maka yang akan mengalami kenaikan juga adalah….",
     "options": [
       "jumlah yang diminta",
       "produksi jangka pendek",
@@ -86,14 +86,14 @@
   {
     "id": 8,
     "type": "text",
-    "question": "Diketahui fungsi persamaan y = 2x³ - 9x² + 12x, tentukan letak titik fungsinya....",
+    "question": "Diketahui fungsi persamaan 6x<sup>3</sup> - 9 x<sup>2</sup>, tentukan letak titik fungsinya….",
     "options": [
       "maksimum pada x = 3",
       "maksimum pada x = -1",
       "minimum pada x = -3",
       "minimum pada x = 1"
     ],
-    "answer": 1
+    "answer": 3
   },
   {
     "id": 9,
@@ -110,7 +110,7 @@
   {
     "id": 10,
     "type": "text",
-    "question": "Pada persamaan garis lurus y = 6 + 0,5 x, angka 6 menunjukkan....",
+    "question": "Pada persamaan garis lurus y = 6 + 0,5 x, angka 6 menunjukkan….",
     "options": [
       "variabel",
       "parameter",
@@ -122,19 +122,19 @@
   {
     "id": 11,
     "type": "text",
-    "question": "Diketahui titik penggal (0,3) dan (7,0), carilah persamaannya dengan menggunakan rumus: = +2 -1 ab",
+    "question": "Diketahui titik penggal (0,3) dan (7,0), carilah persamaannya dengan menggunakan rumus",
     "options": [
-      "2x+6y-21=0",
-      "3x+7y-21=0",
-      "4x+6y-21=0",
-      "3x+6y-21=0"
+      "2x+6 y-21 = 0",
+      "3x +7 y-21 = 0",
+      "4x+6 y-21 = 0",
+      "3x+6y-21 = 0"
     ],
     "answer": 1
   },
   {
     "id": 12,
     "type": "text",
-    "question": "Diketahui persamaan: 2x³ + 4x² + 10, hitung f(x) = 3",
+    "question": "Diketahui persamaan: 2x² +4x² +10, hitung f(x) = 3",
     "options": [
       "90",
       "100",
@@ -146,19 +146,19 @@
   {
     "id": 13,
     "type": "text",
-    "question": "Jika Y = (X8 - 2)', berapakah turunan fungsinya? (Gunakan rumus: Y' = n Un - 1. U')",
+    "question": "Jika Y = (X<sup>8</sup> - 2)<sup>7</sup>, berapakah turunan fungsinya? (Gunakan rumus: Y' = n Un - 1. U')",
     "options": [
-      "56 X®(X8 - 2)7",
-      "56 X8(X8 - 2)8",
-      "56 X7(x8 - 2)\"",
-      "56 X7(x8 - 2)8"
+      "56 X<sup>6</sup>(X<sup>8</sup> -2)<sup>7</sup>",
+      "56 X<sup>6</sup>(X<sup>8</sup> - 2)<sup>6</sup>",
+      "56 X<sup>7</sup>(X<sup>8</sup><sup> </sup>- 2)<sup>7</sup>",
+      "56 X<sup>7</sup>(X<sup>8</sup> - 2)<sup>6 </sup>"
     ],
-    "answer": 2
+    "answer": 3
   },
   {
     "id": 14,
     "type": "text",
-    "question": "Hitung lim, _4(x° +2x-8)",
+    "question": "Hitung lim<sub>x</sub><sub>…4</sub>(x<sup>2</sup>+2x-8)",
     "options": [
       "12",
       "13",
@@ -170,67 +170,70 @@
   {
     "id": 15,
     "type": "text",
-    "question": "Jika kurva permintaan adalah: QP - 12P - 8Q + 72 = 0, tentukan P dan Q sebagai titik pusat ( ruas kanan dan kiri ditambah 26)",
+    "question": "Jika kurva permintaan adalah: QP -12P -8Q +70 = 0, tentukan P dan Q sebagai titik pusat (ruas kanan dan kiri ditambah 26)",
     "options": [
-      "P=8,Q=10",
-      "P=12,Q=8",
-      "P=8,Q=12",
-      "P=10,Q=8"
+      "P= 8, Q =10",
+      "P= 12, Q =8",
+      "P= 8, Q = 12",
+      "P= 10, Q = 8"
     ],
     "answer": 1
   },
   {
     "id": 16,
     "type": "text",
-    "question": "Diketahui persamaan kurva indiferens (x + 4) (y+ 2)= a, harga barang x Rp 8,00 dan harga barang y Rp 4,00 dan persamaan garis anggaran Pxx + Pyy = M serta penghasilan per bulannya Rp 160,00, tentukan persamaan kurva indiferensnya....",
+    "question": "Diketahui persamaan kurva indiferens (x + 4) (y+ 2)= a, harga barang x Rp 8,00 dan harga barang y Rp 4,00 dan persamaan garis anggaran Px<sub>x</sub> + Py<sub>y</sub> = M serta penghasilan per bulannya Rp 160,00, tentukan persamaan kurva indiferensnya….",
     "options": [
-      "39x-2x? + 86=a",
-      "29x-2x? + 68=a",
-      "29x-4x? + B4=a",
-      "38x-2x? + 84=a"
+      "39 x - 2x² + 86 = a",
+      "29 x - 2 x² + 68 = a",
+      "29 x - 4x² + 84 = a",
+      "38 x - 2x² + 84 = a"
     ],
     "answer": 3
   },
   {
     "id": 17,
-    "type": "text",
-    "question": "Berapakah elastisitas permintaannya jika diketahui persamaan fungsi permintaannya i a2 p (Q) = 100 - 2 P? dan tingkat harga P = 50 (€,= PO) as",
+    "type": "image",
+    "question": "Berapakah elastisitas permintaannya jika diketahui persamaan fungsi permintaannya (Q) =  100 – 2 P² dan tingkat harga P = 50",
     "options": [
       "2,00",
       "2,04",
       "2,03",
       "2,05"
     ],
-    "answer": 0
+    "answer": 1,
+    "image": "questions/images/econ4103/image1.png"
   },
   {
     "id": 18,
-    "type": "text",
-    "question": "Diketahui persamaan umum parabola: Y=ax?+bx+c atau X=ay?+by+c 2 Rumus koordinat titik puncak parabola: of bi aae 2a -4a Jika persamaan parabola: y = x² - 8x + 4, carilah koordinat titik puncaknya ....",
+    "type": "image",
+    "question": "Diketahui persamaan umum parabola: Y = ax² + bx + c atau X = ay² + by + c<br>Rumus koordinat titik puncak parabola:<br>Jika persamaan parabola: y = x2 - 8x + 4, carilah koordinat titik puncaknya",
     "options": [
-      "(12,4)",
-      "(12-4)",
-      "(4,-12)",
-      "(-4, -12)"
+      "(12, 4)",
+      "(12,-4)",
+      "(4, -12)",
+      "(-4,-12)"
     ],
-    "answer": 2
+    "answer": 2,
+    "image": "questions/images/econ4103/image2.png"
   },
   {
     "id": 19,
-    "type": "text",
-    "question": "y (4.2) 2 Titik yang simetris terhadap sumbu Y adalah...",
+    "type": "image",
+    "question": "Titik yang simetris terhadap sumbu Y adalah…",
     "options": [
       "(-4,2) dan (-2,-2)",
       "(4,-4) dan (-2,2)",
       "(4, 2) dan (-4,-2)",
       "(4,2) dan ((4,-2)"
     ],
-    "answer": 0
+    "answer": 2,
+    "image": "questions/images/econ4103/image3.png"
   },
   {
     "id": 20,
     "type": "text",
-    "question": "Berapakah jumlah barang yang dapat memberikan kepuasan Amrin, jika kepuasan total (TU) = 150Q - 4Q* - 200, dan harga barang Rp.30,00? ( P = MU)",
+    "question": "Berapakah jumlah barang yang dapat memberikan kepuasan Amrin, jika kepuasan total (TU) = 1500 - 4Q² - 200, dan harga barang Rp.30,00? (P = MU)",
     "options": [
       "20",
       "16",
@@ -242,7 +245,7 @@
   {
     "id": 21,
     "type": "text",
-    "question": "Perusahaan yang berada dalam pasar persaingan sempurna mempunyai persamaan harga jual (P) = 248 - 2Q, dan total biaya (TC) = Q? + 2 Q, berapa keuntungan maksimumnya (TR = P.Q dan MR = MC)?",
+    "question": "Perusahaan yang berada dalam pasar persaingan sempurna mempunyai persamaan harga jual (P) = 248 - 2Q, dan total biaya (TC) = Q² + 2 Q, berapa keuntungan maksimumnya (TR = P.Q dan MR = MC)?",
     "options": [
       "5043",
       "5048",
@@ -253,20 +256,21 @@
   },
   {
     "id": 22,
-    "type": "text",
-    "question": "Pabrik makanan mempunyai biaya total (TC) = 6Q - 2Q? + 2Q; tentukan jumlah output pada saat biaya rata-rata minimum dAC/dQ = 0. 2 3 1 D2 3",
+    "type": "image",
+    "question": "Pabrik makanan mempunyai biaya total (TC) = 6Q - 2Q² + 2Q³; tentukan jumlah output pada saat biaya rata-rata minimum",
     "options": [
       "3",
       "1",
-      "2",
-      ""
+      "23",
+      "13"
     ],
-    "answer": 1
+    "answer": 3,
+    "image": "questions/images/econ4103/image4.png"
   },
   {
     "id": 23,
     "type": "text",
-    "question": "Berdasarkan persamaan R = a Q? - b Q dan Qmax = a/2b, pabrik boneka mempunyai penerimaan sebesar R = 6000 Q - 50Q?. Hitunglah penerimaan maksimumnya tersebut",
+    "question": "Berdasarkan persamaan R = a Q² - b Q dan Qmax = a/2b, pabrik boneka mempunyai penerimaan sebesar R = 6000 Q - 50Q². Hitunglah penerimaan maksimumnya tersebut",
     "options": [
       "220.000",
       "190.000",
@@ -285,24 +289,24 @@
       "6",
       "8"
     ],
-    "answer": 1
+    "answer": 3
   },
   {
     "id": 25,
     "type": "text",
-    "question": "7 = jo 1000 Hitunglah: log. 70",
+    "question": "Hitunglah: log10010",
     "options": [
       "4",
       "5",
       "2",
       "3"
     ],
-    "answer": 3
+    "answer": 2
   },
   {
     "id": 26,
     "type": "text",
-    "question": "Hitunglah: (3 . 4)?",
+    "question": "Hitunglah: (3.4)³",
     "options": [
       "1278",
       "1728",
@@ -314,31 +318,31 @@
   {
     "id": 27,
     "type": "text",
-    "question": "Himpunan penyelesaian dari: x?- x --12>0 adalah ....",
+    "question": "Himpunan penyelesaian dari: x2- x -12> 0 adalah….",
     "options": [
-      "{x|x>4 atau x <-3}",
-      "{x|x>3ataux> 4}",
-      "{x|x>3ataux<- 4}",
-      "{x|x<4ataux <-3}"
+      "{x | x > 4 atau x < - 3}",
+      "{x | x > 3 atau x > 4}",
+      "{x | x > 3 atau x < - 4}",
+      "{x | x < 4 atau x < - 3}"
     ],
     "answer": 0
   },
   {
     "id": 28,
     "type": "text",
-    "question": "Himpunan yang beranggotakan jenis mobil city car, Honda Jazz, Nissan Livina, Mazda 2, Toyota Yaris, Ford Fiesta dapat dituliskan sebagai...",
+    "question": "Himpunan yang beranggotakan jenis mobil city car, Honda Jazz, Nissan Livina, Mazda 2, Toyota Yaris, Ford Fiesta dapat dituliskan sebagai….",
     "options": [
-      "C =jenis mobil city car",
-      "Z =jenis mobil Jepang",
-      "C= {Z| Z=jenis mobil city car}",
-      "Z={Z=jenis mobil city car}"
+      "C = jenis mobil city car",
+      "Z = jenis mobil Jepang",
+      "C = {Z| Z = jenis mobil city car}",
+      "Z= {Z = jenis mobil city car}"
     ],
-    "answer": 2
+    "answer": 3
   },
   {
     "id": 29,
     "type": "text",
-    "question": "Pada sistem bilangan, untuk tempat pertama mempunyai harga 2° , tempat kedua mempunyai harga 2' dan seterusnya, sehingga penulisan bilangan ini dikatakan menggunakan....",
+    "question": "Pada sistem bilangan, untuk tempat pertama mempunyai harga 2°, tempat kedua mempunyai harga 2¹ dan seterusnya, sehingga penulisan bilangan ini dikatakan menggunakan….",
     "options": [
       "perpangkatan",
       "pencacahan",
@@ -350,19 +354,19 @@
   {
     "id": 30,
     "type": "text",
-    "question": "Diketahui: U= 0,1,2,3,4,5,6,7,8,9 :X= 24,68 ; Y= 0,5,9 ;Z= 3,7,9 Hitunglah: ¥ rv",
+    "question": "Diketahui: U= 0,1,2,3,4,5,6,7,8,9; X= 2,4,6,8; Y= 0,5,9 ; Z= 3,7,9 Hitunglah: ×∩",
     "options": [
-      "59",
-      "05,9",
-      "01,9",
-      "78,9"
+      "5,9",
+      "0,5,9",
+      "0,1,9",
+      "7,8,9"
     ],
     "answer": 1
   },
   {
     "id": 31,
     "type": "text",
-    "question": "Diketahui data: 3, 9, 27, 81, 243, 729. Deret ukur Ds adalah ....",
+    "question": "Diketahui data: 3, 9, 27, 81, 243, 729. Deret ukur Ds adalah….",
     "options": [
       "313",
       "333",
@@ -374,7 +378,7 @@
   {
     "id": 32,
     "type": "text",
-    "question": "Jika dituliskan banjar ukur sebagai berikut: 346412+24+4...43 2”! maka yang dibahas adalah konsep deret....",
+    "question": "Jika dituliskan banjar ukur sebagai berikut: 3+6+12+24+…+3 2\"<sup>-1</sup> maka yang dibahas adalah konsep deret…",
     "options": [
       "hitung",
       "ukur",
@@ -386,22 +390,22 @@
   {
     "id": 33,
     "type": "text",
-    "question": "Diketahui fungsi permintaan Qd = 21 - P dan fungsi penawaran Qs = -10 + 2P, pajak yang dikenakan sebesar Rp 5,00 per unit. Hitung keseimbangan harga dan jumlah barang setelah dikenakan pajak ....",
+    "question": "Diketahui fungsi permintaan Q<sub>d</sub> = 21 - P dan fungsi penawaran Q<sub>s</sub>= 10 - 2P, pajak yang dikenakan sebesar Rp 5,00 per unit. Hitung keseimbangan harga dan jumlah barang setelah dikenakan pajak…",
     "options": [
-      "P=1,Q=18",
-      "P=1,Q=16",
-      "P=1,Q=14",
-      "P=1,Q=12"
+      "P= 1, Q= 18",
+      "P=1, Q = 16",
+      "P=1, Q = 14",
+      "P= 1, Q = 12"
     ],
-    "answer": 1
+    "answer": 3
   },
   {
     "id": 34,
     "type": "text",
-    "question": "Persamaan konsumsi masyarakat yaitu; C = 50 + 0,5 Y, pendapatan nasional = 400, berapa besar tabungan dan konsumsinya....",
+    "question": "Persamaan konsumsi masyarakat yaitu; C = 50 + 0,5 Y, pendapatan nasional = 400, berapa besar tabungan dan konsumsinya….",
     "options": [
-      "S=140 dan C = 260",
-      "S= 150 dan C = 250",
+      "S = 140 dan C = 260",
+      "S = 150 dan C = 250",
       "S= 150 dan C = 260",
       "S= 160 dan C = 250"
     ],
@@ -410,31 +414,31 @@
   {
     "id": 35,
     "type": "text",
-    "question": "Persamaan penerimaan total suatu pabrik yang bersifat monopoli adalah TR = 60Q - 4Q², biaya total (TC) =30 + 16Q dengan menggunakan konsep turunan TR dan TC, keuntungan maksimumnya adalah...",
+    "question": "Persamaan penerimaan total suatu pabrik yang bersifat monopoli adalah TR = 60Q - 4Q<sup>2</sup>, biaya total (TC) =30 + 16Q dengan menggunakan konsep turunan TR dan TC, keuntungan maksimumnya adalah….",
     "options": [
       "145",
       "121",
       "101",
       "91"
     ],
-    "answer": 3
+    "answer": 1
   },
   {
     "id": 36,
     "type": "text",
     "question": "Pada harga jual Rp 4.000, 00, peluit yang terjual sebanyak 12 biji, jika harga Rp 2.000,00, peluit yang terjual sebanyak 17 biji, tunjukkan bentuk fungsi permintaannya.",
     "options": [
-      "Q=2,2 -0,0025P",
-      "Q=2,2 -0,025P",
-      "Q=22-0,0025P",
-      "Q=22-0,025P"
+      "Q = 2,2 - 0,0025P",
+      "Q = 2,2 - 0,025P",
+      "Q = 22 - 0,0025P",
+      "Q = 22 - 0,025P"
     ],
-    "answer": 0
+    "answer": 2
   },
   {
     "id": 37,
     "type": "text",
-    "question": "Pada umumnya fungsi penawaran mempunyai curam yang nilainya....",
+    "question": "Pada umumnya fungsi penawaran mempunyai curam yang nilainya….",
     "options": [
       "positif",
       "negatif",
@@ -446,7 +450,7 @@
   {
     "id": 38,
     "type": "text",
-    "question": "Diketahui fungsi persamaan y = 5x² - 20x, tentukan letak titik fungsinya....",
+    "question": "Diketahui fungsi persamaan y = 5x² - 20 x, tentukan letak titik fungsinya….",
     "options": [
       "maksimum pada x = 2",
       "maksimum pada x = 1",
@@ -470,7 +474,7 @@
   {
     "id": 40,
     "type": "text",
-    "question": "Jumlah yang nilainya berubah-ubah pada suatu masalah dan merupakan himpunan yang anggotanya sebagai anggota pertama pasangan urut dikategorikan sebagai variabel....",
+    "question": "Jumlah yang nilainya berubah-ubah pada suatu masalah dan merupakan himpunan yang anggotanya sebagai anggota pertama pasangan urut dikategorikan sebagai variabel….",
     "options": [
       "parametrik",
       "absolut",
@@ -482,10 +486,10 @@
   {
     "id": 41,
     "type": "text",
-    "question": "Cari persamaan garis yang melalui titik (2,7) dengan curam =2, rumus yang digunakan: Y -Y1 =m (X-X1)",
+    "question": "Cari persamaan garis yang melalui titik (2,7) dengan curam =2, rumus yang digunakan: Y-Y1 = m (X- X1)",
     "options": [
       "Y=5X-3",
-      "Y=4X-3",
+      "Y=4 X-3",
       "Y=3X+3",
       "Y=2X+3"
     ],
@@ -494,31 +498,31 @@
   {
     "id": 42,
     "type": "text",
-    "question": "Diketahui persamaan: 2x³ + 4x² + 10, hitung f(x) = 2 ....",
+    "question": "Diketahui persamaan: 2x³+ 4x2 + 10, hitung f(x) = 2 ….",
     "options": [
       "42",
       "52",
       "58",
       "60"
     ],
-    "answer": 1
+    "answer": 0
   },
   {
     "id": 43,
     "type": "text",
-    "question": "Jika Y = (X3 - 2)8, berapakah turunan fungsinya? ( Gunakan rumus: Y' = n Un - 1. U')",
+    "question": "Jika Y = (X<sup>3</sup> - 2)<sup>6</sup>, berapakah turunan fungsinya? (Gunakan rumus: Y' = n Un - 1. U')",
     "options": [
-      "24 X3(X? - 2)5",
-      "24 x2(x8 - 28",
-      "24 x4(x8 - 28",
-      "24 x3(x3 - 2)8"
+      "24 X³(X3-2)<sup>5</sup>",
+      "24 X2(X3 - 2)<sup>5</sup>",
+      "24 X4(X3 -2)<sup>5</sup>",
+      "24 X3(X3 - 2)<sup>6</sup>"
     ],
-    "answer": 1
+    "answer": 0
   },
   {
     "id": 44,
     "type": "text",
-    "question": "Hitung tim x*-6x4+2",
+    "question": "Hitung lim x<sup>4</sup>-6x+2",
     "options": [
       "200",
       "210",
@@ -530,553 +534,77 @@
   {
     "id": 45,
     "type": "text",
-    "question": "Jika kurva permintaan adalah: QP - 10P - 10Q + 80 = 0, tentukan P dan Q sebagai titik pusat (ruas kanan dan kiri ditambah 20) ....",
+    "question": "Jika kurva permintaan adalah: QP -10P -10Q + 80 = 0, tentukan P dan Q sebagai titik pusat (ruas kanan dan kiri ditambah 20) ….",
     "options": [
-      "P=8,Q=10",
-      "P=10,Q=10",
-      "P=10,Q=8",
-      "P=10,Q=6"
+      "P= 8, Q =10",
+      "P= 10, Q =10",
+      "P = 10, Q = 8",
+      "P = 10, Q=6"
     ],
     "answer": 1
   },
   {
     "id": 46,
     "type": "text",
-    "question": "Diketahui persamaan kurva indiferens (x + 2) (y+ 3)= a, harga barang x adalah Rp 8, harga barang y adalah Rp 4, dan persamaan garis anggaran PxX + PyY = M serta penghasilan per bulannya Rp 160. Persamaan kurva indiferensnya adalah....",
+    "question": "Diketahui persamaan kurva indiferens (x + 2) (y+ 3)= a, harga barang x adalah Rp 8, harga barang y adalah Rp 4, dan persamaan garis anggaran PxX + PyY = M serta penghasilan per bulannya Rp 160. Persamaan kurva indiferensnya adalah….",
     "options": [
-      "39x-2x° + 86=a",
-      "29x-2x? + 68=a",
-      "29x-4x? + 86=a",
-      "39x-4x? + 68=a"
+      "39 x -2x² + 86= a",
+      "29 x - 2x² + 68= a",
+      "29 x - 4x² + 86= a",
+      "39 x - 4x² + 68= a"
     ],
     "answer": 3
   },
   {
     "id": 47,
-    "type": "text",
-    "question": "Berapakan elastisitas permintaannya jika diketahui persamaan fungsi permintaannya i dQ p (Q) = 40-4P dan tingkat hi P=30 =-=,5). (Q) jan tingkat harga (zy oP oO”",
+    "type": "image",
+    "question": "Berapakan elastisitas permintaannya jika diketahui persamaan fungsi permintaannya (Q) = 40 - 4P dan tingkat harga P = 30",
     "options": [
-      "15",
-      "17",
-      "18",
+      "1,5",
+      "1,7",
+      "1,8",
       "2"
     ],
-    "answer": 1
+    "answer": 0,
+    "image": "questions/images/econ4103/image5.png"
   },
   {
     "id": 48,
-    "type": "text",
-    "question": "Diketahui persamaan umum parabola: Y = ax?+bx+c atau X=ay?+by+c 2 Rumus koordinat titik puncak parabola: » eta 2a -4a Jika persamaan parabola: y = -x² + 8x - 4, carilah koordinat titik puncaknya",
+    "type": "image",
+    "question": "Diketahui persamaan umum parabola: Y = ax² + bx + c atau X = ay<sup>2</sup> + by + c<br>Rumus koordinat titik puncak parabola:<br>Jika persamaan parabola: y = -x² + 8 x - 4, carilah koordinat titik puncaknya",
     "options": [
       "(4,12)",
       "(4,8)",
       "(12,4)",
       "(12,3)"
     ],
-    "answer": 0
+    "answer": 0,
+    "image": "questions/images/econ4103/image6.png"
   },
   {
     "id": 49,
-    "type": "text",
-    "question": "(3.3) 3 x 3 Kurva yang simetris terhadap sumbu origin adalah...",
+    "type": "image",
+    "question": "Kurva yang simetris terhadap sumbu origin adalah….",
     "options": [
       "(3,3) dan (3,-3)",
       "(3,3) dan (-3,3)",
       "(3,3) dan (-3,-3)",
       "(-3,3) dan (-3,3)"
     ],
-    "answer": 2
+    "answer": 2,
+    "image": "questions/images/econ4103/image7.png"
   },
   {
     "id": 50,
-    "type": "text",
-    "question": "Berapakah rata-rata jumlah produksi yang dihasilkan, jika fungsi produksinya (Q) = 41x - 2x2 - 60 , dan harga input sama dengan harga output [w = P * MPx]",
+    "type": "image",
+    "question": "Berapakah rata-rata jumlah produksi yang dihasilkan, jika fungsi produksinya (0) = 41x - 2x2 - 60, dan harga input sama dengan harga output",
     "options": [
       "8",
       "10",
       "12",
       "15"
     ],
-    "answer": 1
-  },
-  {
-    "id": 51,
-    "type": "text",
-    "question": "Perusahaan yang berada dalam pasar persaingan sempurna mempunyai persamaan harga jual (P) = 130 - 5Q, dan total biaya (TC) = Q? + 10 Q, berapa keuntungan maksimumnya (TR = P.Q dan MR = MC)?",
-    "options": [
-      "600",
-      "650",
-      "700",
-      "800"
-    ],
-    "answer": 2
-  },
-  {
-    "id": 52,
-    "type": "text",
-    "question": "Pabrik baju “fanda” mempunyai biaya rata-rata (AC) = 20 - 8Q + Q?; tentukan jumlah output pada saat biaya rata-rata minimum dAC/dQ = 0.",
-    "options": [
-      "4",
-      "5",
-      "6",
-      "7"
-    ],
-    "answer": 0
-  },
-  {
-    "id": 53,
-    "type": "text",
-    "question": "Berdasarkan persamaan R = a Q? - b Q dan Qmax = -b/2a, pabrik boneka mempunyai penerimaan sebesar R = 5000 Q - 25Q?. Hitunglah penerimaan maksimumnya tersebut",
-    "options": [
-      "200.000",
-      "250.000",
-      "270.000",
-      "290.000"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 54,
-    "type": "text",
-    "question": "Hitunglah: & 27",
-    "options": [
-      "2/3",
-      "1/3",
-      "3/5",
-      "2/7"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 55,
-    "type": "text",
-    "question": "Hitunglah: log 1.000 x *°\"1og10.000 x *°log10 =... AS",
-    "options": [
-      "",
-      "2",
-      "4",
-      "3"
-    ],
-    "answer": 2
-  },
-  {
-    "id": 56,
-    "type": "text",
-    "question": "Hitunglah (62)? =....",
-    "options": [
-      "1926",
-      "1296",
-      "1626",
-      "1269"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 57,
-    "type": "text",
-    "question": "Himpunan penyelesaian dari: x? 2 x-15>0 adalah ....",
-    "options": [
-      "{x|x>3 atau x< 5}",
-      "{x|x>3 atau x >- 5}",
-      "{x|x>5ataux <-3}",
-      "{x|x>S5Sataux< 4}"
-    ],
-    "answer": 2
-  },
-  {
-    "id": 58,
-    "type": "text",
-    "question": "Jika anggota himpunan A sama dengan anggota himpunan B maka persamaannya dituliskan sebagai",
-    "options": [
-      "AUB",
-      "ANB",
-      "AcB",
-      "A=B"
-    ],
-    "answer": 3
-  },
-  {
-    "id": 59,
-    "type": "text",
-    "question": "Bilangan yang ditulis sebagai hasil bagi dua bilangan bulat disebut sebagai bilangan.",
-    "options": [
-      "rasional",
-      "irasional",
-      "imajiner",
-      "pecahan"
-    ],
-    "answer": 0
-  },
-  {
-    "id": 60,
-    "type": "text",
-    "question": "U = {0,1,2,3,4,5,6,7,8,9} ; X= {2,4,6,8} ; ¥ = {0, 5, 9};Z={3, 7, 9} Hitung : 7a?",
-    "options": [
-      "{0, 1,3};",
-      "{0, 1,2};",
-      "{1,3, 7}",
-      "{0, 2, 3}"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 61,
-    "type": "text",
-    "question": "Diketahui data: 3, 9, 27, 81, 243, 729, Hitung dengan deret ukur S4.",
-    "options": [
-      "73",
-      "77",
-      "81",
-      "83"
-    ],
-    "answer": 2
-  },
-  {
-    "id": 62,
-    "type": "text",
-    "question": "Dalam banjar ukur dituliskan = = p, variabel p yang besarnya tetap dan dapat bernilai 7 positif atau negatif merupakan...",
-    "options": [
-      "nilai banding",
-      "nilai ukur",
-      "jumlah suku",
-      "suku banjar"
-    ],
-    "answer": 0
-  },
-  {
-    "id": 63,
-    "type": "text",
-    "question": "Diketahui fungsi permintaan Qd = 18 - 2P dan fungsi penawaran Q.= 10 - 4P, pajak yang dikenakan sebesar Rp 6 per unit. Keseimbangan harga dan jumlah barang setelah dikenakan pajak adalah ....",
-    "options": [
-      "P=6,Q=2",
-      "P=8,Q=2",
-      "P=2,Q=8",
-      "P=2,Q=6"
-    ],
-    "answer": 2
-  },
-  {
-    "id": 64,
-    "type": "text",
-    "question": "Diketahui persamaan konsumsi masyarakat yaitu; C = 50 + 0,7Y, pendapatan nasional = 500, maka besar tabungan dan konsumsinya adalah ....",
-    "options": [
-      "S=140 dan C = 460",
-      "S= 150 dan C = 350",
-      "S=140 dan C = 360",
-      "S= 100 dan C = 400"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 65,
-    "type": "text",
-    "question": "Persamaan penerimaan total suatu pabrik yang bersifat monopoli adalah TR = 50Q - 5Q², biaya total (TC) = 50 + 10 Q dengan menggunakan konsep turunan TR dan TC, tentukan keuntungan maksimumnya....",
-    "options": [
-      "190",
-      "195",
-      "205",
-      "225"
-    ],
-    "answer": 3
-  },
-  {
-    "id": 66,
-    "type": "text",
-    "question": "Pada harga jual Rp 600, peluit yang terjual sebanyak 10 biji, jika harga Rp 200, peluit yang terjual sebanyak 20 biji, bentuk fungsi permintaannya adalah ....",
-    "options": [
-      "Q=25 -0,025P",
-      "Q=25-0,0025P",
-      "Q=22-0,0025P",
-      "Q=22-0,025P"
-    ],
-    "answer": 0
-  },
-  {
-    "id": 67,
-    "type": "text",
-    "question": "Bila hukum permintaan dipenuhi maka fungsi permintaan akan mempunyai curam yang nilainya...",
-    "options": [
-      "netral",
-      "positif",
-      "standar",
-      "negatif"
-    ],
-    "answer": 3
-  },
-  {
-    "id": 68,
-    "type": "text",
-    "question": "Diketahui fungsi persamaan y = 5x³ - 15x², tentukan letak titik fungsinya ....",
-    "options": [
-      "minimum pada x = -2",
-      "minimum pada x = 2",
-      "maksimum pada x = 2",
-      "maksimum pada x = -2"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 69,
-    "type": "text",
-    "question": "Jika diketahui: | = P. rt Darto meminjam uang Rp 100.000,00 selama satu tahun dengan bunga 20% per tahun. Berapa jumlah pengembaliannya?",
-    "options": [
-      "Rp. 110.000,00",
-      "Rp. 120.000,00",
-      "Rp. 130.000,00",
-      "Rp. 140.000,00"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 70,
-    "type": "text",
-    "question": "Jumlah penduduk tahun 2013 yang digunakan untuk data dalam penelitian di berbagai daerah dikategorikan sebagai konstanta...",
-    "options": [
-      "absolut",
-      "parametrik",
-      "bebas",
-      "tak bebas"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 71,
-    "type": "text",
-    "question": "Cari persamaan garis yang melalui titik (4,3) dengan curam = 3, rumus yang digunakan: Y -Y1=m(X-X1).",
-    "options": [
-      "Y=2X-9",
-      "Y=3X-9",
-      "Y=4X-9",
-      "Y=5X-9"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 72,
-    "type": "text",
-    "question": "Diketahui persamaan: 10x² + 8x + 10, hitunglah jika x = 2",
-    "options": [
-      "66",
-      "74",
-      "76",
-      "80"
-    ],
-    "answer": 0
-  },
-  {
-    "id": 73,
-    "type": "text",
-    "question": "Jika Jika Y = (X⁴ - 6)⁸, berapakah turunan fungsinya?",
-    "options": [
-      "32 X3(X2 + 6)8",
-      "32 X2(x? + 6)'",
-      "32 X3(X4 + 6)?",
-      "32 X4(x* + 6)"
-    ],
-    "answer": 2
-  },
-  {
-    "id": 74,
-    "type": "text",
-    "question": "Hitung lim, x2-8x-2",
-    "options": [
-      "-9",
-      "9",
-      "8",
-      "6"
-    ],
-    "answer": 0
-  },
-  {
-    "id": 75,
-    "type": "text",
-    "question": "Jika kurva permintaan adalah: QP - 4P - 12Q + 48 = 0, tentukan P dan Q sebagai titik pusat ( ruas kanan dan kiri ditambah 18)...",
-    "options": [
-      "P=8,Q=10",
-      "P=6,Q=10",
-      "P=10,Q=6",
-      "P=12,Q=4"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 76,
-    "type": "text",
-    "question": "Diketahui persamaan kurva indiferens (x + 4) (y+ 6)= a, harga barang x Rp 9,00 dan harga barang y Rp 3,00 dan persamaan garis anggaran Px;, + Pyy = M serta penghasilan per bulannya Rp 180,00, tentukan persamaan kurva indiferensnya.",
-    "options": [
-      "42x-6x? +264=a",
-      "42x-8x? +264=a",
-      "42x-8x? +246=a",
-      "42x-6x? +246=a"
-    ],
-    "answer": 0
-  },
-  {
-    "id": 77,
-    "type": "text",
-    "question": "Elastisitas permintaannya jika diketahui persamaan fungsi permintaannya (Q) = 50 - 5 P ir dQ p. dan tingkat harga P = 50, (e, B'O. adalah...",
-    "options": [
-      "18",
-      "15",
-      "1,25",
-      "1,20"
-    ],
-    "answer": 2
-  },
-  {
-    "id": 78,
-    "type": "text",
-    "question": "Diketahui persamaan umum parabola: Y = ax2+bx+c atau X=ay?+by+c -b b?-4ai Rumus koordinat titik puncak parabola: , 2 = 2a -4a Jika persamaan parabola: y = -x² + 8x - 4, carilah koordinat titik puncaknya ....",
-    "options": [
-      "(4,24)",
-      "(4-24)",
-      "(4,4)",
-      "(4-4)"
-    ],
-    "answer": 3
-  },
-  {
-    "id": 79,
-    "type": "text",
-    "question": "y (3,3) X 3 3 Kurva yang simetris terhadap sumbu Y adalah...",
-    "options": [
-      "(3,3) dan (-3,-3)",
-      "(3,3) dan (3,-3)",
-      "(3,3) dan (3,-3)",
-      "(3,3) dan (-3,3)"
-    ],
-    "answer": 3
-  },
-  {
-    "id": 80,
-    "type": "text",
-    "question": "Berapakah jumlah input yang digunakan, jika fungsi produksinya (Q) = 68x - 4x? - 90, dan agar keuntungannya maksimum maka produk marjinalnya sama dengan 4 [w = P * MPx]]",
-    "options": [
-      "12",
-      "10",
-      "8",
-      "6"
-    ],
-    "answer": 2
-  },
-  {
-    "id": 81,
-    "type": "text",
-    "question": "Perusahaan yang berada dalam pasar persaingan sempurna mempunyai persamaan harga jual (P) = 210 - 2Q, dan total biaya (TC) = Q? + 9 Q, berapa keuntungan maksimumnya (TR = P.Q dan MR = MC)?",
-    "options": [
-      "2400",
-      "2550",
-      "2700",
-      "2800"
-    ],
-    "answer": 2
-  },
-  {
-    "id": 82,
-    "type": "text",
-    "question": "Pabrik sepatu “Airin” mempunyai biaya produksi dengan rincian sebagai berikut: biaya variabel = 6 Q? - 1.200; biaya tetap = 90.000. Jika produksinya sebanyak 100 buah, hitunglah biaya totainya ....",
-    "options": [
-      "160.000",
-      "155.000",
-      "150.500",
-      "148.800"
-    ],
-    "answer": 3
-  },
-  {
-    "id": 83,
-    "type": "text",
-    "question": "Berdasarkan persamaan R = aQ? - bQ dan Qmax = -b/2a, pabrik boneka mempunyai penerimaan sebesar R = 7000Q - 50Q?. Hitunglah penerimaan maksimumnya tersebut",
-    "options": [
-      "235.000",
-      "245.000",
-      "250.000",
-      "260.000"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 84,
-    "type": "text",
-    "question": "Hitunglah: √(256) / 16",
-    "options": [
-      "fa",
-      "B",
-      "",
-      "7"
-    ],
-    "answer": 0
-  },
-  {
-    "id": 85,
-    "type": "text",
-    "question": "Hitunglah: log (100) (100)",
-    "options": [
-      "2",
-      "3",
-      "4",
-      "5"
-    ],
-    "answer": 3
-  },
-  {
-    "id": 86,
-    "type": "text",
-    "question": "z 3 Hitunglah : (5) 8 6 4 3 Ds @7",
-    "options": [
-      "27",
-      "27",
-      "27",
-      ""
-    ],
-    "answer": 1
-  },
-  {
-    "id": 87,
-    "type": "text",
-    "question": "Himpunan penyelesaian dari: x? 3 x18 >0 adalah:",
-    "options": [
-      "{x|x>3ataux< 5}",
-      "{x|x>3ataux> 6}",
-      "{x|x>3 atau x <- 6}",
-      "{x|x>6 atau x <- 3}"
-    ],
-    "answer": 3
-  },
-  {
-    "id": 88,
-    "type": "text",
-    "question": "Dalam konsep himpunan pasangan urut, anggota (2, 6) dan anggota (6, 2) adalah...",
-    "options": [
-      "sama",
-      "sepadan",
-      "semetris",
-      "berbeda"
-    ],
-    "answer": 3
-  },
-  {
-    "id": 89,
-    "type": "text",
-    "question": "Sistem bilangan yang berbasis angka 10 dan dipakai untuk kehidupan sehari-hari dikenal sebagai bilangan...",
-    "options": [
-      "binar",
-      "desimal",
-      "irasional",
-      "sembarang"
-    ],
-    "answer": 1
-  },
-  {
-    "id": 90,
-    "type": "text",
-    "question": "U = {0,1,2,3,4,5,6,7,8,9} ; X= {2,4,6,8} ; Y = {0, 5, 9} ;Z={ 3, 7, 9} Hitung : XN F ....",
-    "options": [
-      "{2,4,6,8}",
-      "{1.2.6.8}",
-      "{2.4.7.8}",
-      "{2.3.68}"
-    ],
-    "answer": 0
+    "answer": 1,
+    "image": "questions/images/econ4103/image8.png"
   }
 ]

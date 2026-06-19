@@ -177,6 +177,7 @@
     card.id = 'question-card';
 
     const isImageQuestion = q.type === 'image' && q.image;
+    const isCompactOptions = isImageQuestion && q.options.every(opt => opt.trim().length <= 8);
 
     // Opsi: jika tipe gambar dan opsi hanya 1 huruf → tampilkan huruf besar saja
     const optionsHTML = q.options.map((opt, i) => {
@@ -194,8 +195,8 @@
       `;
     }).join('');
 
-    // Gambar soal (jika tipe image)
-    const imageHTML = isImageQuestion ? `
+    // Gambar soal (jika ada)
+    const imageHTML = q.image ? `
       <div class="question-image-wrap">
         <img
           src="${q.image}"
@@ -209,8 +210,8 @@
 
     card.innerHTML = `
       ${imageHTML}
-      ${!isImageQuestion ? `<p class="question-text">${q.question}</p>` : ''}
-      <ul class="options-list${isImageQuestion ? ' options-list--compact' : ''}"
+      ${q.question ? `<p class="question-text">${q.question}</p>` : ''}
+      <ul class="options-list${isCompactOptions ? ' options-list--compact' : ''}"
           id="options-list" role="radiogroup" aria-label="Pilihan jawaban">
         ${optionsHTML}
       </ul>

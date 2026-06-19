@@ -41,7 +41,7 @@
             const courseTotalQuestions = {
               "ECON4102": 115,
               "EACC4101": 134,
-              "ECON4103": 90,
+              "ECON4103": 50,
               "MKWN4110": 129,
               "MKDI4202": 100,
               "ECON4314": 119
@@ -221,7 +221,7 @@
                     const courseTotalQuestions = {
                       "ECON4102": 115,
                       "EACC4101": 134,
-                      "ECON4103": 90,
+                      "ECON4103": 50,
                       "MKWN4110": 129,
                       "MKDI4202": 100,
                       "ECON4314": 119

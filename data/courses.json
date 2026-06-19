@@ -26,7 +26,7 @@
     "code": "ECON4103",
     "icon": "📐",
     "description": "Matematika terapan untuk ekonomi: fungsi, diferensial, integral, dan optimasi.",
-    "totalQuestions": 90,
+    "totalQuestions": 50,
     "file": "questions/econ4103.json"
   },
   {
