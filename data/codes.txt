@@ -7,3 +7,4 @@ Calvin 2103 1 2 3 6
 Afi 2001 1 2 3
 Dina 2105 1 2 3
 Rudi 2000 2
+husen 4
