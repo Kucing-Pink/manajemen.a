@@ -212,6 +212,7 @@ function handleGetUser(data) {
 
 function handleUpdateProfile(data) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Users');
+  if (!sheet) return { success: false, message: 'Sheet Users tidak ditemukan' };
   const rows = sheet.getDataRange().getValues();
   const inputPhone = normalizePhone(data.phone);
   
@@ -241,7 +242,11 @@ function handleUpdateProfile(data) {
 // ---- POST MANAGEMENT ----
 
 function handleCreatePost(data) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Posts');
+  let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Posts');
+  if (!sheet) {
+    sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet('Posts');
+    sheet.appendRow(['id', 'phone', 'name', 'mediaUrl', 'mediaType', 'caption', 'timestamp']);
+  }
   const id = Utilities.getUuid();
   const timestamp = new Date().toISOString();
   
@@ -255,9 +260,11 @@ function handleCreatePost(data) {
 }
 
 function handleDeletePost(data) {
-  const postSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Posts');
-  const likeSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Likes');
-  const commentSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Comments');
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const postSheet = ss.getSheetByName('Posts');
+  const likeSheet = ss.getSheetByName('Likes');
+  const commentSheet = ss.getSheetByName('Comments');
+  if (!postSheet) return { success: false, message: 'Sheet Posts tidak ditemukan' };
   const postRows = postSheet.getDataRange().getValues();
   const inputPhone = normalizePhone(data.phone);
   
@@ -268,14 +275,18 @@ function handleDeletePost(data) {
         return { success: false, message: 'Anda tidak bisa menghapus postingan orang lain' };
       }
       // Delete associated likes (from bottom to top)
-      const likeRows = likeSheet.getDataRange().getValues();
-      for (let j = likeRows.length - 1; j >= 1; j--) {
-        if (likeRows[j][0] === data.postId) likeSheet.deleteRow(j + 1);
+      if (likeSheet) {
+        const likeRows = likeSheet.getDataRange().getValues();
+        for (let j = likeRows.length - 1; j >= 1; j--) {
+          if (likeRows[j][0] === data.postId) likeSheet.deleteRow(j + 1);
+        }
       }
       // Delete associated comments (from bottom to top)
-      const commentRows = commentSheet.getDataRange().getValues();
-      for (let j = commentRows.length - 1; j >= 1; j--) {
-        if (commentRows[j][0] === data.postId) commentSheet.deleteRow(j + 1);
+      if (commentSheet) {
+        const commentRows = commentSheet.getDataRange().getValues();
+        for (let j = commentRows.length - 1; j >= 1; j--) {
+          if (commentRows[j][0] === data.postId) commentSheet.deleteRow(j + 1);
+        }
       }
       // Delete the post
       postSheet.deleteRow(i + 1);
@@ -287,15 +298,18 @@ function handleDeletePost(data) {
 }
 
 function handleGetPosts() {
-  const postSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Posts');
-  const likeSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Likes');
-  const commentSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Comments');
-  const userSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Users');
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const postSheet = ss.getSheetByName('Posts');
+  const likeSheet = ss.getSheetByName('Likes');
+  const commentSheet = ss.getSheetByName('Comments');
+  const userSheet = ss.getSheetByName('Users');
+  
+  if (!postSheet) return { success: true, posts: [] };
   
   const postRows = postSheet.getDataRange().getValues();
-  const likeRows = likeSheet.getDataRange().getValues();
-  const commentRows = commentSheet.getDataRange().getValues();
-  const userRows = userSheet.getDataRange().getValues();
+  const likeRows = likeSheet ? likeSheet.getDataRange().getValues() : [];
+  const commentRows = commentSheet ? commentSheet.getDataRange().getValues() : [];
+  const userRows = userSheet ? userSheet.getDataRange().getValues() : [];
   
   // Build user map for photo URLs
   const userMap = {};
@@ -343,7 +357,11 @@ function handleGetPosts() {
 // ---- LIKES ----
 
 function handleLikePost(data) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Likes');
+  let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Likes');
+  if (!sheet) {
+    sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet('Likes');
+    sheet.appendRow(['postId', 'phone']);
+  }
   const rows = sheet.getDataRange().getValues();
   
   // Check if already liked
@@ -363,7 +381,11 @@ function handleLikePost(data) {
 // ---- COMMENTS ----
 
 function handleAddComment(data) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Comments');
+  let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Comments');
+  if (!sheet) {
+    sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet('Comments');
+    sheet.appendRow(['postId', 'phone', 'name', 'text', 'timestamp']);
+  }
   const timestamp = new Date().toISOString();
   
   sheet.appendRow([data.postId, data.phone, data.name, data.text, timestamp]);
@@ -376,10 +398,12 @@ function handleAddComment(data) {
 }
 
 function handleGetComments(data) {
-  const commentSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Comments');
-  const userSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Users');
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const commentSheet = ss.getSheetByName('Comments');
+  const userSheet = ss.getSheetByName('Users');
+  if (!commentSheet) return { success: true, comments: [] };
   const rows = commentSheet.getDataRange().getValues();
-  const userRows = userSheet.getDataRange().getValues();
+  const userRows = userSheet ? userSheet.getDataRange().getValues() : [];
   
   const userMap = {};
   for (let i = 1; i < userRows.length; i++) {
@@ -407,6 +431,7 @@ function handleGetComments(data) {
 
 function handleGetMembers() {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Users');
+  if (!sheet) return { success: true, members: [] };
   const rows = sheet.getDataRange().getValues();
   
   const members = [];
@@ -427,6 +452,7 @@ function handleGetMembers() {
 
 function handleUpdateSocials(data) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Users');
+  if (!sheet) return { success: false, message: 'Sheet Users tidak ditemukan' };
   const rows = sheet.getDataRange().getValues();
   const inputPhone = normalizePhone(data.phone);
   
