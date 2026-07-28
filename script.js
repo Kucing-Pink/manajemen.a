@@ -103,7 +103,7 @@ async function loadAnonymousMessages() {
         container.innerHTML = `
             <div class="anon-empty">
                 <i class="fas fa-mask"></i>
-                <p>Belum ada pesan anonim.<br>Jadilah yang pertama!</p>
+                <p>Belum ada manfess.<br>Jadilah yang pertama!</p>
             </div>
         `;
     }
