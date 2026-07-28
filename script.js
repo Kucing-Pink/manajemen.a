@@ -2,7 +2,7 @@
 // CONFIGURATION
 // ===========================
 // PENTING: Ganti URL di bawah dengan URL Google Apps Script deployment Anda
-const API_URL = 'https://script.google.com/macros/s/AKfycbzUSzi0S6it_P6QrM8xOx6Z9C0imGjIkN9m6NfWgS3bUl-XMsKpEfbFARWTMJ0sMMgdDQ/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbx51YRrkchGIVUQ9F32Ee-4PUmlYJj8N6mi7pXJfLR3Ban0h3D1Kd5rTumkMjsHa1LLng/exec';
 
 // Cloudinary Config (Free tier - buat akun di cloudinary.com)
 // PENTING: Ganti dengan cloud name dan upload preset Anda
