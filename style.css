@@ -104,6 +104,22 @@ body.light-theme .comment-item:hover {
     background: rgba(0,0,0,0.03);
 }
 
+body.light-theme .anon-msg-content {
+    background: #e8e8ed;
+    border-color: rgba(0,0,0,0.06);
+}
+body.light-theme .anon-msg-content::before {
+    background: #e8e8ed;
+    border-left-color: rgba(0,0,0,0.06);
+    border-bottom-color: rgba(0,0,0,0.06);
+}
+body.light-theme .anon-msg:hover .anon-msg-content {
+    background: #dddde3;
+}
+body.light-theme .anon-input-area {
+    background: rgba(0,0,0,0.03);
+}
+
 body.light-theme ::selection {
     background: rgba(139, 92, 246, 0.25);
     color: #1a1a2e;
@@ -691,8 +707,9 @@ input, textarea { font-family: inherit; outline: none; border: none; }
 
 .anon-msg {
     display: flex;
-    gap: 6px;
+    gap: 0;
     animation: anonSlideIn 0.4s ease-out;
+    justify-content: flex-start;
 }
 @keyframes anonSlideIn {
     from { opacity: 0; transform: translateY(8px) scale(0.97); }
@@ -710,17 +727,32 @@ input, textarea { font-family: inherit; outline: none; border: none; }
     color: #fff;
     flex-shrink: 0;
     margin-top: 2px;
+    margin-right: 6px;
 }
 .anon-msg-content {
     flex: 1;
-    background: var(--bg-glass);
+    background: var(--bg-elevated);
     border: 1px solid var(--border-glass);
-    border-radius: 8px 8px 8px 3px;
-    padding: 6px 10px;
+    border-radius: 16px 16px 16px 4px;
+    padding: 8px 12px;
     transition: all var(--transition-fast);
     min-width: 0;
+    position: relative;
 }
-.anon-msg-content:hover {
+.anon-msg-content::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    background: var(--bg-elevated);
+    border-left: 1px solid var(--border-glass);
+    border-bottom: 1px solid var(--border-glass);
+    transform: rotate(45deg);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+.anon-msg:hover .anon-msg-content {
     background: var(--bg-glass-hover);
     border-color: var(--border-glass-hover);
 }
@@ -731,9 +763,9 @@ input, textarea { font-family: inherit; outline: none; border: none; }
     word-break: break-word;
 }
 .anon-msg-time {
-    font-size: 0.58rem;
+    font-size: 0.55rem;
     color: var(--text-muted);
-    margin-top: 2px;
+    margin-top: 3px;
 }
 .anon-msg-emoji {
     display: flex;
