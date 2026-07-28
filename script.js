@@ -124,10 +124,14 @@ function addAnonMessageToUI(msg, prepend) {
     const initials = msg.senderName ? msg.senderName.charAt(0).toUpperCase() : '?';
 
     el.innerHTML = `
-        <div class="anon-msg-avatar" style="background:linear-gradient(135deg,${bgColor},${bgColor}dd)">${initials}</div>
-        <div class="anon-msg-content">
-            <div class="anon-msg-text">${escapeHTML(msg.text)}</div>
-            ${msg.senderName && msg.senderName !== 'Anonim' ? `<div class="anon-msg-time">${escapeHTML(msg.senderName)} &middot; ${timeAgo(msg.timestamp)}</div>` : `<div class="anon-msg-time">${timeAgo(msg.timestamp)}</div>`}
+        <div class="anon-msg-bubble">
+            <div class="anon-msg-avatar" style="background:linear-gradient(135deg,${bgColor},${bgColor}dd)">${initials}</div>
+            <div class="anon-msg-content">
+                <div class="anon-msg-text">${escapeHTML(msg.text)}</div>
+                <div class="anon-msg-time">${timeAgo(msg.timestamp)}</div>
+            </div>
+        </div>
+        <div class="anon-msg-actions">
             <div class="anon-msg-emoji">
                 <button class="anon-emoji-btn" data-emoji="❤️" data-id="${msg.id}">❤️</button>
                 <button class="anon-emoji-btn" data-emoji="😂" data-id="${msg.id}">😂</button>
@@ -138,7 +142,6 @@ function addAnonMessageToUI(msg, prepend) {
         </div>
     `;
 
-    // Emoji reaction click
     el.querySelectorAll('.anon-emoji-btn').forEach(btn => {
         btn.addEventListener('click', async (e) => {
             e.stopPropagation();
@@ -149,11 +152,7 @@ function addAnonMessageToUI(msg, prepend) {
         });
     });
 
-    if (prepend) {
-        container.appendChild(el);
-    } else {
-        container.appendChild(el);
-    }
+    container.appendChild(el);
 }
 
 function renderAnonReactions(reactions) {
