@@ -65,12 +65,16 @@
     .modal-close{width:36px;height:36px;border-radius:50%;border:none;background:var(--g100);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .2s}
     .modal-close:hover{background:var(--g200)}
     .modal-comments{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
-    .cmt{display:flex;gap:10px}
-    .cmt-av{width:32px;height:32px;border-radius:50%;background:var(--g300);flex-shrink:0}
-    .cmt-body{flex:1}
-    .cmt-name{font-size:13px;font-weight:700}
-    .cmt-text{font-size:13px;color:var(--black);margin-top:2px}
-    .cmt-time{font-size:11px;color:var(--g400);margin-top:4px}
+    /* Tampilan Komentar Galeri */
+    .comment-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;animation:fadeIn 0.25s ease-out}
+    .comment-avatar{width:32px;height:32px;border-radius:50%;background:#E60023;color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:13px;flex-shrink:0}
+    .comment-content{flex:1;background:var(--g100);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:2px}
+    .comment-user{font-weight:700;color:var(--black)}
+    .comment-text{color:var(--g800);line-height:1.4;word-break:break-word}
+    .comment-time{font-size:10px;color:var(--g500);align-self:flex-start;margin-top:2px}
+    .comments-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px;color:var(--g400);text-align:center;gap:8px}
+    .comments-empty svg{width:36px;height:36px;stroke:var(--g300)}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
     .modal-input{padding:12px 16px;border-top:1px solid var(--g200);display:flex;gap:8px}
     .modal-input input{flex:1;height:40px;border:1px solid var(--g200);border-radius:20px;padding:0 14px;font-size:13px;font-family:var(--ff);outline:none}
     .modal-input input:focus{border-color:#0866FF}
@@ -153,9 +157,9 @@
     <div class="modal-media" id="modalMedia"></div>
     <div class="modal-side">
       <div class="modal-head">
-        <div class="pia" id="modalAvatar"></div>
+        <div class="pia" id="modalAvatar" style="display:flex;align-items:center;justify-content:center;overflow:hidden;"></div>
         <div class="modal-head-info">
-          <div class="modal-head-name" id="modalName"></div>
+          <div class="modal-head-name" id="modalName">Admin</div>
           <div class="modal-head-sub">Posted a pin</div>
         </div>
         <button class="modal-close" id="modalClose">&times;</button>
@@ -198,11 +202,24 @@
 </div>
 
 <script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbyJDyvIstCXuKurD_S7nfkvLU-cFhZAXuZgDg0hQmyOyssTTunwJ_FNyE0DUmQq7w5QqA/exec';
 const CLOUDINARY_CLOUD = 'duknzwtx2';
 const CLOUDINARY_LIST = 'https://res.cloudinary.com/' + CLOUDINARY_CLOUD + '/image/list/gallery.json';
 const CLOUDINARY_VIDEO_LIST = 'https://res.cloudinary.com/' + CLOUDINARY_CLOUD + '/video/list/gallery.json';
 const CLOUDINARY_ANY_LIST = 'https://res.cloudinary.com/' + CLOUDINARY_CLOUD + '/any/list/gallery.json';
 const mry = document.getElementById('mry');
+
+let isLoggedIn = localStorage.getItem('ma_loggedIn') === 'true';
+let userPhone = localStorage.getItem('ma_phone') || '';
+let activeMediaId = null;
+
+function checkLogin() {
+  if (!isLoggedIn) {
+    document.getElementById('loginOverlay').classList.add('open');
+    return false;
+  }
+  return true;
+}
 
 async function loadGallery() {
   mry.innerHTML = '<div class="gallery-loading"><div class="spinner"></div><p>Loading gallery...</p></div>';
@@ -236,18 +253,27 @@ async function loadGallery() {
     let url, thumb, type;
     if (isVideo) {
       type = 'video';
-      url = baseUrl + '/video/upload/' + item.public_id + '.' + item.format;
-      thumb = baseUrl + '/video/upload/w_500/' + item.public_id + '.jpg';
+      url = baseUrl + '/video/upload/f_auto,q_auto/' + item.public_id + '.' + item.format;
+      thumb = baseUrl + '/video/upload/f_auto,q_auto,w_500/' + item.public_id + '.jpg';
     } else if (isGif) {
       type = 'gif';
-      url = item.secure_url;
-      thumb = baseUrl + '/image/upload/w_500/' + item.public_id + '.gif';
+      url = baseUrl + '/image/upload/f_auto,q_auto/' + item.public_id + '.' + item.format;
+      thumb = baseUrl + '/image/upload/f_auto,q_auto,w_500/' + item.public_id + '.gif';
     } else {
       type = 'image';
-      url = item.secure_url;
-      thumb = baseUrl + '/image/upload/w_500/' + item.public_id + '.' + item.format;
+      url = baseUrl + '/image/upload/f_auto,q_auto/' + item.public_id + '.' + item.format;
+      thumb = baseUrl + '/image/upload/f_auto,q_auto,w_500/' + item.public_id + '.' + item.format;
     }
-    const title = item.public_id.split('/').pop().replace(/[-_]/g, ' ');
+    let rawTitle = item.public_id.split('/').pop().replace(/[-_]/g, ' ');
+    if (/^[a-z0-9]{20}$/.test(rawTitle)) {
+      rawTitle = 'Gallery Media';
+    } else {
+      if (/\s[a-z0-9]{4}$/.test(rawTitle)) {
+        rawTitle = rawTitle.substring(0, rawTitle.length - 5);
+      }
+      rawTitle = rawTitle.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+    const title = rawTitle;
     const pin = document.createElement('div');
     pin.className = 'pin';
     let inner = '';
@@ -258,7 +284,7 @@ async function loadGallery() {
     } else {
       inner = '<img src="' + thumb + '" alt="' + title + '" loading="lazy">';
     }
-    inner += '<div class="po"><button class="sv">Save</button><div class="pi"><div class="pia" style="background:#E60023"></div><span class="pinm">' + title + '</span></div></div>';
+    inner += '<div class="po"><button class="sv">Save</button><div class="pi"><div class="pia" style="background:#E60023;color:white;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:14px;line-height:1;">A</div><span class="pinm">Admin</span></div></div>';
     pin.innerHTML = inner;
     mry.appendChild(pin);
     pin.addEventListener('click', () => {
@@ -281,16 +307,120 @@ async function loadGallery() {
         img.style.cssText = 'max-width:100%;max-height:90vh;object-fit:contain;display:block';
         media.appendChild(img);
       }
-      document.getElementById('modalName').textContent = title;
+      document.getElementById('modalAvatar').innerHTML = '<div style="width:100%;height:100%;border-radius:50%;background:#E60023;color:white;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:18px;line-height:1;">A</div>';
+      document.getElementById('modalName').textContent = 'Admin';
       document.getElementById('modalOverlay').classList.add('open');
+      
+      activeMediaId = item.public_id;
+      loadComments(activeMediaId);
     });
   });
+}
+
+function stringToColor(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const colors = ['#E60023', '#007AFF', '#583B91', '#DB5B06', '#068440', '#E0A800', '#17A2B8', '#6F42C1'];
+  const index = Math.abs(hash) % colors.length;
+  return colors[index];
+}
+
+function getInitials(name) {
+  if (!name) return '?';
+  return name.split(' ').map(n => n.charAt(0)).join('').toUpperCase().substring(0, 2);
+}
+
+function formatDateRelative(timeStr) {
+  if (!timeStr) return '';
+  try {
+    const date = new Date(timeStr);
+    if (isNaN(date.getTime())) return timeStr;
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / 60000);
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return diffMins + 'm ago';
+    const diffHours = Math.floor(diffMins / 60);
+    if (diffHours < 24) return diffHours + 'h ago';
+    return date.toLocaleDateString(undefined, {month: 'short', day: 'numeric'});
+  } catch(e) {
+    return timeStr;
+  }
+}
+
+async function loadComments(mediaId) {
+  const container = document.getElementById('modalComments');
+  container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--g400)"><div class="spinner" style="width:20px;height:20px;margin:0 auto 8px;"></div>Loading comments...</div>';
+  try {
+    const res = await fetch(API_URL + '?action=getComments&mediaId=' + encodeURIComponent(mediaId));
+    const comments = await res.json();
+    container.innerHTML = '';
+    if (Array.isArray(comments) && comments.length > 0) {
+      comments.forEach(c => {
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        item.innerHTML = `
+          <div class="comment-avatar" style="background:${stringToColor(c.name || 'Anonymous')}">${getInitials(c.name || 'Anonymous')}</div>
+          <div class="comment-content">
+            <span class="comment-user">${c.name || 'Anonymous'}</span>
+            <span class="comment-text">${c.comment || ''}</span>
+            <span class="comment-time">${formatDateRelative(c.time)}</span>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+      container.scrollTop = container.scrollHeight;
+    } else {
+      container.innerHTML = `
+        <div class="comments-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <p style="margin:0;font-weight:600">No comments yet</p>
+          <p style="margin:0;font-size:12px">Be the first to share your thoughts!</p>
+        </div>
+      `;
+    }
+  } catch(err) {
+    console.error('Error loading comments:', err);
+    container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--red)">Failed to load comments</div>';
+  }
+}
+
+async function postComment(mediaId, text) {
+  if (!checkLogin()) return;
+  const name = localStorage.getItem('ma_name') || 'User ' + userPhone.slice(-4);
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain'},
+      body: JSON.stringify({
+        action: 'addComment',
+        mediaId: mediaId,
+        phone: userPhone,
+        name: name,
+        comment: text
+      })
+    });
+    const result = await res.json();
+    if (result.success) {
+      document.getElementById('commentInput').value = '';
+      await loadComments(mediaId);
+    }
+  } catch(err) {
+    console.error('Post comment error:', err);
+    document.getElementById('commentInput').value = '';
+    await loadComments(mediaId);
+  }
 }
 
 loadGallery();
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('open');
   document.getElementById('modalMedia').innerHTML = '';
+  document.getElementById('modalComments').innerHTML = '';
+  document.getElementById('commentInput').value = '';
+  activeMediaId = null;
 }
 document.getElementById('modalClose').addEventListener('click', closeModal);
 document.getElementById('modalOverlay').addEventListener('click', e => {
@@ -299,8 +429,44 @@ document.getElementById('modalOverlay').addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
 });
+
+document.getElementById('commentBtn').addEventListener('click', () => {
+  if (!checkLogin()) return;
+  const input = document.getElementById('commentInput');
+  const text = input.value.trim();
+  if (text && activeMediaId) {
+    postComment(activeMediaId, text);
+  }
+});
+document.getElementById('commentInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    if (!checkLogin()) return;
+    const text = e.target.value.trim();
+    if (text && activeMediaId) {
+      postComment(activeMediaId, text);
+    }
+  }
+});
+function updateLoginBtn() {
+  const btn = document.querySelector('.login-btn');
+  if (isLoggedIn) {
+    btn.textContent = 'Profile';
+    btn.style.background = 'var(--g200)';
+    btn.style.color = 'var(--black)';
+  } else {
+    btn.textContent = 'Log in';
+    btn.style.background = 'var(--red)';
+    btn.style.color = 'var(--white)';
+  }
+}
+updateLoginBtn();
+
 document.querySelector('.login-btn').addEventListener('click', () => {
-  document.getElementById('loginOverlay').classList.add('open');
+  if (isLoggedIn) {
+    window.location.href = 'profile.html?phone=' + encodeURIComponent(userPhone);
+  } else {
+    document.getElementById('loginOverlay').classList.add('open');
+  }
 });
 document.getElementById('loginClose').addEventListener('click', () => {
   document.getElementById('loginOverlay').classList.remove('open');
@@ -330,10 +496,12 @@ document.querySelectorAll('.otp-digit').forEach((input, i, arr) => {
 document.getElementById('otpVerify').addEventListener('click', () => {
   const code = Array.from(document.querySelectorAll('.otp-digit')).map(el => el.value).join('');
   if (code.length === 4) {
+    userPhone = phoneInput.value;
+    isLoggedIn = true;
+    localStorage.setItem('ma_phone', userPhone);
+    localStorage.setItem('ma_loggedIn', 'true');
     document.getElementById('loginOverlay').classList.remove('open');
-    document.querySelector('.login-btn').textContent = 'Profile';
-    document.querySelector('.login-btn').style.background = 'var(--g200)';
-    document.querySelector('.login-btn').style.color = 'var(--black)';
+    updateLoginBtn();
   }
 });
 document.getElementById('resendOtp').addEventListener('click', e => {

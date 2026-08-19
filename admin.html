@@ -222,12 +222,26 @@
 </div>
 
 <script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbxPYX8rqMUnxac4nVVgkZ42NvUkt6AZ3C_ltNchisXn_oY8ZA_AI3UKpkXsFlY0cW1Gpg/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbyJDyvIstCXuKurD_S7nfkvLU-cFhZAXuZgDg0hQmyOyssTTunwJ_FNyE0DUmQq7w5QqA/exec';
 let currentEdit = null;
 let currentType = '';
 let users = [];
 let messages = [];
 let reports = [];
+
+function formatTime(timeStr) {
+  if (!timeStr) return '';
+  const str = String(timeStr);
+  if (str.includes('T')) {
+    try {
+      const dateObj = new Date(str);
+      if (!isNaN(dateObj.getTime())) {
+        return dateObj.getHours().toString().padStart(2, '0') + ':' + dateObj.getMinutes().toString().padStart(2, '0');
+      }
+    } catch(e) {}
+  }
+  return str;
+}
 
 async function fetchData() {
   try {
@@ -249,7 +263,7 @@ async function fetchData() {
 async function apiPost(body) {
   const res = await fetch(API_URL, {
     method: 'POST',
-    headers: {'Content-Type':'application/json'},
+    headers: {'Content-Type':'text/plain'},
     body: JSON.stringify(body)
   });
   return res.json();
@@ -275,7 +289,7 @@ function renderMessages(data) {
   tbody.innerHTML = data.map(m => `<tr>
     <td>${m.sender}</td>
     <td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${m.message}</td>
-    <td>${m.time}</td>
+    <td>${formatTime(m.time)}</td>
     <td><span class="status status-${m.status}">${m.status}</span></td>
     <td><div class="actions">
       <button class="icon-btn" onclick="editItem('message',${m.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>

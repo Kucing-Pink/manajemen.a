@@ -19,7 +19,19 @@ function doGet(e) {
     var data = s.getDataRange().getValues();
     if (data.length <= 1) return ContentService.createTextOutput(JSON.stringify([])).setMimeType(ContentService.MimeType.JSON);
     var msgs = data.slice(1).map(function(r) {
-      return {id:r[0], sender:r[1], message:r[2], time:r[3], status:r[4]};
+      var timeVal = r[3];
+      if (timeVal instanceof Date) {
+        try {
+          timeVal = Utilities.formatDate(timeVal, sheet.getSpreadsheetTimeZone(), "HH:mm");
+        } catch(err) {
+          var hours = ("0" + timeVal.getHours()).slice(-2);
+          var minutes = ("0" + timeVal.getMinutes()).slice(-2);
+          timeVal = hours + ":" + minutes;
+        }
+      } else {
+        timeVal = String(timeVal);
+      }
+      return {id:r[0], sender:r[1], message:r[2], time:timeVal, status:r[4], reactions:r[5] || '{}'};
     });
     return ContentService.createTextOutput(JSON.stringify(msgs)).setMimeType(ContentService.MimeType.JSON);
   }
@@ -64,6 +76,29 @@ function doGet(e) {
       }
     }
     return ContentService.createTextOutput(JSON.stringify({exists:false})).setMimeType(ContentService.MimeType.JSON);
+  }
+  
+  if (action === 'getComments') {
+    var mediaId = e.parameter.mediaId;
+    if (!mediaId) return ContentService.createTextOutput(JSON.stringify({success:false, error:'mediaId required'})).setMimeType(ContentService.MimeType.JSON);
+    var s = sheet.getSheetByName('Comments');
+    if (!s) return ContentService.createTextOutput(JSON.stringify([])).setMimeType(ContentService.MimeType.JSON);
+    var data = s.getDataRange().getValues();
+    if (data.length <= 1) return ContentService.createTextOutput(JSON.stringify([])).setMimeType(ContentService.MimeType.JSON);
+    var list = [];
+    for (var i = 1; i < data.length; i++) {
+      if (String(data[i][1]) === String(mediaId)) {
+        list.push({
+          id: data[i][0],
+          mediaId: data[i][1],
+          phone: data[i][2],
+          name: data[i][3] || 'Anonymous',
+          comment: data[i][4],
+          time: data[i][5]
+        });
+      }
+    }
+    return ContentService.createTextOutput(JSON.stringify(list)).setMimeType(ContentService.MimeType.JSON);
   }
   
   return ContentService.createTextOutput('{"error":"unknown action"}').setMimeType(ContentService.MimeType.JSON);
@@ -189,7 +224,10 @@ function doPost(e) {
     var s = sheet.getSheetByName('Messages');
     if (!s) return ContentService.createTextOutput(JSON.stringify({success:false, error:'Messages sheet not found'})).setMimeType(ContentService.MimeType.JSON);
     var id = s.getLastRow();
-    s.appendRow([id, String(data.sender || 'Anonymous'), data.message, data.time || '', data.status || 'unread']);
+    s.appendRow([id, String(data.sender || 'Anonymous'), data.message, data.time || '', data.status || 'unread', '{}']);
+    try {
+      s.getRange(s.getLastRow(), 4).setNumberFormat('@');
+    } catch(e) {}
     return ContentService.createTextOutput(JSON.stringify({success:true})).setMimeType(ContentService.MimeType.JSON);
   }
   
@@ -203,10 +241,37 @@ function doPost(e) {
         s.getRange(i+1, 3).setValue(data.message);
         s.getRange(i+1, 4).setValue(data.time);
         s.getRange(i+1, 5).setValue(data.status);
+        if (data.reactions !== undefined) s.getRange(i+1, 6).setValue(data.reactions);
         break;
       }
     }
     return ContentService.createTextOutput(JSON.stringify({success:true})).setMimeType(ContentService.MimeType.JSON);
+  }
+
+  if (action === 'reactToMessage') {
+    if (!data.id || !data.phone || !data.emoji) return ContentService.createTextOutput(JSON.stringify({success:false, error:'Missing parameters'})).setMimeType(ContentService.MimeType.JSON);
+    var s = sheet.getSheetByName('Messages');
+    if (!s) return ContentService.createTextOutput(JSON.stringify({success:false, error:'Messages sheet not found'})).setMimeType(ContentService.MimeType.JSON);
+    var range = s.getDataRange();
+    var values = range.getValues();
+    for (var i = 1; i < values.length; i++) {
+      if (values[i][0] == data.id) {
+        var reactionsStr = values[i][5] || '{}';
+        var reactionsObj = {};
+        try {
+          reactionsObj = JSON.parse(reactionsStr);
+        } catch(e) {}
+        
+        if (reactionsObj[data.phone] === data.emoji) {
+          delete reactionsObj[data.phone];
+        } else {
+          reactionsObj[data.phone] = data.emoji;
+        }
+        s.getRange(i+1, 6).setValue(JSON.stringify(reactionsObj));
+        return ContentService.createTextOutput(JSON.stringify({success:true, reactions:reactionsObj})).setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+    return ContentService.createTextOutput(JSON.stringify({success:false, error:'Message not found'})).setMimeType(ContentService.MimeType.JSON);
   }
   
   if (action === 'deleteMessage') {
@@ -268,6 +333,20 @@ function doPost(e) {
     s.getRange(6, 2).setValue(settings.registration || 'on');
     s.getRange(7, 2).setValue(settings.notifications || 'on');
     s.getRange(8, 2).setValue(settings.autoDelete || 'off');
+    return ContentService.createTextOutput(JSON.stringify({success:true})).setMimeType(ContentService.MimeType.JSON);
+  }
+  
+  if (action === 'addComment') {
+    if (!data.mediaId || !data.comment || !data.phone) {
+      return ContentService.createTextOutput(JSON.stringify({success:false, error:'Missing parameters'})).setMimeType(ContentService.MimeType.JSON);
+    }
+    var s = sheet.getSheetByName('Comments');
+    if (!s) {
+      s = sheet.insertSheet('Comments');
+      s.appendRow(['id', 'mediaId', 'phone', 'name', 'comment', 'time']);
+    }
+    var id = s.getLastRow();
+    s.appendRow([id, String(data.mediaId), String(data.phone), data.name || 'Anonymous', data.comment, new Date().toISOString()]);
     return ContentService.createTextOutput(JSON.stringify({success:true})).setMimeType(ContentService.MimeType.JSON);
   }
   

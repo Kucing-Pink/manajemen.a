@@ -149,7 +149,7 @@
 <div class="toast" id="toast">Saved</div>
 
 <script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbxPYX8rqMUnxac4nVVgkZ42NvUkt6AZ3C_ltNchisXn_oY8ZA_AI3UKpkXsFlY0cW1Gpg/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbyJDyvIstCXuKurD_S7nfkvLU-cFhZAXuZgDg0hQmyOyssTTunwJ_FNyE0DUmQq7w5QqA/exec';
 let currentUser = null;
 let allUsers = [];
 
@@ -198,6 +198,20 @@ async function loadProfile() {
   }
 }
 
+function formatTime(timeStr) {
+  if (!timeStr) return '';
+  const str = String(timeStr);
+  if (str.includes('T')) {
+    try {
+      const dateObj = new Date(str);
+      if (!isNaN(dateObj.getTime())) {
+        return dateObj.getHours().toString().padStart(2, '0') + ':' + dateObj.getMinutes().toString().padStart(2, '0');
+      }
+    } catch(e) {}
+  }
+  return str;
+}
+
 async function loadMyMessages() {
   if (!phone) {
     document.getElementById('myMessages').innerHTML = '<div class="empty-state"><p>Login to see your messages</p></div>';
@@ -218,7 +232,7 @@ async function loadMyMessages() {
         <div class="msg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
         <div class="msg-body">
           <div class="msg-text">${m.message}</div>
-          <div class="msg-time">${m.time}</div>
+          <div class="msg-time">${formatTime(m.time)}</div>
         </div>
         <div class="msg-status ${m.status === 'read' ? 'read' : ''}"></div>
       </div>
@@ -238,7 +252,7 @@ document.getElementById('saveProfile').addEventListener('click', async () => {
     if (currentUser) {
       await fetch(API_URL, {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: {'Content-Type':'text/plain'},
         body: JSON.stringify({action:'updateUser', id:currentUser.id, name:name, phone:currentUser.phone, status:currentUser.status})
       });
     }
@@ -258,7 +272,7 @@ document.getElementById('changePw').addEventListener('click', async () => {
     if (currentUser) {
       await fetch(API_URL, {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: {'Content-Type':'text/plain'},
         body: JSON.stringify({action:'updateUser', id:currentUser.id, phone:currentUser.phone, password:npw})
       });
     }
