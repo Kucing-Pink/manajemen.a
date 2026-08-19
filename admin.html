@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Manajemen A</title>
+  <style>
+    @font-face{font-family:'Pin Sans';src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Regular-708c49dd.woff2') format('woff2');font-weight:400;font-display:swap}
+    @font-face{font-family:'Pin Sans';src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Medium-704a4f34.woff2') format('woff2');font-weight:500;font-display:swap}
+    @font-face{font-family:'Pin Sans';src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Bold-ce475d98.woff2') format('woff2');font-weight:700;font-display:swap}
+    :root{--sidebar:#111;--sidebar-hover:#222;--sidebar-active:#333;--white:#FFF;--black:#111;--g50:#FAFAFA;--g100:#F6F6F3;--g200:#EFEFEB;--g300:#CDCDCD;--g400:#767676;--g500:#5F5F5F;--red:#E60023;--blue:#0866FF;--green:#068440;--orange:#DB5B06;--ff:'Pin Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:var(--ff);background:var(--g50);color:var(--black);display:flex;min-height:100vh}
+
+    .sidebar{width:240px;background:var(--sidebar);color:var(--white);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:width .3s}
+    .sidebar-header{padding:20px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:12px}
+    .sidebar-logo{width:32px;height:32px;border-radius:8px;background:var(--red);display:flex;align-items:center;justify-content:center}
+    .sidebar-logo svg{width:20px;height:20px;fill:var(--white)}
+    .sidebar-title{font-size:16px;font-weight:700}
+    .sidebar-nav{flex:1;padding:12px 0;overflow-y:auto}
+    .sidebar-section{padding:8px 20px;font-size:11px;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.05em;margin-top:8px}
+    .nav-item{display:flex;align-items:center;gap:12px;padding:10px 20px;color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500;transition:all .2s;cursor:pointer;border:none;background:0 0;width:100%;text-align:left;font-family:var(--ff)}
+    .nav-item:hover{background:var(--sidebar-hover);color:var(--white)}
+    .nav-item.active{background:var(--sidebar-active);color:var(--white);font-weight:600}
+    .nav-item svg{width:20px;height:20px;flex-shrink:0}
+    .nav-item .badge{margin-left:auto;background:var(--red);color:var(--white);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+    .sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1)}
+    .logout-btn{display:flex;align-items:center;gap:10px;padding:10px 0;color:rgba(255,255,255,.6);font-size:14px;font-weight:500;cursor:pointer;border:none;background:0 0;font-family:var(--ff);transition:color .2s;width:100%}
+    .logout-btn:hover{color:var(--white)}
+    .logout-btn svg{width:20px;height:20px}
+
+    .main{flex:1;margin-left:240px;display:flex;flex-direction:column;min-height:100vh}
+    .topbar{height:64px;background:var(--white);border-bottom:1px solid var(--g200);display:flex;align-items:center;padding:0 24px;gap:16px;position:sticky;top:0;z-index:50}
+    .topbar-title{font-size:20px;font-weight:700;flex:1}
+    .topbar-search{position:relative}
+    .topbar-search input{width:240px;height:40px;border:1px solid var(--g200);border-radius:10px;padding:0 12px 0 36px;font-size:14px;font-family:var(--ff);outline:none;transition:border-color .2s}
+    .topbar-search input:focus{border-color:var(--blue)}
+    .topbar-search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--g400)}
+    .topbar-avatar{width:36px;height:36px;border-radius:50%;background:var(--g300);cursor:pointer}
+
+    .content{flex:1;padding:24px}
+    .page{display:none}
+    .page.active{display:block}
+
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+    @media(max-width:1200px){.stats{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.stats{grid-template-columns:1fr}}
+    .stat-card{background:var(--white);border-radius:12px;padding:20px;border:1px solid var(--g200)}
+    .stat-label{font-size:13px;color:var(--g500);font-weight:500;margin-bottom:8px}
+    .stat-value{font-size:28px;font-weight:700}
+    .stat-change{font-size:12px;margin-top:4px;font-weight:600}
+    .stat-change.up{color:var(--green)}
+    .stat-change.down{color:var(--red)}
+
+    .card{background:var(--white);border-radius:12px;border:1px solid var(--g200);overflow:hidden}
+    .card-header{padding:16px 20px;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:space-between}
+    .card-title{font-size:16px;font-weight:700}
+    .card-body{padding:0}
+
+    .btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;font-family:var(--ff);cursor:pointer;transition:all .2s;border:none;display:inline-flex;align-items:center;gap:6px}
+    .btn-primary{background:var(--blue);color:var(--white)}.btn-primary:hover{background:#0758d9}
+    .btn-danger{background:var(--red);color:var(--white)}.btn-danger:hover{background:#c5001a}
+    .btn-ghost{background:transparent;color:var(--g500);border:1px solid var(--g200)}.btn-ghost:hover{background:var(--g100)}
+    .btn-success{background:var(--green);color:var(--white)}.btn-success:hover{background:#056f38}
+    .btn-sm{padding:5px 10px;font-size:12px}
+
+    table{width:100%;border-collapse:collapse}
+    th{text-align:left;padding:12px 16px;font-size:12px;font-weight:600;color:var(--g500);text-transform:uppercase;letter-spacing:.03em;border-bottom:1px solid var(--g200);background:var(--g50)}
+    td{padding:12px 16px;font-size:14px;border-bottom:1px solid var(--g200)}
+    tr:last-child td{border-bottom:none}
+    tr:hover{background:var(--g50)}
+
+    .status{padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600;display:inline-block}
+    .status-active{background:#E8F5E9;color:#2E7D32}
+    .status-inactive{background:#FFEBEE;color:#C62828}
+    .status-pending{background:#FFF3E0;color:#E65100}
+    .status-resolved{background:#E8F5E9;color:#2E7D32}
+    .status-unread{background:#E3F2FD;color:#1565C0}
+
+    .actions{display:flex;gap:6px}
+    .icon-btn{width:32px;height:32px;border-radius:6px;border:1px solid var(--g200);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .icon-btn:hover{background:var(--g100)}.icon-btn svg{width:16px;height:16px}
+    .icon-btn.danger:hover{background:#FFEBEE;border-color:var(--red)} svg{color:var(--red)}
+
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+    .modal-overlay.open{display:flex}
+    .modal{background:var(--white);border-radius:16px;width:100%;max-width:480px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+    .modal-header{padding:20px;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:space-between}
+    .modal-header h3{font-size:18px;font-weight:700}
+    .modal-close{width:32px;height:32px;border-radius:8px;border:none;background:var(--g100);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px}
+    .modal-close:hover{background:var(--g200)}
+    .modal-body{padding:20px}
+    .modal-footer{padding:16px 20px;border-top:1px solid var(--g200);display:flex;justify-content:flex-end;gap:8px}
+
+    .form-group{margin-bottom:16px}
+    .form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+    .form-group input,.form-group select,.form-group textarea{width:100%;height:40px;border:1px solid var(--g200);border-radius:8px;padding:0 12px;font-size:14px;font-family:var(--ff);outline:none;transition:border-color .2s}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue)}
+    .form-group textarea{height:80px;padding:10px 12px;resize:vertical}
+
+    .settings-section{background:var(--white);border-radius:12px;border:1px solid var(--g200);padding:20px;margin-bottom:16px}
+    .settings-section h3{font-size:16px;font-weight:700;margin-bottom:16px}
+    .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--g200)}
+    .toggle-row:last-child{border-bottom:none}
+    .toggle-info{flex:1}
+    .toggle-info h4{font-size:14px;font-weight:600}
+    .toggle-info p{font-size:12px;color:var(--g500)}
+    .toggle{width:44px;height:24px;border-radius:12px;background:var(--g300);position:relative;cursor:pointer;transition:background .2s}
+    .toggle.on{background:var(--green)}
+    .toggle::after{content:'';position:absolute;width:20px;height:20px;border-radius:50%;background:var(--white);top:2px;left:2px;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+    .toggle.on::after{left:22px}
+
+    .empty{text-align:center;padding:48px;color:var(--g400)}
+    .empty svg{width:48px;height:48px;margin-bottom:12px;opacity:.5}
+  </style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
+    <div class="sidebar-title">Manajemen A</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section">Main</div>
+    <button class="nav-item active" data-page="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</button>
+    <button class="nav-item" data-page="users"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>Users<span class="badge" id="userCount">12</span></button>
+    <button class="nav-item" data-page="messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Messages<span class="badge" id="msgCount">24</span></button>
+    <div class="sidebar-section">Management</div>
+    <button class="nav-item" data-page="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Reports<span class="badge" id="reportCount">5</span></button>
+    <button class="nav-item" data-page="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Settings</button>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="logout-btn" onclick="window.location.href='index.html'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</button>
+  </div>
+</aside>
+
+<div class="main">
+  <header class="topbar">
+    <div class="topbar-title" id="pageTitle">Dashboard</div>
+    <div class="topbar-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search..." id="globalSearch">
+    </div>
+    <div class="topbar-avatar"></div>
+  </header>
+
+  <div class="content">
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+        <div class="stats">
+          <div class="stat-card"><div class="stat-label">Total Users</div><div class="stat-value" id="statUsers">...</div><div class="stat-change up" id="statUsersChange"></div></div>
+          <div class="stat-card"><div class="stat-label">Messages</div><div class="stat-value" id="statMessages">...</div><div class="stat-change up" id="statMessagesChange"></div></div>
+          <div class="stat-card"><div class="stat-label">Reports</div><div class="stat-value" id="statReports">...</div><div class="stat-change down" id="statReportsChange"></div></div>
+          <div class="stat-card"><div class="stat-label">Active Today</div><div class="stat-value" id="statActive">...</div><div class="stat-change up" id="statActiveChange"></div></div>
+        </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Recent Activity</div></div>
+        <div class="card-body" id="activityList"></div>
+      </div>
+    </div>
+
+    <!-- USERS -->
+    <div class="page" id="page-users">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Users Management</div>
+          <button class="btn btn-primary" onclick="openModal('user')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add User</button>
+        </div>
+        <div class="card-body"><table><thead><tr><th>Name</th><th>Phone</th><th>Password</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead><tbody id="usersTable"></tbody></table></div>
+      </div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div class="page" id="page-messages">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Messages</div>
+          <button class="btn btn-primary" onclick="openModal('message')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Message</button>
+        </div>
+        <div class="card-body"><table><thead><tr><th>Sender</th><th>Message</th><th>Time</th><th>Status</th><th>Actions</th></tr></thead><tbody id="messagesTable"></tbody></table></div>
+      </div>
+    </div>
+
+    <!-- REPORTS -->
+    <div class="page" id="page-reports">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Reports</div>
+          <button class="btn btn-primary" onclick="openModal('report')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Report</button>
+        </div>
+        <div class="card-body"><table><thead><tr><th>Reporter</th><th>Reason</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="reportsTable"></tbody></table></div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="page" id="page-settings">
+      <div class="settings-section">
+        <h3>General Settings</h3>
+        <div class="form-group"><label>Site Name</label><input type="text" value="Manajemen A"></div>
+        <div class="form-group"><label>Contact Email</label><input type="email" value="admin@manajemena.com"></div>
+        <div class="form-group"><label>Description</label><textarea>Platform anonymous messaging for Manajemen A class.</textarea></div>
+      </div>
+      <div class="settings-section">
+        <h3>System</h3>
+        <div class="toggle-row"><div class="toggle-info"><h4>Maintenance Mode</h4><p>Temporarily disable public access</p></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+        <div class="toggle-row"><div class="toggle-info"><h4>Allow Registration</h4><p>Allow new users to register</p></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="toggle-row"><div class="toggle-info"><h4>Email Notifications</h4><p>Send email for new reports</p></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="toggle-row"><div class="toggle-info"><h4>Auto-delete Old Messages</h4><p>Remove messages older than 30 days</p></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+      </div>
+      <button class="btn btn-primary" style="margin-top:8px">Save Settings</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header"><h3 id="modalTitle">Add</h3><button class="modal-close" onclick="closeModal()">&times;</button></div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" id="modalSave">Save</button></div>
+  </div>
+</div>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbxPYX8rqMUnxac4nVVgkZ42NvUkt6AZ3C_ltNchisXn_oY8ZA_AI3UKpkXsFlY0cW1Gpg/exec';
+let currentEdit = null;
+let currentType = '';
+let users = [];
+let messages = [];
+let reports = [];
+
+async function fetchData() {
+  try {
+    const [u, m, r] = await Promise.all([
+      fetch(API_URL + '?action=getUsers').then(res => res.json()),
+      fetch(API_URL + '?action=getMessages').then(res => res.json()),
+      fetch(API_URL + '?action=getReports').then(res => res.json())
+    ]);
+    users = u; messages = m; reports = r;
+    renderUsers(users); renderMessages(messages); renderReports(reports);
+    updateCounts();
+    renderActivity();
+  } catch(err) {
+    console.error('Fetch error:', err);
+    document.getElementById('activityList').innerHTML = '<div style="padding:24px;text-align:center;color:var(--red)">Failed to load data. Check API URL in config.</div>';
+  }
+}
+
+async function apiPost(body) {
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  });
+  return res.json();
+}
+
+function renderUsers(data) {
+  const tbody = document.getElementById('usersTable');
+  tbody.innerHTML = data.map(u => `<tr>
+    <td><strong>${u.name || '-'}</strong></td>
+    <td>${u.phone}</td>
+    <td style="font-family:monospace;letter-spacing:1px">${u.password ? '••••••' : '-'}</td>
+    <td><span class="status status-${u.status}">${u.status}</span></td>
+    <td>${u.joined}</td>
+    <td><div class="actions">
+      <button class="icon-btn" onclick="editItem('user',${u.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+      <button class="icon-btn danger" onclick="deleteItem('user',${u.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>
+    </div></td>
+  </tr>`).join('');
+}
+
+function renderMessages(data) {
+  const tbody = document.getElementById('messagesTable');
+  tbody.innerHTML = data.map(m => `<tr>
+    <td>${m.sender}</td>
+    <td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${m.message}</td>
+    <td>${m.time}</td>
+    <td><span class="status status-${m.status}">${m.status}</span></td>
+    <td><div class="actions">
+      <button class="icon-btn" onclick="editItem('message',${m.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+      <button class="icon-btn danger" onclick="deleteItem('message',${m.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>
+    </div></td>
+  </tr>`).join('');
+}
+
+function renderReports(data) {
+  const tbody = document.getElementById('reportsTable');
+  tbody.innerHTML = data.map(r => `<tr>
+    <td>${r.reporter}</td>
+    <td>${r.reason}</td>
+    <td>${r.date}</td>
+    <td><span class="status status-${r.status}">${r.status}</span></td>
+    <td><div class="actions">
+      <button class="icon-btn" onclick="editItem('report',${r.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+      <button class="icon-btn danger" onclick="deleteItem('report',${r.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>
+    </div></td>
+  </tr>`).join('');
+}
+
+function renderActivity() {
+  const items = [];
+  if (users.length > 0) {
+    const last = users[users.length - 1];
+    items.push({text: last.name + ' joined', time: last.joined, color: 'var(--green)'});
+  }
+  if (messages.length > 0) {
+    const last = messages[messages.length - 1];
+    items.push({text: 'New message from ' + last.sender, time: last.time, color: 'var(--blue)'});
+  }
+  if (reports.length > 0) {
+    const last = reports[reports.length - 1];
+    items.push({text: 'Report by ' + last.reporter, time: last.date, color: 'var(--orange)'});
+  }
+  if (items.length === 0) {
+    items.push({text: 'No activity yet', time: '', color: 'var(--g400)'});
+  }
+  document.getElementById('activityList').innerHTML = items.map(i => `
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--g200)">
+      <div style="width:8px;height:8px;border-radius:50%;background:${i.color};flex-shrink:0"></div>
+      <div style="flex:1;font-size:14px">${i.text}</div>
+      <div style="font-size:12px;color:var(--g400)">${i.time}</div>
+    </div>`).join('');
+}
+
+function openModal(type, id) {
+  currentType = type;
+  currentEdit = id || null;
+  const title = document.getElementById('modalTitle');
+  const body = document.getElementById('modalBody');
+  if (type === 'user') {
+    const u = id ? users.find(x=>x.id===id) : null;
+    title.textContent = id ? 'Edit User' : 'Add User';
+    body.innerHTML = `
+      <div class="form-group"><label>Name</label><input type="text" id="fName" value="${u?u.name:''}"></div>
+      <div class="form-group"><label>Phone</label><input type="tel" id="fPhone" value="${u?u.phone:''}"></div>
+      <div class="form-group"><label>Password</label><input type="text" id="fPassword" value="${u?u.password:''}" placeholder="Leave empty to keep current"></div>
+      <div class="form-group"><label>Status</label><select id="fStatus"><option value="active"${u&&u.status==='active'?' selected':''}>Active</option><option value="inactive"${u&&u.status==='inactive'?' selected':''}>Inactive</option></select></div>`;
+  } else if (type === 'message') {
+    const m = id ? messages.find(x=>x.id===id) : null;
+    title.textContent = id ? 'Edit Message' : 'Add Message';
+    body.innerHTML = `
+      <div class="form-group"><label>Sender</label><input type="text" id="fSender" value="${m?m.sender:'Anonymous'}"></div>
+      <div class="form-group"><label>Message</label><textarea id="fMessage">${m?m.message:''}</textarea></div>
+      <div class="form-group"><label>Time</label><input type="text" id="fTime" value="${m?m.time:''}"></div>
+      <div class="form-group"><label>Status</label><select id="fStatus"><option value="read"${m&&m.status==='read'?' selected':''}>Read</option><option value="unread"${m&&m.status==='unread'?' selected':''}>Unread</option></select></div>`;
+  } else if (type === 'report') {
+    const r = id ? reports.find(x=>x.id===id) : null;
+    title.textContent = id ? 'Edit Report' : 'Add Report';
+    body.innerHTML = `
+      <div class="form-group"><label>Reporter</label><input type="text" id="fReporter" value="${r?r.reporter:''}"></div>
+      <div class="form-group"><label>Reason</label><input type="text" id="fReason" value="${r?r.reason:''}"></div>
+      <div class="form-group"><label>Date</label><input type="date" id="fDate" value="${r?r.date:''}"></div>
+      <div class="form-group"><label>Status</label><select id="fStatus"><option value="pending"${r&&r.status==='pending'?' selected':''}>Pending</option><option value="resolved"${r&&r.status==='resolved'?' selected':''}>Resolved</option></select></div>`;
+  }
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); currentEdit = null; }
+
+document.getElementById('modalSave').addEventListener('click', async () => {
+  const saveBtn = document.getElementById('modalSave');
+  saveBtn.textContent = 'Saving...';
+  saveBtn.disabled = true;
+  try {
+    if (currentType === 'user') {
+      const obj = {name:document.getElementById('fName').value,phone:document.getElementById('fPhone').value,password:document.getElementById('fPassword').value,status:document.getElementById('fStatus').value,joined:new Date().toISOString().slice(0,10)};
+      if (currentEdit) { await apiPost({action:'updateUser', id:currentEdit, ...obj}); }
+      else { await apiPost({action:'addUser', ...obj}); }
+    } else if (currentType === 'message') {
+      const obj = {sender:document.getElementById('fSender').value,message:document.getElementById('fMessage').value,time:document.getElementById('fTime').value,status:document.getElementById('fStatus').value};
+      if (currentEdit) { await apiPost({action:'updateMessage', id:currentEdit, ...obj}); }
+      else { await apiPost({action:'addMessage', ...obj}); }
+    } else if (currentType === 'report') {
+      const obj = {reporter:document.getElementById('fReporter').value,reason:document.getElementById('fReason').value,date:document.getElementById('fDate').value,status:document.getElementById('fStatus').value};
+      if (currentEdit) { await apiPost({action:'updateReport', id:currentEdit, ...obj}); }
+      else { await apiPost({action:'addReport', ...obj}); }
+    }
+    await fetchData();
+  } catch(err) { console.error('Save error:', err); alert('Failed to save. Check API URL.'); }
+  saveBtn.textContent = 'Save';
+  saveBtn.disabled = false;
+  closeModal();
+});
+
+function editItem(type, id) { openModal(type, id); }
+
+async function deleteItem(type, id) {
+  if (!confirm('Are you sure you want to delete this item?')) return;
+  const actionMap = {user:'deleteUser', message:'deleteMessage', report:'deleteReport'};
+  try {
+    await apiPost({action: actionMap[type], id: id});
+    await fetchData();
+  } catch(err) { console.error('Delete error:', err); alert('Failed to delete.'); }
+}
+
+function updateCounts() {
+  document.getElementById('userCount').textContent = users.length;
+  document.getElementById('msgCount').textContent = messages.length;
+  document.getElementById('reportCount').textContent = reports.length;
+  document.getElementById('statUsers').textContent = users.length;
+  document.getElementById('statMessages').textContent = messages.length;
+  document.getElementById('statReports').textContent = reports.length;
+  document.getElementById('statActive').textContent = users.filter(u => u.status === 'active').length;
+  const pending = reports.filter(r => r.status === 'pending').length;
+  document.getElementById('statReportsChange').textContent = '+' + pending + ' pending';
+  document.getElementById('statUsersChange').textContent = '+' + users.filter(u => u.status === 'active').length + ' active';
+  document.getElementById('statMessagesChange').textContent = '+' + messages.filter(m => m.status === 'unread').length + ' unread';
+  document.getElementById('statActiveChange').textContent = '+3 from yesterday';
+}
+
+document.querySelectorAll('.nav-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const page = btn.dataset.page;
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-'+page).classList.add('active');
+    document.getElementById('pageTitle').textContent = btn.textContent.trim();
+  });
+});
+
+document.getElementById('globalSearch').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase();
+  const activePage = document.querySelector('.page.active').id.replace('page-','');
+  if (activePage === 'users') renderUsers(users.filter(u=>u.name.toLowerCase().includes(q)||u.phone.includes(q)));
+  else if (activePage === 'messages') renderMessages(messages.filter(m=>m.message.toLowerCase().includes(q)));
+  else if (activePage === 'reports') renderReports(reports.filter(r=>r.reporter.toLowerCase().includes(q)||r.reason.toLowerCase().includes(q)));
+});
+
+renderActivity();
+document.addEventListener('DOMContentLoaded', fetchData);
+</script>
+</body>
+</html>

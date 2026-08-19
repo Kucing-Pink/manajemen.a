@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinterest - Tools</title>
+  <style>
+    @font-face { font-family:'Pin Sans'; src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Regular-708c49dd.woff2') format('woff2'); font-weight:400; font-display:swap }
+    @font-face { font-family:'Pin Sans'; src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Medium-704a4f34.woff2') format('woff2'); font-weight:500; font-display:swap }
+    @font-face { font-family:'Pin Sans'; src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Bold-ce475d98.woff2') format('woff2'); font-weight:700; font-display:swap }
+    @font-face { font-family:'Pin Sans'; src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Heavy-2b6abf8c.woff2') format('woff2'); font-weight:800; font-display:swap }
+    :root {--red:#E60023;--white:#FFF;--black:#111;--g100:#F6F6F3;--g200:#EFEFEB;--g300:#CDCDCD;--g400:#767676;--g500:#5F5F5F;--ff:'Pin Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:var(--ff);background:var(--white);color:var(--black);line-height:1.5}
+    .hdr{position:fixed;top:0;left:0;right:0;height:64px;background:var(--white);display:flex;align-items:center;padding:0 16px;gap:8px;z-index:1000;box-shadow:0 1px 0 var(--g200)}
+    .logo{width:24px;height:24px;flex-shrink:0}
+    .logo svg{width:100%;height:100%}
+    .nl{padding:8px 16px;border-radius:24px;font-size:16px;font-weight:600;text-decoration:none;color:var(--black);transition:background .2s}
+    .nl:hover{background:var(--g200)}.nl.on{background:var(--black);color:var(--white)}
+    .sbar{flex:1;position:relative}
+    .sbar input{width:100%;height:48px;border:none;background:var(--g200);border-radius:24px;padding:0 16px 0 48px;font-size:16px;font-family:var(--ff);outline:none}
+    .sbar input:focus{background:var(--g100);box-shadow:0 0 0 2px #0866FF}
+    .sbar input::placeholder{color:var(--g400)}
+    .si{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--g400)}
+    .ha{display:flex;align-items:center;gap:4px}
+    .ib{width:40px;height:40px;border-radius:50%;border:none;background:0 0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+    .ib:hover{background:var(--g200)}.ib svg{width:24px;height:24px}
+    .av{width:24px;height:24px;border-radius:50%;background:var(--g300)}
+    .main{padding-top:80px;min-height:100vh}
+    .hero{text-align:center;padding:40px 24px}
+    .hero h1{font-size:40px;font-weight:700;margin-bottom:12px}
+    .hero p{font-size:16px;color:var(--g500);max-width:600px;margin:0 auto}
+    .pills{display:flex;gap:12px;padding:0 24px 32px;overflow-x:auto;justify-content:center;flex-wrap:wrap;max-width:1000px;margin:0 auto}
+    .pills::-webkit-scrollbar{display:none}
+    .p{padding:12px 24px;border-radius:24px;background:var(--g100);font-size:16px;font-weight:600;white-space:nowrap;cursor:pointer;transition:all .2s;border:none;font-family:var(--ff)}
+    .p:hover,.p.on{background:var(--black);color:var(--white)}
+    .ft{padding:48px 24px;text-align:center;color:var(--g500);font-size:14px;border-top:1px solid var(--g200);margin-top:48px}
+    .fl{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:16px}
+    .fl a{color:var(--g500);text-decoration:none;font-weight:500}
+    .fl a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+<header class="hdr">
+  <a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="#E60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+  <a href="index.html" class="nl">Home</a>
+  <a href="gallery.html" class="nl">Gallery</a>
+  <a href="edukasi.html" class="nl">Edukasi</a>
+  <a href="tools.html" class="nl on">Tools</a>
+  <div class="sbar">
+    <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" placeholder="Search for ideas">
+  </div>
+  <div class="ha">
+    <button class="ib"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></button>
+    <button class="ib"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></button>
+    <div class="av"></div>
+  </div>
+</header>
+
+<main class="main">
+  <section class="hero">
+    <h1>Tools</h1>
+    <p>Filter and explore ideas by category. Click a pill to filter.</p>
+  </section>
+  <div class="pills" id="pills"></div>
+</main>
+
+<footer class="ft">
+  <div class="fl">
+    <a href="#">About</a><a href="#">Blog</a><a href="#">Business</a><a href="#">Press</a>
+    <a href="#">Copyright</a><a href="#">Privacy</a><a href="#">Terms</a>
+    <a href="#">Help</a><a href="#">API</a><a href="#">Jobs</a>
+  </div>
+  <p>Pinterest Clone for reference purposes only</p>
+</footer>
+
+<script>
+const pills = ['All','Recipes','Home Decor','Fashion','DIY','Travel','Art','Fitness','Photography','Weddings','Animals','Food & Drink'];
+const pillsEl = document.getElementById('pills');
+pills.forEach((t,i) => {
+  const b = document.createElement('button');
+  b.className = 'p' + (i===0?' on':'');
+  b.textContent = t;
+  b.onclick = () => { document.querySelectorAll('.p').forEach(p=>p.classList.remove('on')); b.classList.add('on'); };
+  pillsEl.appendChild(b);
+});
+</script>
+</body>
+</html>

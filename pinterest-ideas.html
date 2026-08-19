@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinterest - Ideas</title>
+  <style>
+    @font-face { font-family:'Pin Sans'; src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Regular-708c49dd.woff2') format('woff2'); font-weight:400; font-display:swap }
+    @font-face { font-family:'Pin Sans'; src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Medium-704a4f34.woff2') format('woff2'); font-weight:500; font-display:swap }
+    @font-face { font-family:'Pin Sans'; src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Bold-ce475d98.woff2') format('woff2'); font-weight:700; font-display:swap }
+    @font-face { font-family:'Pin Sans'; src:url('https://s.pinimg.com/webapp/Pin-Sans-MacOS-Heavy-2b6abf8c.woff2') format('woff2'); font-weight:800; font-display:swap }
+    :root {
+      --red:#E60023; --white:#FFF; --black:#111;
+      --g100:#F6F6F3; --g200:#EFEFEB; --g300:#CDCDCD; --g400:#767676; --g500:#5F5F5F;
+      --ff:'Pin Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:var(--ff);background:var(--white);color:var(--black);line-height:1.5}
+    .hdr{position:fixed;top:0;left:0;right:0;height:64px;background:var(--white);display:flex;align-items:center;padding:0 16px;gap:8px;z-index:1000;box-shadow:0 1px 0 var(--g200)}
+    .logo{width:24px;height:24px;flex-shrink:0}
+    .logo svg{width:100%;height:100%}
+    .nl{padding:8px 16px;border-radius:24px;font-size:16px;font-weight:600;text-decoration:none;color:var(--black);transition:background .2s}
+    .nl:hover{background:var(--g200)}.nl.on{background:var(--black);color:var(--white)}
+    .sbar{flex:1;position:relative}
+    .sbar input{width:100%;height:48px;border:none;background:var(--g200);border-radius:24px;padding:0 16px 0 48px;font-size:16px;font-family:var(--ff);outline:none}
+    .sbar input:focus{background:var(--g100);box-shadow:0 0 0 2px #0866FF}
+    .sbar input::placeholder{color:var(--g400)}
+    .si{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--g400)}
+    .ha{display:flex;align-items:center;gap:4px}
+    .ib{width:40px;height:40px;border-radius:50%;border:none;background:0 0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+    .ib:hover{background:var(--g200)}.ib svg{width:24px;height:24px}
+    .av{width:24px;height:24px;border-radius:50%;background:var(--g300)}
+    .main{padding-top:80px;min-height:100vh}
+
+    .frost-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      max-width:1000px;
+      margin:0 auto 32px;
+      padding:0 16px;
+    }
+    @media(max-width:768px){.frost-wrap{grid-template-columns:1fr}}
+
+    .frost-card{
+      background:rgba(255,255,255,.25);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.4);
+      overflow:hidden;
+      box-shadow:0 4px 24px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.5);
+      display:flex;
+      flex-direction:column;
+    }
+    .banner{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:32px 24px;
+      text-align:center;
+      background:linear-gradient(135deg,rgba(230,0,35,.25),rgba(8,102,255,.25),rgba(119,79,196,.25));
+    }
+    .banner-icon{
+      width:56px;height:56px;border-radius:50%;
+      background:rgba(255,255,255,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      display:flex;align-items:center;justify-content:center;
+      margin-bottom:16px;border:2px solid rgba(255,255,255,.4);
+    }
+    .banner-icon svg{width:28px;height:28px;fill:var(--white)}
+    .banner h2{font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px;text-shadow:0 1px 6px rgba(0,0,0,.2)}
+    .banner p{font-size:14px;color:rgba(255,255,255,.9);max-width:260px}
+    .banner-btn{
+      margin-top:16px;padding:10px 24px;border-radius:20px;background:var(--white);color:var(--black);
+      font-size:14px;font-weight:700;font-family:var(--ff);border:none;cursor:pointer;transition:all .2s;
+      box-shadow:0 3px 10px rgba(0,0,0,.12);
+    }
+    .banner-btn:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(0,0,0,.18)}
+
+    .chat-panel{padding:20px;display:flex;flex-direction:column;gap:10px}
+    .chat-header{padding:0 0 12px;border-bottom:1px solid rgba(255,255,255,.2);margin-bottom:4px}
+    .chat-header h3{font-size:16px;font-weight:700;color:var(--white)}
+    .chat-header p{font-size:12px;color:rgba(255,255,255,.7)}
+    .chat-messages{display:flex;flex-direction:column;gap:8px;overflow-y:auto}
+    .chat-bubble{
+      background:rgba(255,255,255,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      border-radius:16px;border:1px solid rgba(255,255,255,.3);padding:10px 14px;max-width:80%;
+    }
+    .chat-bubble.sent{align-self:flex-end;background:rgba(255,255,255,.35)}
+    .chat-bubble.received{align-self:flex-start}
+    .chat-text{font-size:13px;color:var(--white);line-height:1.4}
+    .chat-time{font-size:10px;color:rgba(255,255,255,.55);margin-top:4px}
+    .chat-input{display:flex;gap:6px;margin-top:8px;padding-top:12px;border-top:1px solid rgba(255,255,255,.2)}
+    .chat-input input{
+      flex:1;height:38px;border:none;border-radius:19px;background:rgba(255,255,255,.2);
+      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:0 14px;
+      font-size:13px;font-family:var(--ff);color:var(--white);outline:none;border:1px solid rgba(255,255,255,.3);
+    }
+    .chat-input input::placeholder{color:rgba(255,255,255,.5)}
+    .chat-input button{
+      width:38px;height:38px;border-radius:50%;border:none;background:var(--white);color:var(--black);
+      cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s;
+    }
+    .chat-input button:hover{transform:scale(1.05)}
+    .chat-input button svg{width:18px;height:18px}
+    .typing{display:flex;gap:3px;padding:6px 12px;align-items:center}
+    .typing span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);animation:bounce .6s infinite alternate}
+    .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+    @keyframes bounce{to{opacity:.3;transform:translateY(-3px)}}
+
+    .pills{display:flex;gap:12px;padding:0 24px 32px;overflow-x:auto;justify-content:center;flex-wrap:wrap}
+    .pills::-webkit-scrollbar{display:none}
+    .p{padding:12px 24px;border-radius:24px;background:var(--g100);font-size:16px;font-weight:600;white-space:nowrap;cursor:pointer;transition:all .2s;border:none;font-family:var(--ff)}
+    .p:hover,.p.on{background:var(--black);color:var(--white)}
+    .cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;padding:0 16px;max-width:1200px;margin:0 auto 48px}
+    .cat{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1;cursor:pointer}
+    .cat .cl{position:absolute;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:flex-end;padding:16px}
+    .cat h3{color:#fff;font-size:18px;font-weight:700}
+    .mry{column-count:6;column-gap:16px;padding:0 16px;max-width:1800px;margin:0 auto}
+    @media(max-width:1400px){.mry{column-count:5}}
+    @media(max-width:1100px){.mry{column-count:4}}
+    @media(max-width:900px){.mry{column-count:3}}
+    @media(max-width:600px){.mry{column-count:2;column-gap:8px;padding:0 8px}}
+    .pin{break-inside:avoid;margin-bottom:16px;border-radius:16px;overflow:hidden;background:var(--g100);cursor:pointer;position:relative}
+    @media(max-width:600px){.pin{margin-bottom:8px;border-radius:12px}}
+    .pin:hover .po{opacity:1}
+    .pin .img{width:100%;display:block}
+    .po{position:absolute;inset:0;background:rgba(0,0,0,.4);opacity:0;transition:opacity .2s;display:flex;flex-direction:column;justify-content:space-between;padding:12px}
+    .sv{align-self:flex-end;padding:8px 16px;background:var(--red);color:var(--white);border:none;border-radius:24px;font-size:14px;font-weight:700;cursor:pointer}
+    .sv:hover{background:#ad081b}
+    .pi{display:flex;align-items:center;gap:8px}
+    .pia{width:32px;height:32px;border-radius:50%;background:var(--g300)}
+    .pinm{color:var(--white);font-size:14px;font-weight:600}
+    .ft{padding:48px 24px;text-align:center;color:var(--g500);font-size:14px;border-top:1px solid var(--g200);margin-top:48px}
+    .fl{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:16px}
+    .fl a{color:var(--g500);text-decoration:none;font-weight:500}
+    .fl a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+<header class="hdr">
+  <a href="#" class="logo"><svg viewBox="0 0 24 24" fill="#E60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+  <a href="#" class="nl on">Home</a>
+  <a href="#" class="nl">Gallery</a>
+  <a href="#" class="nl">Tools</a>
+  <div class="sbar">
+    <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" placeholder="Search for ideas">
+  </div>
+  <div class="ha">
+    <button class="ib"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></button>
+    <button class="ib"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></button>
+    <div class="av"></div>
+  </div>
+</header>
+
+<main class="main">
+  <div class="frost-wrap">
+    <div class="frost-card banner">
+      <div class="banner-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      </div>
+      <h2>Share Your Feelings</h2>
+      <p>Send anonymous messages to someone special.</p>
+      <button class="banner-btn">Start Confessing</button>
+    </div>
+
+    <div class="frost-card chat-panel">
+      <div class="chat-header">
+        <h3>Chat Manfess</h3>
+        <p>Anonymous messages</p>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-bubble received">
+          <div class="chat-text"></div>
+          <div class="chat-time">10:30</div>
+        </div>
+        <div class="chat-bubble sent">
+          <div class="chat-text"></div>
+          <div class="chat-time">10:32</div>
+        </div>
+        <div class="chat-bubble received">
+          <div class="chat-text"></div>
+          <div class="chat-time">10:35</div>
+        </div>
+        <div class="chat-bubble sent">
+          <div class="chat-text"></div>
+          <div class="chat-time">10:38</div>
+        </div>
+        <div class="chat-bubble received">
+          <div class="chat-text"></div>
+          <div class="chat-time">10:42</div>
+        </div>
+        <div class="typing">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" placeholder="Type a message...">
+        <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pills" id="pills"></div>
+  <div class="cats" id="cats"></div>
+  <div class="mry" id="mry"></div>
+</main>
+
+<footer class="ft">
+  <div class="fl">
+    <a href="#">About</a><a href="#">Blog</a><a href="#">Business</a><a href="#">Press</a>
+    <a href="#">Copyright</a><a href="#">Privacy</a><a href="#">Terms</a>
+    <a href="#">Help</a><a href="#">API</a><a href="#">Jobs</a>
+  </div>
+  <p>Pinterest Clone for reference purposes only</p>
+</footer>
+
+<script>
+const cats = [
+  {name:'Recipes',color:'#DB5B06'},
+  {name:'Home Decor',color:'#0866FF'},
+  {name:'Fashion',color:'#774FC4'},
+  {name:'DIY & Crafts',color:'#068440'},
+  {name:'Travel',color:'#376DF6'},
+  {name:'Art',color:'#583B91'},
+  {name:'Fitness',color:'#DD0E0E'},
+  {name:'Photography',color:'#6845AB'}
+];
+const catsEl = document.getElementById('cats');
+cats.forEach(c => {
+  const d = document.createElement('div');
+  d.className = 'cat';
+  d.style.background = c.color;
+  d.innerHTML = `<div class="cl"><h3>${c.name}</h3></div>`;
+  catsEl.appendChild(d);
+});
+
+const pills = ['All','Recipes','Home Decor','Fashion','DIY','Travel','Art','Fitness','Photography','Weddings','Animals','Food & Drink'];
+const pillsEl = document.getElementById('pills');
+pills.forEach((t,i) => {
+  const b = document.createElement('button');
+  b.className = 'p' + (i===0?' on':'');
+  b.textContent = t;
+  b.onclick = () => { document.querySelectorAll('.p').forEach(p=>p.classList.remove('on')); b.classList.add('on'); };
+  pillsEl.appendChild(b);
+});
+
+const colors = ['#E60023','#0866FF','#DB5B06','#068440','#774FC4','#DD0E0E','#583B91','#376DF6'];
+const names = ['Sarah Chen','Alex Rivera','Mia Johnson','James Park','Emma Wilson','Liam Davis','Olivia Brown','Noah Garcia','Ava Martinez','Ethan Taylor','Sophia Lee','Mason White','Isabella Moore','Lucas Anderson','Mia Thomas'];
+const titles = [
+  'Minimalist living room ideas','Easy chicken dinner recipe','Summer outfit inspiration',
+  'DIY macrame wall hanging','Travel photography tips','Watercolor painting tutorial',
+  'Morning yoga routine','Wedding decoration ideas','Healthy smoothie bowl',
+  'Modern bedroom design','Handmade jewelry craft','Tropical vacation spots',
+  'Cozy fall recipes','Garden landscaping ideas','Vintage fashion lookbook'
+];
+const heights = [200,250,280,300,320,350,380,400,420,450];
+const mry = document.getElementById('mry');
+for (let i = 0; i < 30; i++) {
+  const h = heights[i % heights.length];
+  const c = colors[i % colors.length];
+  const n = names[i % names.length];
+  const t = titles[i % titles.length];
+  const pin = document.createElement('div');
+  pin.className = 'pin';
+  pin.innerHTML = `
+    <svg class="img" viewBox="0 0 236 ${h}" xmlns="http://www.w3.org/2000/svg">
+      <rect width="236" height="${h}" fill="${c}" opacity="0.15"/>
+      <rect x="16" y="${h-60}" width="120" height="8" rx="4" fill="${c}" opacity="0.4"/>
+      <rect x="16" y="${h-44}" width="80" height="8" rx="4" fill="${c}" opacity="0.25"/>
+      <circle cx="118" cy="${h/2}" r="40" fill="${c}" opacity="0.2"/>
+      <text x="118" y="${h/2+6}" text-anchor="middle" fill="${c}" font-size="14" font-family="Pin Sans,sans-serif" font-weight="600">${t.split(' ')[0]}</text>
+    </svg>
+    <div class="po">
+      <button class="sv">Save</button>
+      <div class="pi">
+        <div class="pia" style="background:${c}"></div>
+        <span class="pinm">${n}</span>
+      </div>
+    </div>`;
+  mry.appendChild(pin);
+}
+</script>
+</body>
+</html>
